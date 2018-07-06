@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff">
+
+    <RelativeLayout
+        android:id="@+id/mRlMineInfoFaceContainer"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="头像"
+            android:layout_centerVertical="true"
+            android:textSize="@dimen/sp_16"
+            android:textColor="@color/deepTextColor"
+            android:padding="@dimen/dp_10"
+            android:drawableRight="@drawable/icon_enter_gray"/>
+
+        <ImageView
+            android:id="@+id/mIvMineInfoFace"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/test_user_face"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="40dp"/>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/mRlMineInfoNickNameContainer"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="昵称"
+            android:layout_centerVertical="true"
+            android:textSize="@dimen/sp_16"
+            android:textColor="@color/deepTextColor"
+            android:padding="@dimen/dp_10"
+            android:drawableRight="@drawable/icon_enter_gray"/>
+
+        <TextView
+            android:id="@+id/mTvMineInfoNickName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/normalTextColor"
+            android:layout_marginLeft="50dp"
+            android:text="卡卡卡卡"
+            android:layout_centerVertical="true"
+            android:maxLength="16"
+            android:layout_marginRight="40dp"/>
+
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/mTvMineInfoResetPassword"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="修改密码"
+        android:textSize="@dimen/sp_16"
+        android:textColor="@color/deepTextColor"
+        android:padding="@dimen/dp_10"
+        android:drawableRight="@drawable/icon_enter_gray"/>
+
+    <Button
+        android:id="@+id/mBtMineInfoLogout"
+        style="@style/button_style1"
+        android:text="退出登录"
+        android:layout_marginTop="50dp"/>
+
+</LinearLayout>

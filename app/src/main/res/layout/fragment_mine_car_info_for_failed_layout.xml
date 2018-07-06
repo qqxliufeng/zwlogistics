@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/qian_red"
+            android:gravity="center"
+            android:padding="@dimen/dp_10"
+            android:text="审核失败原因：请上传清晰的车辆行驶证"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/sp_14" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:orientation="vertical"
+            android:padding="@dimen/dp_10">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="车辆行驶证"
+                android:textColor="@color/deepTextColor"
+                android:textSize="@dimen/sp_14" />
+
+            <FrameLayout
+                style="@style/iv_show_photo_style"
+                android:layout_marginTop="@dimen/dp_10">
+
+                <ImageView
+                    android:id="@+id/mIvAddNewCarXSZ"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/icon_car_xsz_img" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/shape_tv_bg5"
+                    android:textColor="#fff"
+                    android:textSize="@dimen/sp_12"
+                    android:gravity="center"
+                    android:drawableTop="@drawable/icon_camera"
+                    android:paddingTop="30dp"
+                    android:drawablePadding="-20dp"
+                    android:text="重新上传"/>
+            </FrameLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_10"
+            android:background="@color/lineColor" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:orientation="vertical"
+            android:padding="@dimen/dp_10">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="车辆营运证"
+                android:textColor="@color/deepTextColor"
+                android:textSize="@dimen/sp_14" />
+
+            <FrameLayout
+                style="@style/iv_show_photo_style"
+                android:layout_marginTop="@dimen/dp_10">
+
+                <ImageView
+                    android:id="@+id/mIvAddNewCarYXZ"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/icon_car_ysz_img" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/shape_tv_bg5"
+                    android:textColor="#fff"
+                    android:textSize="@dimen/sp_12"
+                    android:gravity="center"
+                    android:drawableTop="@drawable/icon_camera"
+                    android:paddingTop="30dp"
+                    android:drawablePadding="-20dp"
+                    android:text="重新上传"/>
+            </FrameLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_10"
+            android:background="@color/lineColor" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:orientation="vertical"
+            android:padding="@dimen/dp_10">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="车牌号"
+                android:textColor="@color/deepTextColor"
+                android:textSize="@dimen/sp_14" />
+
+            <FrameLayout
+                style="@style/iv_show_photo_style"
+                android:layout_marginTop="@dimen/dp_10">
+
+                <ImageView
+                    android:id="@+id/mIvAddNewCarCPH"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/icon_car_cph_img" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/shape_tv_bg5"
+                    android:textColor="#fff"
+                    android:textSize="@dimen/sp_12"
+                    android:gravity="center"
+                    android:drawableTop="@drawable/icon_camera"
+                    android:paddingTop="30dp"
+                    android:drawablePadding="-20dp"
+                    android:text="重新上传"/>
+            </FrameLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/mLlAddNewCarCXContainer"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:background="#fff"
+            android:padding="@dimen/dp_10">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="车型"
+                android:textColor="@color/deepTextColor" />
+
+            <TextView
+                android:id="@+id/mTvAddNewCarCX"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:drawableRight="@drawable/icon_enter_gray"
+                android:text="请选择车型"
+                android:textColor="@color/normalTextColor" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_10"
+            android:background="@color/lineColor" />
+
+
+        <LinearLayout
+            android:id="@+id/mLlAddNewCarCCContainer"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:background="#fff"
+            android:padding="@dimen/dp_10">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="车长"
+                android:textColor="@color/deepTextColor" />
+
+            <TextView
+                android:id="@+id/mTvAddNewCarCC"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:drawableRight="@drawable/icon_enter_gray"
+                android:text="请选择车长"
+                android:textColor="@color/normalTextColor" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_10"
+            android:background="@color/lineColor" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:background="#fff"
+            android:padding="@dimen/dp_10">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="载重"
+                android:textColor="@color/deepTextColor" />
+
+            <com.android.ql.lf.zwlogistics.ui.widgets.DJEditText
+                android:id="@+id/mEtAddNewCarDS"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:background="@null"
+                android:hint="请输入车辆吨数"
+                android:textColor="@color/deepTextColor"
+                android:textColorHint="@color/normalTextColor"
+                android:textSize="@dimen/sp_14" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_10"
+            android:background="@color/lineColor" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:background="#fff"
+            android:padding="@dimen/dp_10">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="车辆名称"
+                android:textColor="@color/deepTextColor" />
+
+            <com.android.ql.lf.zwlogistics.ui.widgets.DJEditText
+                android:id="@+id/mEtAddNewCarName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:background="@null"
+                android:hint="请输入车辆名称"
+                android:textColor="@color/deepTextColor"
+                android:textColorHint="@color/normalTextColor"
+                android:textSize="@dimen/sp_14" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_10"
+            android:background="@color/lineColor" />
+
+        <LinearLayout
+            android:id="@+id/mLlAddNewCarCCNFContainer"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:background="#fff"
+            android:padding="@dimen/dp_10">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="出厂年份"
+                android:textColor="@color/deepTextColor" />
+
+            <TextView
+                android:id="@+id/mTvAddNewCarCCNF"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:drawableRight="@drawable/icon_enter_gray"
+                android:text="请选择出厂年份"
+                android:textColor="@color/normalTextColor" />
+
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:background="@color/lineColor"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@color/colorPrimary"
+            android:text="重新提交"
+            android:gravity="center"
+            android:textColor="#fff"/>
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

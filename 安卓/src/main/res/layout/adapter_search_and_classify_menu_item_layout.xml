@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheckedTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/selector_tv_search_classify_menu_bg"
+    android:gravity="center"
+    android:textAlignment="center"
+    android:paddingBottom="20dp"
+    android:paddingTop="20dp"
+    android:textColor="@color/select_tv_search_classify_menu"
+    android:id="@+id/mSearchClassifyItemName"
+    android:textSize="@dimen/sp_16" />

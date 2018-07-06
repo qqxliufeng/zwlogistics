@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <View
+        android:layout_width="50dp"
+        android:layout_height="1dp"
+        android:background="#DADADA"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/mSearchClassifyContentItemTitle"/>
+
+    <TextView
+        android:id="@+id/mSearchClassifyContentItemTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="#fff"
+        android:gravity="center"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:orientation="vertical"
+        tools:text="title"
+        android:paddingBottom="@dimen/dp_10"
+        android:paddingTop="@dimen/dp_10"
+        android:textStyle="bold" />
+
+    <View
+        android:layout_width="50dp"
+        android:layout_height="1dp"
+        android:background="#DADADA"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/mSearchClassifyContentItemTitle"/>
+</RelativeLayout>

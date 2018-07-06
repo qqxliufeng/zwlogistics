@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="160dp"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="5dp"
+    android:background="@drawable/shape_ll_bg3"
+    android:minHeight="70dp"
+    android:minWidth="160dp"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:layout_weight="5.5"
+        android:minHeight="75dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/mCouponItemSymbol"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:gravity="bottom"
+                android:text="￥"
+                android:textColor="#fff"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/mCouponItemMoney"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_toRightOf="@+id/mCouponItemSymbol"
+                android:textColor="#fff"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                tools:text="1600.00" />
+
+            <TextView
+                android:id="@+id/mTvCouponItemCanUse"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:gravity="right"
+                android:textColor="#fff"
+                android:textSize="10sp"
+                tools:text="满600元\n使用" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/mTvCouponItemTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15sp"
+            android:gravity="center_horizontal"
+            android:textColor="#fff"
+            android:textSize="8sp"
+            tools:text="有效期2018.05.20-2018.05.21" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_weight="0.95"
+        android:gravity="center"
+        android:text="领\n\n取"
+        android:textSize="12sp"
+        android:textColor="#99ffffff" />
+</LinearLayout>

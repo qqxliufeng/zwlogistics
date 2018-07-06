@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/mEtAddNewAddressName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:hint="收货人姓名"
+        android:padding="@dimen/dp_10"
+        android:textColor="@color/text_deep_dark_color"
+        android:textColorHint="@color/text_dark_color"
+        android:textSize="@dimen/sp_16" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:background="#F2F2F2" />
+
+    <EditText
+        android:id="@+id/mEtAddNewAddressPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:hint="手机号码"
+        android:inputType="phone"
+        android:maxLength="11"
+        android:padding="@dimen/dp_10"
+        android:textColor="@color/text_deep_dark_color"
+        android:textColorHint="@color/text_dark_color"
+        android:textSize="@dimen/sp_16" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:background="#F2F2F2" />
+
+
+    <TextView
+        android:id="@+id/mEtAddNewAddressAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_press_bg"
+        android:drawableRight="@drawable/icon_inter"
+        android:padding="@dimen/dp_10"
+        android:text="省、市、区"
+        android:textColor="@color/text_deep_dark_color"
+        android:textSize="@dimen/sp_16" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:background="#F2F2F2" />
+
+    <EditText
+        android:id="@+id/mEtAddNewAddressCode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:hint="邮政编码"
+        android:padding="@dimen/dp_10"
+        android:textColor="@color/text_deep_dark_color"
+        android:textColorHint="@color/text_dark_color"
+        android:textSize="@dimen/sp_16" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
+        android:background="#F2F2F2" />
+
+    <EditText
+        android:id="@+id/mEtAddNewAddressAddressDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:gravity="top"
+        android:hint="详细地址（街道、楼牌号等）"
+        android:minLines="5"
+        android:padding="@dimen/dp_10"
+        android:textColor="@color/text_deep_dark_color"
+        android:textColorHint="@color/text_dark_color"
+        android:textSize="@dimen/sp_16" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F5F5F5" />
+</LinearLayout>

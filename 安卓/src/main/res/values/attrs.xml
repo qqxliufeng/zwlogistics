@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SliderLayout">
+        <attr name="slider_pic" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="EasyCountDownTextureView">
+        <attr name="easyCountRectWidth" format="dimension" />
+        <attr name="easyCountRectHeight" format="dimension" />
+        <attr name="easyCountRectRadius" format="dimension" />
+        <attr name="easyCountRectBorderSize" format="dimension" />
+        <attr name="easyCountRectBorderColor" format="color" />
+        <attr name="easyCountRectBorderStroke" format="dimension" />
+        <attr name="easyCountRectSpacing" format="dimension" />
+        <attr name="easyCountTimeColor" format="color" />
+        <attr name="easyCountTimeSize" format="dimension" />
+        <attr name="easyCountTimeStroke" format="dimension" />
+        <attr name="easyCountColonColor" format="color" />
+        <attr name="easyCountColonSize" format="dimension" />
+        <attr name="easyCountColonStroke" format="dimension" />
+        <attr name="easyCountBackgroundColor" format="color" />
+        <attr name="easyCountHour" format="integer" />
+        <attr name="easyCountMinute" format="integer" />
+        <attr name="easyCountSecond" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="SelectPayTypeView">
+        <attr name="isShowAccount" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="EaseTitleBar">
+        <attr name="titleBarTitle" format="string" />
+        <attr name="titleBarLeftImage" format="reference" />
+        <attr name="titleBarRightImage" format="reference" />
+        <attr name="titleBarBackground" format="reference|color" />
+    </declare-styleable>
+
+    <declare-styleable name="SlideDetailsLayout">
+        <!-- float value for indicate the moment of switch panel-->
+        <attr name="percent" format="float" />
+        <!-- how long the animation keep-->
+        <attr name="duration" format="integer" />
+        <!-- default panel to show after init-->
+        <attr name="default_panel" format="enum">
+            <enum name="front" value="0" />
+            <enum name="behind" value="1" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="PayPsdInputView">
+
+        <attr name="maxCount" format="integer" />
+        <attr name="circleColor" format="color" />
+        <attr name="bottomLineColor" format="color" />
+        <attr name="radius" format="dimension" />
+        <attr name="divideLineWidth" format="dimension" />
+        <attr name="divideLineColor" format="color" />
+        <attr name="rectAngle" format="dimension" />
+        <attr name="focusedColor" format="color"/>
+        <attr name="psdType" format="enum">
+            <enum name="weChat" value="0" />
+            <enum name="bottomLine" value="1" />
+        </attr>
+    </declare-styleable>
+
+
+</resources>

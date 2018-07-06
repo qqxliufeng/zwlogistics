@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#ff2222</color>
+    <color name="colorPrimaryDark">#ff2222</color>
+    <color name="colorAccent">#ff2222</color>
+    <color name="ripperColor">#f5f5f5</color>
+    <color name="ripperColor2">@android:color/darker_gray</color>
+
+    <color name="normalTextColor">#c8c9ca</color>
+    <color name="deepTextColor">#545557</color>
+    <color name="lineColor">#ecedee</color>
+    <color name="main_bg_color">#f4f5f6</color>
+    <color name="qian_red">#ffd5d6</color>
+
+</resources>

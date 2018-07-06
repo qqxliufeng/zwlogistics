@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:orientation="vertical"
+            android:padding="@dimen/dp_10">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="标题"
+                android:textColor="@color/text_deep_dark_color"
+                android:textSize="@dimen/sp_14" />
+
+            <EditText
+                android:id="@+id/mEtWriteArticleTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:background="@drawable/shape_et_bg2"
+                android:gravity="top"
+                android:hint="请输入标题（最多30字）"
+                android:maxLength="30"
+                android:minLines="3"
+                android:padding="5dp"
+                android:textSize="@dimen/sp_14" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_10"
+                android:background="#f5f5f5" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="具体描述"
+                android:textColor="@color/text_deep_dark_color"
+                android:textSize="@dimen/sp_14" />
+
+            <EditText
+                android:id="@+id/mEtWriteArticleContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:background="@drawable/shape_et_bg2"
+                android:gravity="top"
+                android:hint="在这里添加具体的描述（最多500字）"
+                android:maxLength="500"
+                android:minLines="6"
+                android:padding="5dp"
+                android:textSize="@dimen/sp_14" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_10"
+            android:background="#f5f5f5" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#fff"
+            android:orientation="vertical"
+            android:padding="@dimen/dp_10">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="图片（最多3张）"
+                android:textColor="@color/text_deep_dark_color"
+                android:textSize="@dimen/sp_14" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/mRvWriteArticleImages"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:paddingBottom="@dimen/dp_10"
+                android:paddingTop="@dimen/dp_10" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:text="标签选择（最多1个）"
+                android:textColor="@color/text_deep_dark_color"
+                android:textSize="@dimen/sp_14" />
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:id="@+id/mFlWriteArticleTag"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                app:flexWrap="wrap"
+                app:justifyContent="flex_start" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:background="#fff"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/dp_10"
+                android:paddingTop="@dimen/dp_10">
+
+                <CheckBox
+                    android:id="@+id/mCbWriteArticleProtocol"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="确认同意"
+                    android:textColor="@color/text_dark_color"
+                    android:textSize="@dimen/sp_12" />
+
+                <TextView
+                    android:id="@+id/mTvWriteArticleProtocol"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="《发布免责条款》"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/sp_12" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/mBtWriteArticleSubmit"
+                style="@style/style_button1"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="20dp"
+                android:enabled="false"
+                android:text="确定提交" />
+        </LinearLayout>
+
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#feffff"
+    android:orientation="vertical">
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+    <com.android.ql.lf.zwlogistics.ui.widgets.DJEditText
+        android:id="@+id/mEtLoginUserName"
+        android:hint="请输入手机号"
+        android:inputType="phone"
+        android:maxLength="11"
+        android:drawableLeft="@drawable/icon_register_phone"
+        android:drawablePadding="@dimen/dp_10"
+        style="@style/edit_style1"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="30dp"
+        android:background="@color/lineColor" />
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
+        app:passwordToggleEnabled="true">
+
+    <com.android.ql.lf.zwlogistics.ui.widgets.DJEditText
+        android:id="@+id/mEtLoginUserPassword"
+        android:hint="请输入密码"
+        android:inputType="textPassword"
+        android:drawablePadding="@dimen/dp_10"
+        android:drawableLeft="@drawable/icon_user_password"
+        android:drawableStart="@drawable/icon_user_password"
+        style="@style/edit_style1" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="30dp"
+        android:background="@color/lineColor" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10">
+
+            <com.android.ql.lf.zwlogistics.ui.widgets.DJEditText
+                android:id="@+id/mEtRegisterCode"
+                android:hint="请输入验证码"
+                android:inputType="textPassword"
+                android:drawablePadding="@dimen/dp_10"
+                android:drawableLeft="@drawable/icon_register_verify_code"
+                android:drawableStart="@drawable/icon_register_verify_code"
+                style="@style/edit_style1" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <View
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="@color/lineColor"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="0.4"
+            android:text="获取验证码"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginRight="30dp"
+            android:layout_gravity="center"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="30dp"
+        android:background="@color/lineColor" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/deepTextColor"
+        android:textSize="@dimen/sp_14"
+        android:layout_marginTop="20dp"
+        android:text="使用邀请码（选填）"
+        android:layout_marginLeft="30dp"/>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.android.ql.lf.zwlogistics.ui.widgets.DJEditText
+            android:id="@+id/mEtRegisterInvateCode"
+            android:hint="请输入邀请码"
+            android:inputType="textPassword"
+            android:drawablePadding="@dimen/dp_10"
+            android:drawableLeft="@drawable/icon_register_invite_code"
+            android:drawableStart="@drawable/icon_register_invite_code"
+            style="@style/edit_style1" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="30dp"
+        android:background="@color/lineColor" />
+
+
+    <Button
+        android:id="@+id/mBtLogin"
+        android:text="注册"
+        style="@style/button_style1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="30dp"
+        android:gravity="center">
+
+       <CheckBox
+           android:id="@+id/mCbRegisterProtocol"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:textColor="@color/deepTextColor"
+           android:text="我同意"/>
+
+        <TextView
+            android:id="@+id/mTvRegisterProtocol"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:text="《用户服务协议》"/>
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="10dp">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_gravity="center"
+            android:background="@color/lineColor" />
+
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="OR"
+            android:textColor="@color/normalTextColor"
+            android:background="#fff"
+            android:gravity="center"
+            android:textSize="@dimen/sp_14" />
+
+    </FrameLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+        <FrameLayout
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_alignParentLeft="true">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/shape_circle_bg"/>
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="@dimen/dp_10"
+                android:src="@drawable/icon_wx_login"/>
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_alignParentRight="true">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/shape_circle_bg"/>
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="@dimen/dp_10"
+                android:src="@drawable/icon_qq_login"/>
+
+        </FrameLayout>
+    </RelativeLayout>
+
+
+</LinearLayout>

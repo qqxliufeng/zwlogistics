@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/shape_ll_dialog_bg2"
+    android:minWidth="300dp"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_10">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="保证金退还"
+            android:textColor="@color/text_deep_dark_color"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/mIvEnsureMoneyBackClose"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dp_10"
+            android:src="@drawable/img_icon_close" />
+
+    </RelativeLayout>
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/mRbTest"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/sp_16"
+            android:padding="20dp"
+            android:button="@null"
+            android:drawableRight="@drawable/selector_rb_1"
+            android:text="安装门店保证金" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#f5f5f5"/>
+
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:textSize="@dimen/sp_16"
+            android:button="@null"
+            android:drawableRight="@drawable/selector_rb_1"
+            android:text="商家保证金" />
+
+        <Button
+            android:id="@+id/mBtMineEnsureMoneyBack"
+            style="@style/style_button1"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:textSize="@dimen/sp_14"
+            android:layout_height="35dp"
+            android:text="确定" />
+
+    </RadioGroup>
+
+
+</LinearLayout>

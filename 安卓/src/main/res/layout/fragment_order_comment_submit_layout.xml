@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:paddingBottom="20dp"
+            android:paddingLeft="@dimen/dp_10"
+            android:paddingTop="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="订单评价"
+                android:textColor="@color/text_deep_dark_color"
+                android:textSize="@dimen/sp_16" />
+
+            <RatingBar
+                android:id="@+id/mRbGoodsCommentStart"
+                style="@style/myRatingBar"
+                android:layout_width="150dp"
+                android:layout_height="23dp"
+                android:layout_marginLeft="20dp"
+                android:numStars="5"
+                android:rating="5"
+                android:stepSize="0.5" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@drawable/recycler_view_height_divider" />
+
+        <EditText
+            android:id="@+id/mEtGoodsCommentContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:gravity="top"
+            android:hint="商品如何？赶紧来评价一下吧！"
+            android:minLines="8"
+            android:maxLines="8"
+            android:maxLength="400"
+            android:padding="@dimen/dp_10"
+            android:textSize="@dimen/sp_14" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:gravity="right"
+            android:padding="@dimen/dp_10"
+            android:text="10-400字之间" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="@drawable/recycler_view_height_divider" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/mRvOrderComment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:padding="@dimen/dp_10" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/mBtGoodsCommentSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/shape_bt_bg1"
+        android:text="确定提交"
+        android:textColor="#fff"
+        android:textSize="16sp" />
+
+</RelativeLayout>

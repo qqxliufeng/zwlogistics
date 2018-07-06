@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="100dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="#f5f5f5"
+        android:drawablePadding="@dimen/dp_10"
+        android:drawableTop="@drawable/img_default_pic_info_icon"
+        android:gravity="center"
+        android:paddingTop="@dimen/dp_10"
+        android:text="点此处上传照片"
+        android:textColor="@color/text_dark_color"
+        android:textSize="@dimen/sp_12" />
+</LinearLayout>

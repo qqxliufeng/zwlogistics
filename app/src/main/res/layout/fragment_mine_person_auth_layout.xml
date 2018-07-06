@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/qian_red"
+            android:gravity="center"
+            android:padding="@dimen/dp_10"
+            android:text="身份认证通过才能联系货主，请填写您的真实信息！"
+            android:textColor="@color/colorPrimary" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:background="@color/lineColor"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="160dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp">
+
+                <CheckedTextView
+                    android:id="@+id/mTvMinePersonAuth1"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentLeft="true"
+                    android:background="@drawable/shape_tv_bg6"
+                    android:checked="true"
+                    android:gravity="center"
+                    android:text="1"
+                    android:textAlignment="center"
+                    android:textColor="#fff"
+                    android:textSize="@dimen/sp_12"
+                    android:textStyle="bold" />
+
+                <CheckedTextView
+                    android:layout_width="120dp"
+                    android:layout_height="3dp"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/mTvMinePersonAuth2"
+                    android:layout_toRightOf="@+id/mTvMinePersonAuth1"
+                    android:background="@drawable/shape_tv_bg8"
+                    android:checked="true" />
+
+                <CheckedTextView
+                    android:id="@+id/mTvMinePersonAuth2"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/shape_tv_bg7"
+                    android:gravity="center"
+                    android:text="2"
+                    android:textAlignment="center"
+                    android:textColor="#fff"
+                    android:textSize="@dimen/sp_12"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="35dp"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_marginRight="35dp"
+                android:orientation="horizontal">
+
+                <CheckedTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:gravity="center"
+                    android:text="个人信息和头像"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/select_tv_color2"
+                    android:textSize="@dimen/sp_12" />
+
+                <CheckedTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="车辆信息"
+                    android:textAlignment="gravity"
+                    android:textColor="@color/select_tv_color3"
+                    android:textSize="@dimen/sp_12" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/mTvAddNewCarXSZTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:padding="@dimen/dp_10"
+            android:text="上传本人头像"
+            android:textColor="@color/deepTextColor"
+            android:textSize="@dimen/sp_14" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:orientation="horizontal"
+            android:padding="@dimen/dp_10">
+
+            <FrameLayout
+                android:id="@+id/mFlAddNewCarXSZContainer"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginRight="@dimen/dp_10">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:background="@drawable/shape_tv_bg3"
+                    android:drawableTop="@drawable/icon_add1"
+                    android:gravity="center"
+                    android:paddingTop="20dp"
+                    android:text="上传头像"
+                    android:textColor="@color/deepTextColor"
+                    android:textSize="@dimen/sp_12" />
+
+                <ImageView
+                    android:id="@+id/mIvAddNewCarXSZ"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:visibility="gone" />
+            </FrameLayout>
+
+            <ImageView
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:src="@drawable/img_anli_face" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_10"
+            android:background="@color/lineColor" />
+
+
+        <TextView
+            android:id="@+id/mTvAddNewCarYXZTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:padding="@dimen/dp_10"
+            android:text="上传身份证照片（请勿遮挡证件）"
+            android:textColor="@color/deepTextColor"
+            android:textSize="@dimen/sp_14" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:orientation="horizontal"
+            android:padding="@dimen/dp_10">
+
+
+            <FrameLayout
+                android:id="@+id/mFlAddNewCarYXZContainer"
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_marginRight="@dimen/dp_10"
+                android:layout_weight="3">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:background="@drawable/shape_tv_bg3"
+                    android:drawableTop="@drawable/icon_add1"
+                    android:gravity="center"
+                    android:paddingTop="20dp"
+                    android:text="上传身份证正面（照片面）"
+                    android:textColor="@color/deepTextColor"
+                    android:textSize="@dimen/sp_12" />
+
+                <ImageView
+                    android:id="@+id/mIvAddNewCarYXZ"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone" />
+            </FrameLayout>
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="90dp"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:src="@drawable/img_anli_idcard_zheng"
+                android:layout_weight="2" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:orientation="horizontal"
+            android:padding="@dimen/dp_10">
+
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_marginRight="@dimen/dp_10"
+                android:layout_weight="3">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:background="@drawable/shape_tv_bg3"
+                    android:drawableTop="@drawable/icon_add1"
+                    android:gravity="center"
+                    android:paddingTop="20dp"
+                    android:text="上传身份证背面（国徽面）"
+                    android:textColor="@color/deepTextColor"
+                    android:textSize="@dimen/sp_12" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone" />
+            </FrameLayout>
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="90dp"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:src="@drawable/img_anli_idcard_fan"
+                android:layout_weight="2" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_10"
+            android:background="@color/lineColor" />
+
+
+        <TextView
+            android:id="@+id/mTvAddNewCarCPHTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:padding="@dimen/dp_10"
+            android:text="上传驾驶证正页（请勿遮挡证件）"
+            android:textColor="@color/deepTextColor"
+            android:textSize="@dimen/sp_14" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:orientation="horizontal"
+            android:padding="@dimen/dp_10">
+
+            <FrameLayout
+                android:id="@+id/mFlAddNewCarCPHContainer"
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_marginRight="@dimen/dp_10"
+                android:layout_weight="3">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:background="@drawable/shape_tv_bg3"
+                    android:drawableTop="@drawable/icon_add1"
+                    android:gravity="center"
+                    android:paddingTop="20dp"
+                    android:text="上传驾驶证"
+                    android:textColor="@color/deepTextColor"
+                    android:textSize="@dimen/sp_12" />
+
+                <ImageView
+                    android:id="@+id/mIvAddNewCarCPH"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone" />
+            </FrameLayout>
+
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="90dp"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:src="@drawable/img_anli_jsz_zheng"
+                android:layout_weight="2" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_10"
+            android:background="@color/lineColor" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:padding="@dimen/dp_10"
+            android:text="上传从业资格证照片（请勿遮挡证件）"
+            android:textColor="@color/deepTextColor"
+            android:textSize="@dimen/sp_14" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:orientation="horizontal"
+            android:padding="@dimen/dp_10">
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="120dp"
+                android:layout_marginRight="@dimen/dp_10"
+                android:layout_weight="3">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="3"
+                    android:background="@drawable/shape_tv_bg3"
+                    android:drawableTop="@drawable/icon_add1"
+                    android:gravity="center"
+                    android:paddingTop="20dp"
+                    android:text="上传从业资格证照片"
+                    android:textColor="@color/deepTextColor"
+                    android:textSize="@dimen/sp_12" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="gone" />
+            </FrameLayout>
+
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="90dp"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:src="@drawable/img_anli_cyzg_zheng"
+                android:layout_weight="2" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_10"
+            android:background="@color/lineColor" />
+
+        <LinearLayout
+            android:id="@+id/mLlAddNewCarCXContainer"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="@dimen/dp_10">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="姓名"
+                android:textColor="@color/deepTextColor" />
+
+            <com.android.ql.lf.zwlogistics.ui.widgets.DJEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:background="@null"
+                android:hint="姓名必须和身份证上姓名相同"
+                android:textColor="@color/deepTextColor"
+                android:textColorHint="@color/normalTextColor"
+                android:textSize="@dimen/sp_14" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_10"
+            android:background="@color/lineColor" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="@dimen/dp_10">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="身份证"
+                android:textColor="@color/deepTextColor" />
+
+            <com.android.ql.lf.zwlogistics.ui.widgets.DJEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:background="@null"
+                android:hint="请输入身份证号"
+                android:textColor="@color/deepTextColor"
+                android:textColorHint="@color/normalTextColor"
+                android:textSize="@dimen/sp_14" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_10"
+            android:background="@color/lineColor" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="@dimen/dp_10">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="手机号"
+                android:textColor="@color/deepTextColor" />
+
+            <com.android.ql.lf.zwlogistics.ui.widgets.DJEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:background="@null"
+                android:hint="请输入手机号"
+                android:textColor="@color/deepTextColor"
+                android:textColorHint="@color/normalTextColor"
+                android:textSize="@dimen/sp_14" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="@color/lineColor"/>
+
+        <TextView
+            android:id="@+id/mTvAddNewCarSubmit"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:text="下一步"
+            android:textColor="#fff" />
+
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

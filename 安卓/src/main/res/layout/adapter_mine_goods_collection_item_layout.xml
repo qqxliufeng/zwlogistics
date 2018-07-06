@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/selector_press_bg"
+    android:orientation="horizontal"
+    android:paddingBottom="20dp"
+    android:paddingLeft="20dp"
+    android:paddingTop="20dp">
+
+    <ImageView
+        android:id="@+id/mIvMallCollectionGoodsPic"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:scaleType="centerCrop" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/dp_10">
+
+        <TextView
+            android:id="@+id/mTvMallCollectionGoodsName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:maxLines="2"
+            android:textColor="@color/text_deep_dark_color"
+            android:textSize="16dp"
+            tools:text="wasjd维修旗舰店" />
+
+        <TextView
+            android:id="@+id/mTvMallCollectionGoodsPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            tools:text="￥188"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/sp_14" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

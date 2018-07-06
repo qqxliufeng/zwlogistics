@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/shape_ll_dialog_bg1"
+    android:minWidth="300dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dp_10"
+        android:drawablePadding="10dp"
+        android:drawableTop="@drawable/img_order_notify_dialog_img"
+        android:gravity="center"
+        android:text="您有一个新订单，请查收"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/sp_16" />
+
+    <TextView
+        android:id="@+id/mTvOrderNotifyDialogTimeCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/dp_10"
+        android:text="5s"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/mBtNewOrderNotify"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/selector_bt_bg1"
+        android:text="我知道了"
+        android:textColor="#fff"
+        android:textSize="@dimen/sp_16" />
+
+
+</LinearLayout>

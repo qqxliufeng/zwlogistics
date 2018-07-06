@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_et_bg4"
+    android:padding="@dimen/dp_10"
+    android:orientation="horizontal">
+
+    <EditText
+        android:id="@+id/mEtDialogBbsContent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="top"
+        android:background="@drawable/shape_et_bg2"
+        android:hint="留言内容:（最多50字）"
+        android:maxLength="50"
+        android:padding="@dimen/dp_10"
+        android:textColor="@color/text_deep_dark_color"
+        android:textSize="@dimen/sp_12" />
+
+    <TextView
+        android:id="@+id/mTvDialogBbsFinish"
+        android:paddingLeft="@dimen/dp_10"
+        android:paddingRight="@dimen/dp_10"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_gravity="center_vertical"
+        android:text="完成"
+        android:textColor="@color/text_deep_dark_color"
+        android:textSize="14sp" />
+
+</LinearLayout>

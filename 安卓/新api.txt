@@ -1,0 +1,191 @@
+﻿======== 通用api ====================================
+
+短信api:
+wrjt.sdqlweb.com/interface.php/v1/login/getcode    请求方式：post  参数 : tel       手机号
+
+上传图片api:
+wrjt.sdqlweb.com/interface.php/v1/t/pictime        请求方式：post  参数 : pic 图片
+
+客服电话api:
+wrjt.sdqlweb.com/interface.php/v1/t/kf_tel        请求方式：post  参数 : 
+
+关于我们 api:
+wrjt.sdqlweb.com/interface.php/v1/member/about        请求方式：post  参数 : 
+
+使用指南 api:
+wrjt.sdqlweb.com/interface.php/v1/member/help        请求方式：post  参数 : 
+
+app 更新获取版本号 api:
+wrjt.sdqlweb.com/interface.php/v1/t/app_update        请求方式：post  参数 : 
+
+分享链接  http://wrjt.sdqlweb.com/index.php/home/index/share?gid=30   商品id
+
+规则api:
+wrjt.sdqlweb.com/interface.php/v1/member/ptgg         请求方式：post  参数 : pid  保证金缴纳介绍 1  用户注册服务协议 11 帖子发布规则 2  修理师傅简介 3 商家简介 12  用户协议 13
+
+
+======== 登录 =======================================
+
+注册api:
+wrjt.sdqlweb.com/interface.php/v1/login/Register   请求方式：post  参数 : tel,pw,pt 手机号,密码,注册终端
+
+登陆api:
+wrjt.sdqlweb.com/interface.php/v1/login/Login      请求方式：post  参数 : tel,pw    手机号,密码 返回 member_authentication 0 师傅待审核 1 已是师傅 2 师傅审核失败 3 暂无师傅店铺信息
+
+微信登陆api:
+wrjt.sdqlweb.com/interface.php/v1/t/wxlogin        请求方式：get   参数 : code      授权code
+
+wx完善资料api:
+wrjt.sdqlweb.com/interface.php/v1/login/wx_perfect 请求方式：post  参数 : phone,headimgurl,openid,nickname    手机号,用户头像,用户开放ID，用户名
+
+qq登录 + 完善资料api(两者同时在完善页面执行接口):
+wrjt.sdqlweb.com/interface.php/v1/login/qqlogin    请求方式：post  参数 : phone,openid,access_token    手机号,qq开放ID,qq身份密钥
+
+忘记密码api:
+wrjt.sdqlweb.com/interface.php/v1/login/forgetpw   请求方式：post  参数 : tel,pw    手机号,密码
+
+检测账号api:
+wrjt.sdqlweb.com/interface.php/v1/login/isregister 请求方式：post  参数 : tel       手机号
+
+======== 会员中心 =====================================
+
+保证金交纳产品api:
+wrjt.sdqlweb.com/interface.php/v1/member/m_p                 请求方式：post  参数 : uid 用户ID
+
+保证金交纳api:
+wrjt.sdqlweb.com/interface.php/v1/member/payment_deposit     请求方式：post  参数 : uid,type,mid,paytype 用户ID,缴纳类型,产品ID,支付类型
+
+保证金退款api:
+wrjt.sdqlweb.com/interface.php/v1/member/refund_deposit      请求方式：post  参数 : uid,type 用户ID,类型 1 师傅 2 商家
+
+我的提现 提现列表api:
+wrjt.sdqlweb.com/interface.php/v1/member/my_withdraw         请求方式：post  参数 : uid 用户ID
+
+我的提现 提现申请api:
+wrjt.sdqlweb.com/interface.php/v1/member/my_withdraw_operation 请求方式：post  参数 : uid,price,type, 用户ID,提现金额,提现类型 1 微信  2 支付宝
+
+我的提现 提现记录api:
+wrjt.sdqlweb.com/interface.php/v1/member/my_withdraw_record 请求方式：post  参数 : page,pagesize,uid 第多少页,每页显示多少条,用户ID
+
+商家申请api:
+wrjt.sdqlweb.com/interface.php/v1/member/apply               请求方式：post  参数 : uid,type,name,mpic,sypic,phone,address,num,content，detail_address 用户ID,申请类型 1 师傅  2  商家 ,店铺名,店铺图片,身份证营业执照,联系电话,店铺地址,师傅人数,店铺介绍，服务店铺地址
+
+用户中心api:
+wrjt.sdqlweb.com/interface.php/v1/member/personal            请求方式：post  参数 : uid 用户ID
+
+修改用户信息api:
+wrjt.sdqlweb.com/interface.php/v1/member/edit_personal       请求方式：post  参数 : uid,pic,account,idcard 用户ID,图片，用户名,身份证号
+
+修改密码api:
+wrjt.sdqlweb.com/interface.php/v1/member/edit_pw             请求方式：post  参数 : uid,pw,newpw 用户ID,新密码,旧密码
+
+个人服务中心api:
+wrjt.sdqlweb.com/interface.php/v1/member/personal_service    请求方式：post  参数 : uid 用户ID
+
+修改个人服务中心api:
+wrjt.sdqlweb.com/interface.php/v1/member/edit_personal_service  请求方式：post  参数 : sid,address,ppa,starttime,endtime,content,detail_address 店铺ID,服务地址,主营,营业开始时间,营业结束时间,服务简介,服务详细地址
+
+我的等级api:
+wrjt.sdqlweb.com/interface.php/v1/member/my_grades           请求方式：post  参数 : uid 用户ID
+
+我的消息api:
+wrjt.sdqlweb.com/interface.php/v1/member/my_msg              请求方式：post  参数 : uid 用户ID 0 系统消息  1 维修订单消息 2 商铺消息 3 购物消息 4 帖子消息
+
+修改消息阅读状态api:
+wrjt.sdqlweb.com/interface.php/v1/member/edit_mymsg_status   请求方式：post  参数 : mid 消息ID
+
+我的消息详情api:
+wrjt.sdqlweb.com/interface.php/v1/member/my_msg_detail       请求方式：post  参数 : uid，status,page,pagesize 用户ID,status 0 系统消息  1 维修订单消息 2 商铺消息 3 购物消息 4 帖子消息 
+
+我的钱包 历史收入api:
+wrjt.sdqlweb.com/interface.php/v1/member/integral            请求方式：post  参数 : page,pagesize,uid 第多少页,每页显示多少条,用户ID
+
+我的钱包 绑定提现账户api:
+wrjt.sdqlweb.com/interface.php/v1/member/bind_account        请求方式：post  参数 : uid 用户ID
+
+我的钱包 绑定支付宝提现账户api:
+wrjt.sdqlweb.com/interface.php/v1/member/bind_alipay         请求方式：post  参数 : uid,account,autonym 用户ID,支付宝账号,用户真实姓名
+
+我的钱包 绑定微信提现账户api:
+wrjt.sdqlweb.com/interface.php/v1/member/bind_wxpay          请求方式：post  参数 : uid,idcard,autonym 用户ID,身份证号,用户真实姓名
+
+我的钱包 绑定微信提现账户 拉取授权api:
+wrjt.sdqlweb.com/interface.php/v1/member/wx_authorization    请求方式：post  参数 : uid,code 用户ID,会话code
+
+======== 抢单管理 =====================================
+
+抢单api:
+wrjt.sdqlweb.com/interface.php/v1/order/qorder                请求方式：post  参数 : page,pagesize,uid,location 页数,每页最大数量，用户ID,店铺地址
+
+预约时间:
+wrjt.sdqlweb.com/interface.php/v1/order/edit_appointment_time 请求方式：post  参数 : qid,appointment_time 订单ID,预约时间
+
+抢单api:
+wrjt.sdqlweb.com/interface.php/v1/order/order_receiving       请求方式：post  参数 : uid,oid 用户ID,订单ID
+
+请求我的已施工订单api:
+wrjt.sdqlweb.com/interface.php/v1/order/my_roadwork_qorder    请求方式：post  参数 : uid 用户ID
+
+我的抢单api:
+wrjt.sdqlweb.com/interface.php/v1/order/my_qorder             请求方式：post  参数 : uid,status,page,pagesize 用户ID,订单状态 施工状态 0  待抢单 1 待施工  2 待确认  3  已施工 4 待结算 5  已结算  6  售后 7 已退款  8 已过期 token  为空 是全部订单
+
+修改抢单状态api:
+wrjt.sdqlweb.com/interface.php/v1/order/edit_qorder_status    请求方式：post  参数 : oid,status,code,appointment_time,check_code 抢单ID,订单状态,校验码，预约时间，核销码 施工状态 0  待抢单 1 待施工  2 待确认  3  已施工 4 待结算 5  已结算  6  售后 7 已退款  8 已过期 token  为空 是全部订单
+
+抢单拍照api:
+wrjt.sdqlweb.com/interface.php/v1/order/play_pic              请求方式：post  参数 : oid,pic 抢单ID,图片
+
+抢单详情api:
+wrjt.sdqlweb.com/interface.php/v1/order/qorder_detail         请求方式：post  参数 : oid 抢单ID
+
+我的售后抢单api:
+wrjt.sdqlweb.com/interface.php/v1/order/my_sale_qorder        请求方式：post  参数 : uid 用户ID
+
+抢单申请提现api:
+wrjt.sdqlweb.com/interface.php/v1/order/qorder_deposit        请求方式：post  参数 : uid,oid 用户ID,订单ID
+
+======== 社区管理 =====================================
+
+
+社区轮播图详情api:
+wrjt.sdqlweb.com/interface.php/v1/qaa/community_lunbo_detail    请求方式：post  参数 : lid  轮播id 
+
+标签类型api:
+wrjt.sdqlweb.com/interface.php/v1/qaa/tag                请求方式：post   
+
+发表帖子api:
+wrjt.sdqlweb.com/interface.php/v1/qaa/add_quiz           请求方式：post  参数 : title,content,pic,uid,type  帖子,帖子内容,图片（或视频）,用户ID,类型
+
+帖子api:
+wrjt.sdqlweb.com/interface.php/v1/qaa/quiz               请求方式：post  参数 : page,pagesize,ktype  页数，每页最大,轮播图类型 1 社区 2 商城  返回 request 里面装的是  帖子信息  arr 标签数据   arr1  头条数据
+
+帖子搜索api:
+wrjt.sdqlweb.com/interface.php/v1/qaa/quiz_search        请求方式：post  参数 : keyword
+
+帖子类型搜索api:
+wrjt.sdqlweb.com/interface.php/v1/qaa/quiz_type_search   请求方式：post  参数 :  type 类型
+
+帖子详情api:
+wrjt.sdqlweb.com/interface.php/v1/qaa/quiz_detail        请求方式：post  参数 : qid,uid  帖子ID,用户ID   返回字段 quiz_concerm
+
+帖子浏览api:
+wrjt.sdqlweb.com/interface.php/v1/qaa/merchant_quiz_look          请求方式：post  参数 : qid  帖子ID
+
+我的发帖api:
+wrjt.sdqlweb.com/interface.php/v1/qaa/get_myquiz         请求方式：post  参数 :  uid，page，pagesize 用户ID，页数，每页最大显示数量  返回 quiz_replies字段 回复数量
+
+我的回帖api:
+wrjt.sdqlweb.com/interface.php/v1/qaa/get_myanswer       请求方式：post  参数 :  uid，page，pagesize 用户ID，页数，每页最大显示数量
+
+帖子删除api:
+wrjt.sdqlweb.com/interface.php/v1/qaa/del_qaa            请求方式：post  参数 :  qid，aid 发帖ID，回帖ID
+
+发布回帖api:
+wrjt.sdqlweb.com/interface.php/v1/qaa/add_answer         请求方式：post  参数 : qid,content,uid  回答问题ID,回答内容,用户ID
+
+帖子点赞api:
+wrjt.sdqlweb.com/interface.php/v1/qaa/quiz_praise        请求方式：post  参数 : uid,qid  用户ID,帖子ID
+
+点赞回答api:
+wrjt.sdqlweb.com/interface.php/v1/qaa/praise             请求方式：post  参数 : uid,aid  用户ID,回答ID
+ 

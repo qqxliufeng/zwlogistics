@@ -1,0 +1,79 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppFragmentContainerTheme" parent="AppTheme" />
+
+    <style name="splashTheme" parent="AppTheme">
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <style name="my_matisse_style" parent="Matisse.Zhihu">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="style_button1">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:background">@drawable/shape_bt_bg1</item>
+        <item name="android:layout_marginRight">50dp</item>
+        <item name="android:layout_marginLeft">50dp</item>
+        <item name="android:textColor">#fff</item>
+        <item name="android:layout_gravity">bottom</item>
+        <item name="android:textSize">@dimen/sp_16</item>
+    </style>
+
+    <style name="CropImageTheme" parent="AppTheme" tools:ingore="NewApi">
+        <item name="cropImageStyle">@style/Widget.CropImageView</item>
+    </style>
+
+    <style name="Widget.CropImageView" parent="android:Widget">
+        <item name="showThirds">true</item>
+        <item name="showCircle">true</item>
+        <item name="showHandles">always</item>
+    </style>
+
+    <style name="style_cb_pay">
+        <item name="colorAccent">@color/colorPrimary</item>
+    </style>
+
+    <style name="style_tv_main_mall_top_header">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:drawablePadding">5dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/text_deep_dark_color</item>
+        <item name="android:textSize">@dimen/sp_12</item>
+        <item name="android:paddingBottom">5dp</item>
+        <item name="android:paddingTop">5dp</item>
+        <item name="android:background">@drawable/selector_press_bg</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+    <style name="style_rb">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:button">@null</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/select_bt_text_color_3</item>
+        <item name="android:textSize">@dimen/sp_14</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+    <style name="myRatingBar" parent="@android:style/Widget.Holo.RatingBar">
+        <item name="android:progressDrawable">@drawable/my_ratingbar_drawable</item>
+        <item name="android:minHeight">30px</item>
+    </style>
+
+
+</resources>

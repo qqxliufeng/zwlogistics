@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff">
+
+    <ImageView
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_custom_service_icon"/>
+
+    <TextView
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/deepTextColor"
+        android:textSize="@dimen/sp_16"
+        android:text="客服电话"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/mTvCustomServicePhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="12345667898"
+        android:textColor="#3172c8"
+        android:padding="@dimen/dp_10"
+        android:textStyle="bold"
+        android:gravity="center_horizontal"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.2"
+        android:textColor="@color/normalTextColor"
+        android:gravity="center"
+        android:text="注：如果您遇到问题，欢迎打电话联系我们的客服哦~"/>
+
+</LinearLayout>

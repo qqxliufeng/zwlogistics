@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/mTvArticleInfoDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="该帖子被删除了~~~~~"
+        android:textSize="@dimen/sp_16"
+        android:visibility="gone" />
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/id_srl_base_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="50dp">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/id_rv_base_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <LinearLayout
+        android:id="@+id/mLlArticleInfoBottomContainer"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_gravity="bottom"
+        android:background="#f5f5f5">
+
+        <TextView
+            android:id="@+id/mTvArticleInfoReply"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_weight="2.5"
+            android:background="@drawable/shape_tv_bg6"
+            android:drawableLeft="@drawable/img_icon_write"
+            android:drawablePadding="5dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="5dp"
+            android:paddingTop="5dp"
+            android:text="写评论"
+            android:textColor="#CCCCCC" />
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_10"
+            android:layout_weight="4">
+
+            <TextView
+                android:id="@+id/mTvAnswerInfoSeeCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:drawableLeft="@drawable/img_article_icon_eye2"
+                android:drawablePadding="5dp"
+                android:textColor="@color/text_deep_dark_color"
+                android:textSize="@dimen/sp_12" />
+
+            <TextView
+                android:id="@+id/mTvAnswerInfoCommentCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:drawableLeft="@drawable/img_article_icon_chat2"
+                android:drawablePadding="5dp"
+                android:textColor="@color/text_deep_dark_color"
+                android:textSize="@dimen/sp_12" />
+
+            <com.android.ql.lf.carapp.ui.views.PraiseView
+                android:id="@+id/mBottomPraiseView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:orientation="horizontal">
+
+                    <android.support.design.widget.CheckableImageButton
+                        android:id="@+id/mIvPraiseIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@null"
+                        android:src="@drawable/selector_praise_bg2" />
+
+                    <TextView
+                        android:id="@+id/mTvPraiseText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="@color/text_deep_dark_color" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/mTvPraiseFly"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:text="+1"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/sp_12"
+                    android:visibility="invisible" />
+
+            </com.android.ql.lf.carapp.ui.views.PraiseView>
+        </RelativeLayout>
+    </LinearLayout>
+</FrameLayout>

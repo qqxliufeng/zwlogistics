@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/mMenuIndex"
+        android:title="首页"
+        android:icon="@drawable/select_main_index_icon"/>
+
+    <item android:id="@+id/mMenuOrder"
+        android:title="订单"
+        android:icon="@drawable/select_main_order_icon"/>
+
+    <item android:id="@+id/mMenuMine"
+        android:title="我的"
+        android:icon="@drawable/select_main_mine_icon"/>
+</menu>

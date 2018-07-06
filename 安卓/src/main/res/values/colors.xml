@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <color name="main_color">#FD9433</color>
+
+    <color name="colorPrimary">@color/main_color</color>
+    <color name="colorPrimaryDark">@color/main_color</color>
+    <color name="colorAccent">@color/main_color</color>
+    <color name="colorToolBar">@color/colorPrimary</color>
+
+    <color name="text_color">#FD9433</color>
+    <color name="text_dark_color">#909090</color>
+    <color name="text_deep_dark_color">#323232</color>
+    <color name="red_tv_color">#E1332C</color>
+
+    <color name="rippleColor">#ccc</color>
+
+    <color name="ip_color_primary" tools:override="true">@color/colorPrimary</color>
+    <color name="zhihu_bottom_toolbar_apply_text" tools="true">@color/colorPrimary</color>
+    <color name="zhihu_bottom_toolbar_apply_text_disable" tools="true">#f4a963</color>
+
+</resources>

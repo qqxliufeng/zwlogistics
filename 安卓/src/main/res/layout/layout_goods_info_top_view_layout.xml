@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:padding="@dimen/dp_10">
+
+        <TextView
+            android:id="@+id/mTvGoodsInfoTopViewCommentNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:textSize="14dp"
+            android:text="订单评价(0)" />
+
+        <TextView
+            android:id="@+id/mTvGoodsInfoTopViewCommentAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:drawableRight="@drawable/icon_inter1"
+            android:text="查看全部"
+            android:drawablePadding="@dimen/dp_10"
+            android:textColor="@color/text_dark_color"
+            android:textSize="12sp" />
+    </RelativeLayout>
+</LinearLayout>

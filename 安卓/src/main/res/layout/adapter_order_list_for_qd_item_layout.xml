@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#F1F2F2"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginRight="@dimen/dp_10"
+        android:layout_marginTop="5dp"
+        android:background="#fff"
+        android:orientation="vertical"
+        android:padding="@dimen/dp_10">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/mTvOrderListForQDItemName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#333"
+                android:textSize="@dimen/sp_14" />
+
+            <cn.iwgang.countdownview.CountdownView
+                android:id="@+id/mCvOrderListForQDItemTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/mTvOrderListForQDItemName"
+                app:suffixTextColor="@color/colorPrimary"
+                app:timeTextColor="@color/colorPrimary"
+                android:layout_marginLeft="@dimen/dp_10"
+                app:timeTextSize="@dimen/sp_14" />
+
+            <TextView
+                android:id="@+id/mTvOrderListForQDItemMoney"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/sp_14" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_10"
+            android:background="#eee" />
+
+        <TextView
+            android:id="@+id/mTvOrderListForQDItemTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/text_dark_color"
+            android:textSize="@dimen/sp_14" />
+
+        <TextView
+            android:id="@+id/mTvOrderListForQDItemContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/text_dark_color"
+            android:textSize="@dimen/sp_14" />
+
+        <TextView
+            android:id="@+id/mTvOrderListForQDItemTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/text_dark_color"
+            android:textSize="@dimen/sp_14" />
+
+        <Button
+            android:id="@+id/mBtOrderListForQDItem"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="@dimen/dp_10"
+            android:background="@drawable/selector_bt_bg1"
+            android:text="抢单"
+            android:textColor="#fff"
+            android:textSize="@dimen/sp_16" />
+
+    </LinearLayout>
+</LinearLayout>

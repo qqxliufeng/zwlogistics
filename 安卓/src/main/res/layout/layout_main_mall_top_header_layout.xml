@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.youth.banner.Banner
+        android:id="@+id/mBannerMainMall"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        app:indicator_drawable_selected="@drawable/shape_banner_selected_bg"
+        app:indicator_drawable_unselected="@drawable/shape_banner_unselected_bg" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/mRvMainMallClassify"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_10"
+        android:background="#fff" />
+
+    <!--<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/style_tv_main_mall_top_header"
+                android:drawableTop="@drawable/img_icon_main_mall_icon1"
+                android:text="轮胎" />
+
+            <TextView
+                style="@style/style_tv_main_mall_top_header"
+                android:drawableTop="@drawable/img_icon_main_mall_icon2"
+                android:text="保养" />
+
+            <TextView
+                style="@style/style_tv_main_mall_top_header"
+                android:drawableTop="@drawable/img_icon_main_mall_icon3"
+                android:text="内饰" />
+
+            <TextView
+                style="@style/style_tv_main_mall_top_header"
+                android:drawableTop="@drawable/img_icon_main_mall_icon4"
+                android:text="发动机" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/style_tv_main_mall_top_header"
+                android:drawableTop="@drawable/img_icon_main_mall_icon5"
+                android:text="操控配置" />
+
+            <TextView
+                style="@style/style_tv_main_mall_top_header"
+                android:drawableTop="@drawable/img_icon_main_mall_icon6"
+                android:text="电动机" />
+
+            <TextView
+                style="@style/style_tv_main_mall_top_header"
+                android:drawableTop="@drawable/img_icon_main_mall_icon7"
+                android:text="空调冰箱" />
+
+            <TextView
+                style="@style/style_tv_main_mall_top_header"
+                android:drawableTop="@drawable/img_icon_main_mall_icon8"
+                android:text="更多" />
+        </LinearLayout>
+
+    </LinearLayout>-->
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:src="@drawable/img_icon_main_mall_devider1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.android.ql.lf.carapp.ui.views.HotView
+                android:id="@+id/mHvMainMall1"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_weight="1" />
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="#ccc" />
+
+            <com.android.ql.lf.carapp.ui.views.HotView
+                android:id="@+id/mHvMainMall2"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#ccc" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <com.android.ql.lf.carapp.ui.views.HotView
+                android:id="@+id/mHvMainMall3"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_weight="1" />
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="#ccc" />
+
+            <com.android.ql.lf.carapp.ui.views.HotView
+                android:id="@+id/mHvMainMall4"
+                android:layout_width="0dp"
+                android:layout_height="100dp"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@drawable/img_icon_main_mall_devider2" />
+
+</LinearLayout>

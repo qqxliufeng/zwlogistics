@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/mFaceContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/selector_press_bg"
+        android:paddingLeft="@dimen/dp_10"
+        android:paddingRight="@dimen/dp_10">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="个人头像"
+            android:textColor="@color/text_deep_dark_color"
+            android:textSize="14sp" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/icon_inter1" />
+
+        <ImageView
+            android:id="@+id/mTvPersonalInfoFace"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="5dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/img_default_mine_icon" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/mNickNameContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mFaceContainer"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="@drawable/selector_press_bg"
+        android:padding="@dimen/dp_10">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="昵称"
+            android:textColor="@color/text_deep_dark_color"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/mTvPersonalInfoNickName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:drawablePadding="@dimen/dp_10"
+            android:drawableRight="@drawable/icon_inter1"
+            android:gravity="center"
+            android:textColor="#919191" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/mPhoneContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mNickNameContainer"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="@drawable/selector_press_bg"
+        android:padding="@dimen/dp_10">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="手机号"
+            android:textColor="@color/text_deep_dark_color"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/mTvPersonalInfoPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:gravity="center"
+            android:text="暂无"
+            android:textColor="@color/text_dark_color" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/mIdCardContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mPhoneContainer"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="@drawable/selector_press_bg"
+        android:padding="@dimen/dp_10">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="身份证号"
+            android:textColor="@color/text_deep_dark_color"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/mTvPersonalInfoIdCard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:drawablePadding="@dimen/dp_10"
+            android:drawableRight="@drawable/icon_inter1"
+            android:gravity="center"
+            android:text="暂无"
+            android:textColor="@color/text_dark_color" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/mTvPersonalInfoResetPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mIdCardContainer"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="@drawable/selector_press_bg"
+        android:drawableRight="@drawable/icon_inter"
+        android:gravity="center_vertical"
+        android:padding="@dimen/dp_10"
+        android:text="修改密码"
+        android:textColor="#343434"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/mTvPersonalInfoResetWalletPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/mTvPersonalInfoResetPassword"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="@drawable/selector_press_bg"
+        android:drawableRight="@drawable/icon_inter"
+        android:gravity="center_vertical"
+        android:padding="@dimen/dp_10"
+        android:text="钱包密码"
+        android:textColor="#343434"
+        android:textSize="14sp" />
+</RelativeLayout>

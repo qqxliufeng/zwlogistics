@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#f5f5f5">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:layout_marginTop="80dp"
+                android:layout_marginRight="@dimen/dp_10"
+                android:background="@drawable/shape_ll_order_item_bg"
+                android:orientation="vertical"
+                android:padding="@dimen/dp_10">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="130dp"
+                    android:drawableLeft="@drawable/shape_tv_left"
+                    android:drawablePadding="@dimen/dp_10"
+                    android:text="订单信息"
+                    android:textColor="#333"
+                    android:textSize="@dimen/sp_14" />
+
+
+                <TextView
+                    android:id="@+id/mTvOrderInfoOrderSn"
+                    style="@style/tv_order_info_style"
+                    android:text="订单编号：123456789" />
+
+                <TextView
+                    android:id="@+id/mTvOrderInfoOrderSendTime"
+                    style="@style/tv_order_info_style"
+                    android:text="发货日期：2018-07-29" />
+
+                <TextView
+                    android:id="@+id/mTvOrderInfoOrderReceiverTime"
+                    style="@style/tv_order_info_style"
+                    android:text="交货日期：2018-07-29" />
+
+                <TextView
+                    android:id="@+id/mTvOrderInfoOrderPayType"
+                    style="@style/tv_order_info_style"
+                    android:text="支付方式：全现金" />
+
+                <TextView
+                    android:id="@+id/mTvOrderInfoOrderPersonNum"
+                    style="@style/tv_order_info_style"
+                    android:text="竞标人数：10人" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:drawableLeft="@drawable/shape_tv_left"
+                    android:drawablePadding="@dimen/dp_10"
+                    android:text="货物信息"
+                    android:textColor="#333"
+                    android:textSize="@dimen/sp_14" />
+
+                <TextView
+                    android:id="@+id/mTvOrderInfoGoodsZXType"
+                    style="@style/tv_order_info_style"
+                    android:text="装卸方式：123456789" />
+
+                <TextView
+                    android:id="@+id/mTvOrderInfoGoodsInfo"
+                    style="@style/tv_order_info_style"
+                    android:text="重量：5吨  体积：10立方米" />
+
+                <TextView
+                    android:id="@+id/mTvOrderInfoGoodsSendAddress"
+                    style="@style/tv_order_info_style"
+                    android:text="出发地：山东济南" />
+
+                <TextView
+                    android:id="@+id/mTvOrderInfoGoodsTJAddress"
+                    style="@style/tv_order_info_style"
+                    android:text="途径的：山东济南" />
+
+                <TextView
+                    android:id="@+id/mTvOrderInfoGoodsReceiverAddress"
+                    style="@style/tv_order_info_style"
+                    android:text="目的地：山东济南" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:drawableLeft="@drawable/shape_tv_left"
+                    android:drawablePadding="@dimen/dp_10"
+                    android:text="用车信息"
+                    android:textColor="#333"
+                    android:textSize="@dimen/sp_14" />
+
+                <TextView
+                    android:id="@+id/mTvOrderInfoCarType"
+                    style="@style/tv_order_info_style"
+                    android:text="用车类型：整车" />
+
+                <TextView
+                    android:id="@+id/mTvOrderInfoCarHeight"
+                    style="@style/tv_order_info_style"
+                    android:text="车长限制：1.8米" />
+
+                <TextView
+                    android:id="@+id/mTvOrderInfoCarCX"
+                    style="@style/tv_order_info_style"
+                    android:text="车型限制：厢式" />
+
+                <TextView
+                    android:id="@+id/mTvOrderInfoRemark"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="备注：如果你无法简洁的表达你的想法，那只说明你还不够了解他。"
+                    android:textColor="@color/normalTextColor"
+                    android:textSize="@dimen/sp_14" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:layout_marginRight="@dimen/dp_10"
+                android:background="@drawable/shape_ll_order_item_bg"
+                android:orientation="vertical"
+                android:padding="@dimen/dp_10">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/shape_tv_left"
+                    android:drawablePadding="@dimen/dp_10"
+                    android:text="竞标信息"
+                    android:textColor="#333"
+                    android:textSize="@dimen/sp_14" />
+
+                <TextView
+                    style="@style/tv_order_info_style"
+                    android:text="联系电话：18888888888" />
+
+                <TextView
+                    style="@style/tv_order_info_style"
+                    android:text="我的报价：￥1000.00" />
+
+                <TextView
+                    style="@style/tv_order_info_style"
+                    android:text="运载车型：厢式" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="备注：如果你无法简洁的表达你的想法，那只说明你还不够了解他。"
+                    android:textColor="@color/normalTextColor"
+                    android:textSize="@dimen/sp_14" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/mTvOrderInfoPic"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginRight="10dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/test_index_item_info" />
+
+    </FrameLayout>
+
+
+</android.support.v4.widget.NestedScrollView>

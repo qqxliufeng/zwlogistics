@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="@dimen/dp_10"
+        android:text="社交分享"
+        android:textColor="@color/deepTextColor"
+        android:textSize="@dimen/sp_14" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/mTvShareWX"
+            style="@style/tv_share_style"
+            android:drawableTop="@drawable/icon_share_wechat"
+            android:drawablePadding="@dimen/dp_10"
+            android:text="微信" />
+
+        <TextView
+            android:id="@+id/mTvShareQQ"
+            style="@style/tv_share_style"
+            android:drawableTop="@drawable/icon_share_qq"
+            android:drawablePadding="@dimen/dp_10"
+            android:text="QQ" />
+
+        <TextView
+            android:id="@+id/mTvShareWXCircle"
+            style="@style/tv_share_style"
+            android:drawableTop="@drawable/icon_share_wxcircle"
+            android:drawablePadding="@dimen/dp_10"
+            android:text="朋友圈" />
+
+        <TextView
+            android:id="@+id/mTvShareQQZone"
+            style="@style/tv_share_style"
+            android:drawableTop="@drawable/icon_share_qq_zone"
+            android:drawablePadding="@dimen/dp_10"
+            android:text="QQ空间" />
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/mTvShareCancel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:text="取消"
+        android:textColor="#fff"
+        android:textSize="@dimen/sp_16" />
+
+</LinearLayout>

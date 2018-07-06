@@ -1,0 +1,122 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+//apply from: 'tinker-support.gradle'
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.2"
+
+
+    defaultConfig {
+        applicationId "com.android.ql.lf.carapp"
+        minSdkVersion 19
+        targetSdkVersion 26
+        versionCode 6
+        versionName "1.0.6"
+
+        ndk {
+            //设置支持的SO库架构
+            abiFilters 'armeabi', 'x86', 'armeabi-v7a', 'x86_64'//, 'arm64-v8a'
+        }
+
+        manifestPlaceholders = [
+                JPUSH_PKGNAME: "com.android.ql.lf.carapp",
+                JPUSH_APPKEY : "e1f322032a2197b7f0fa843c", //JPush上注册的包名对应的appkey.
+                JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
+        ]
+
+        multiDexEnabled true
+
+    }
+
+    // 签名配置
+    signingConfigs {
+        release {
+            keyAlias 'lf'
+            keyPassword 'jnqlcar'
+            storeFile file('jnql_car.jks')
+            storePassword 'jnqlcar'
+//            证书指纹:
+//            MD5:  4B:AC:BA:29:D6:DF:DA:9B:95:09:D3:E2:BC:20:F8:2A
+//            SHA1: F1:93:63:54:DC:AA:8C:60:B6:E7:6D:61:82:0D:78:DB:93:A4:64:00
+//            SHA256: 15:D0:1B:44:F6:AE:12:17:20:75:DC:68:5A:D5:B2:D8:88:2C:CE:59:0D:AB:9C:99:4D:CF:81:24:9F:30:F9:92
+//            签名算法名称: SHA256withRSA
+//            主体公共密钥算法: 2048 位 RSA 密钥
+//            版本: 3
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            signingConfig signingConfigs.release
+        }
+    }
+
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    //android-support-lib
+    implementation rootProject.ext.dependencies["libSupportAppcompat"]
+    implementation rootProject.ext.dependencies["libSupportDesign"]
+    //kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    //dagger2
+    api rootProject.ext.dependencies["libDagger"]
+    annotationProcessor rootProject.ext.dependencies["libDaggerCompiler"]
+    //retrofit
+    implementation rootProject.ext.dependencies["libRetrofit"]
+    implementation rootProject.ext.dependencies["libRetrofitConverterGson"]
+    implementation rootProject.ext.dependencies["libRetrofitAdapterRxJava"]
+    implementation rootProject.ext.dependencies["libRetrofitAdapterScalars"]
+    implementation rootProject.ext.dependencies["libOkHttpLoggingInterceptor"]
+    //RxJavaRecyclerBView
+    implementation rootProject.ext.dependencies["libRxAndroid"]
+    //BaseRecyclerViewAdapterHelper
+    implementation rootProject.ext.dependencies["libBaseRecyclerViewAdapterHelper"]
+    //ButterKnife
+    implementation rootProject.ext.dependencies["libButterKnife"]
+    annotationProcessor rootProject.ext.dependencies["libButterButterKnifeCompiler"]
+    //glide
+//    implementation 'com.github.bumptech.glide:glide:3.7.0'
+    implementation rootProject.ext.dependencies["libGlideTransformations"]
+    implementation 'com.zhihu.android:matisse:0.5.0-beta3'
+    //anko
+    implementation rootProject.ext.dependencies["libAnko"]
+    implementation rootProject.ext.dependencies["libAnkoCommons"]
+    //multidex
+    implementation rootProject.ext.dependencies["libMultiDex"]
+    //permission
+    implementation rootProject.ext.dependencies["libEasypermissions"]
+    //badgeview
+    implementation 'q.rorbin:badgeview:1.1.3'
+    implementation 'com.tencent.bugly:crashreport_upgrade:latest.release'
+    implementation 'com.android.support:cardview-v7:26.1.0'
+    implementation 'com.youth.banner:banner:1.4.10'
+    implementation 'com.sunfusheng:marqueeview:1.3.3'
+    implementation 'com.google.zxing:core:3.3.2'
+    implementation 'com.soundcloud.android:android-crop:1.0.1@aar'
+    implementation 'com.github.chrisbanes:PhotoView:2.1.3'
+    implementation 'com.google.android:flexbox:0.3.1'
+    implementation 'me.imid.swipebacklayout.lib:library:1.1.0'
+    implementation 'com.github.iwgang:countdownview:2.1.6'
+    implementation 'com.github.baoyachi:StepView:1.9'
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
+    implementation files('libs/open_sdk_r5990_lite.jar')
+    implementation 'cn.jiguang.sdk:jpush:3.1.1'
+    // 此处以JPush 3.1.1 版本为例。
+    implementation 'cn.jiguang.sdk:jcore:1.1.9'
+    // 此处以JCore 1.1.9 版本为例。
+    implementation files('libs/alipaySdk-20170922.jar')
+    implementation project(':easeui')
+    implementation 'top.zibin:Luban:1.1.3'
+}

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#feffff"
+    android:orientation="vertical">
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp">
+
+        <com.android.ql.lf.zwlogistics.ui.widgets.DJEditText
+            android:id="@+id/mEtBindPhone"
+            style="@style/edit_style1"
+            android:drawableLeft="@drawable/icon_register_phone"
+            android:drawablePadding="@dimen/dp_10"
+            android:hint="请输入手机号"
+            android:inputType="phone"
+            android:maxLength="11" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="30dp"
+        android:background="@color/lineColor" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_weight="1">
+
+            <com.android.ql.lf.zwlogistics.ui.widgets.DJEditText
+                android:id="@+id/mEtBindPhoneCode"
+                style="@style/edit_style1"
+                android:drawableStart="@drawable/icon_register_verify_code"
+                android:drawableLeft="@drawable/icon_register_verify_code"
+                android:drawablePadding="@dimen/dp_10"
+                android:hint="请输入验证码"
+                android:inputType="textPassword" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/lineColor" />
+
+        <TextView
+            android:id="@+id/mTvBindPhoneGetCode"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginRight="30dp"
+            android:layout_weight="0.4"
+            android:gravity="center"
+            android:text="获取验证码" />
+
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="30dp"
+        android:background="@color/lineColor" />
+
+
+    <Button
+        android:layout_marginTop="50dp"
+        android:id="@+id/mBtBindPhoneLogin"
+        style="@style/button_style1"
+        android:text="立即绑定并登录" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="30dp"
+        android:gravity="center">
+
+        <CheckBox
+            android:id="@+id/mCbBindPhoneProtocol"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="我同意"
+            android:textColor="@color/deepTextColor" />
+
+        <TextView
+            android:id="@+id/mTvBindPhoneProtocol"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="《用户服务协议》"
+            android:textColor="@color/colorPrimary" />
+    </LinearLayout>
+
+
+</LinearLayout>

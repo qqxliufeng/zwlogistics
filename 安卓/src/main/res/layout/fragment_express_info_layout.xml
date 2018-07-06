@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="#F5F5F5"
+            android:padding="10dp">
+
+            <ImageView
+                android:id="@+id/mIvExpressGoodsImage"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:scaleType="centerCrop"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:layout_toRightOf="@+id/mIvExpressGoodsImage">
+
+                <TextView
+                    android:id="@+id/mTvExpressGoodsName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textColor="#282828"
+                    android:textSize="@dimen/sp_16" />
+
+                <TextView
+                    android:id="@+id/mTvExpressName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:textColor="#AAAAAA"
+                    android:textSize="@dimen/sp_14" />
+
+                <TextView
+                    android:id="@+id/mTvExpressNum"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:textColor="#AAAAAA"
+                    android:textSize="@dimen/sp_14" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <com.baoyachi.stepview.VerticalStepView
+            android:id="@+id/mVerticalStepView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#fff"
+            android:padding="@dimen/dp_10" />
+    </LinearLayout>
+
+</android.support.v4.widget.NestedScrollView>

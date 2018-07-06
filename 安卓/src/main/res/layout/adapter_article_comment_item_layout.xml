@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/selector_press_bg"
+    android:orientation="horizontal"
+    android:padding="@dimen/dp_10">
+
+    <ImageView
+        android:id="@+id/mIvAnswerInfoItemFace"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/img_glide_circle_load_default"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/dp_10">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/mTvAnswerInfoItemName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/sp_14" />
+
+            <com.android.ql.lf.carapp.ui.views.PraiseView
+                android:id="@+id/mPraiseView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:orientation="horizontal">
+
+                    <android.support.design.widget.CheckableImageButton
+                        android:id="@+id/mIvPraiseIcon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@null"
+                        android:src="@drawable/selector_praise_bg" />
+
+                    <TextView
+                        android:id="@+id/mTvPraiseText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="5dp"
+                        android:text="赞"
+                        android:textColor="@color/text_deep_dark_color" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/mTvPraiseFly"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:text="+1"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/sp_12"
+                    android:visibility="invisible" />
+
+            </com.android.ql.lf.carapp.ui.views.PraiseView>
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/mTvAnswerInfoItemContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="2dp"
+            android:textColor="@color/text_deep_dark_color"
+            android:textSize="@dimen/sp_14" />
+
+        <RelativeLayout
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/mTvAnswerInfoItemTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#A3A3A3"
+                android:textSize="@dimen/sp_12" />
+
+            <TextView
+                android:id="@+id/mTvAnswerInfoItemDelete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="删除"
+                android:paddingLeft="@dimen/dp_10"
+                android:paddingRight="@dimen/dp_10"
+                android:textColor="@color/text_deep_dark_color"
+                android:textSize="@dimen/sp_12" />
+
+        </RelativeLayout>
+    </LinearLayout>
+</LinearLayout>

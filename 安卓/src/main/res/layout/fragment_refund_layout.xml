@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/dp_10"
+        android:background="#f5f5f5"
+        android:padding="@dimen/dp_10"
+        android:text="温馨提示\n1、限时特价，预约资格等购买优惠可能一并取消2、订单一旦取消，无法恢复"
+        android:textColor="@color/text_deep_dark_color"
+        android:textSize="@dimen/sp_14" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#f5f5f5" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_10">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="退款原因："
+            android:textColor="@color/text_deep_dark_color" />
+
+        <TextView
+            android:id="@+id/mTvRefundSelectCase"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableRight="@drawable/img_icon_price_n2"
+            android:gravity="center_vertical"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:text="请先选择退款原因" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#f5f5f5" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_10">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="退款联系人："
+            android:textColor="@color/text_deep_dark_color" />
+
+        <EditText
+            android:id="@+id/mEtRefundSelectName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:hint="联系人"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:textColor="@color/text_deep_dark_color"
+            android:textSize="@dimen/sp_14" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#f5f5f5" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_10">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="联系方式："
+            android:textColor="@color/text_deep_dark_color" />
+
+        <EditText
+            android:id="@+id/mEtRefundSelectPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:hint="手机号"
+            android:inputType="number"
+            android:maxLength="11"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:textColor="@color/text_deep_dark_color"
+            android:textSize="@dimen/sp_14" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#f5f5f5" />
+
+    <Button
+        android:id="@+id/mBtRefundRefund"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="170dp"
+        android:background="@drawable/shape_bt_bg1"
+        android:text="申请退款"
+        android:textColor="#fff"
+        android:textSize="@dimen/sp_16" />
+</LinearLayout>

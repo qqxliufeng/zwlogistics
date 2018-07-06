@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:background="@drawable/shape_ll_bg4"
+    android:layout_marginRight="@dimen/dp_10"
+    android:layout_marginLeft="@dimen/dp_10"
+    android:layout_marginTop="5dp"
+    android:minHeight="80dp"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:paddingTop="25dp"
+            android:layout_marginRight="5dp"
+            android:textColor="#fff"
+            android:textSize="@dimen/sp_14"
+            android:textStyle="bold"
+            android:text="￥" />
+
+        <TextView
+            android:id="@+id/mTvPlatformCouponItemMoney"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="#fff"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            tools:text="100" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="15dp"
+        android:background="#fff" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/mTvPlatformCouponItemTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:textColor="#fff"
+            android:textSize="@dimen/sp_14"
+            android:maxLines="1"
+            android:text="店铺优惠券" />
+
+        <TextView
+            android:id="@+id/mTvPlatformCouponItemDes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:textColor="@color/main_color"
+            android:paddingRight="5dp"
+            android:paddingLeft="5dp"
+            android:textSize="@dimen/sp_14"
+            android:background="#fff"
+            android:maxLines="1"
+            tools:text="购满200元使用" />
+
+        <TextView
+            android:id="@+id/mTvPlatformCouponItemTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:textColor="#fff"
+            android:textSize="10sp"
+            android:maxLines="1"
+            tools:text="使用时间：2018.2.3-2018.2.3" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginRight="@dimen/dp_10"
+        android:layout_weight="0.6"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/shape_tv_bg13"
+            android:gravity="center"
+            android:text="领取"
+            android:textColor="@color/main_color"
+            android:textSize="@dimen/sp_12" />
+    </LinearLayout>
+
+</LinearLayout>

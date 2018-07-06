@@ -1,0 +1,121 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="actionMenuTextAppearance">@style/menu_text_appearance</item>
+    </style>
+
+    <style name="select_address" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+
+    <style name="menu_text_appearance">
+        <item name="android:textSize">@dimen/sp_16</item>
+    </style>
+
+    <style name="my_matisse_style" parent="Matisse.Zhihu">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="splashTheme" parent="AppTheme">
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="edit_style1">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="android:layout_marginLeft">30dp</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:layout_marginRight">30dp</item>
+        <item name="android:background">@null</item>
+        <item name="android:textColor">@color/deepTextColor</item>
+        <item name="android:textColorHint">@color/normalTextColor</item>
+        <item name="android:textSize">@dimen/sp_14</item>
+    </style>
+
+    <style name="button_style1">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:layout_marginLeft">30dp</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:layout_marginRight">30dp</item>
+        <item name="android:background">@drawable/shape_bt_bg</item>
+        <item name="android:shadowColor">@color/colorPrimary</item>
+        <item name="android:textColor">#fff</item>
+        <item name="android:textSize">@dimen/sp_14</item>
+    </style>
+
+    <style name="tv_mine_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?actionBarSize</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:drawableRight">@drawable/icon_enter_gray</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:drawablePadding">@dimen/dp_10</item>
+        <item name="android:textSize">@dimen/sp_14</item>
+        <item name="android:textColor">@color/deepTextColor</item>
+        <item name="android:background">@drawable/shape_tv_bg</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+    <style name="tv_share_style">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">@dimen/sp_12</item>
+        <item name="android:textColor">@color/normalTextColor</item>
+        <item name="android:paddingTop">@dimen/dp_10</item>
+        <item name="android:paddingBottom">@dimen/dp_10</item>
+    </style>
+
+    <style name="CropImageTheme" parent="AppTheme" tools:ingore="NewApi">
+        <item name="cropImageStyle">@style/Widget.CropImageView</item>
+    </style>
+
+    <style name="Widget.CropImageView" parent="android:Widget">
+        <item name="showThirds">false</item>
+        <item name="showCircle">true</item>
+        <item name="showHandles">always</item>
+    </style>
+
+    <style name="iv_show_photo_style">
+        <item name="android:layout_width">180dp</item>
+        <item name="android:layout_height">116dp</item>
+    </style>
+
+    <style name="tv_order_info_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/sp_14</item>
+        <item name="android:textColor">@color/deepTextColor</item>
+        <item name="android:layout_marginTop">@dimen/dp_10</item>
+    </style>
+
+    <style name="ctv_multi_type_style">
+        <item name="android:layout_width">70dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingLeft">@dimen/dp_10</item>
+        <item name="android:paddingRight">@dimen/dp_10</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:textColor">@color/select_tv_color1</item>
+        <item name="android:background">@drawable/select_tv_bg2</item>
+        <item name="android:layout_marginLeft">@dimen/dp_10</item>
+        <item name="android:layout_marginRight">@dimen/dp_10</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:textAlignment">gravity</item>
+        <item name="android:gravity">center</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+</resources>

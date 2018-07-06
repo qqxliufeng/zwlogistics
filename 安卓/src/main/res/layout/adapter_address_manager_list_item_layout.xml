@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#fff"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_10">
+
+        <TextView
+            android:id="@+id/mTvAddressItemName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="王大宝"
+            android:textColor="@color/text_deep_dark_color"
+            android:textSize="@dimen/sp_16" />
+
+        <TextView
+            android:id="@+id/mTvAddressItemPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="188123456789"
+            android:textColor="@color/text_deep_dark_color"
+            android:textSize="@dimen/sp_16" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/mTvAddressItemDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_10"
+        android:text="山东省 泰安市 XX区 建国大门内大街 榆次花园小区15号楼2单元111室"
+        android:textColor="@color/text_deep_dark_color"
+        android:textSize="@dimen/sp_14" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="@drawable/shape_view_visual_line"
+        android:layerType="software" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dp_10">
+
+        <android.support.design.widget.CheckableImageButton
+            android:id="@+id/mCIbAddressItemDefault"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:background="@drawable/selector_cb_shopping_car_all_select" />
+
+        <TextView
+            android:id="@+id/mCbAddressItemDefault"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/mCIbAddressItemDefault"
+            android:button="@drawable/selector_cb_shopping_car_all_select"
+            android:paddingLeft="@dimen/dp_10"
+            android:text="设为默地址"
+            android:textColor="@color/text_deep_dark_color"
+            android:textSize="@dimen/sp_14" />
+
+        <TextView
+            android:id="@+id/mTvAddressItemEdit"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/shape_tv_order_list_bg"
+            android:gravity="center"
+            android:paddingBottom="5dp"
+            android:paddingLeft="@dimen/dp_10"
+            android:paddingRight="@dimen/dp_10"
+            android:paddingTop="5dp"
+            android:text="编辑"
+            android:textColor="@color/text_deep_dark_color" />
+
+        <TextView
+            android:id="@+id/mTvAddressItemDel"
+            android:layout_width="70dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dp_10"
+            android:layout_toLeftOf="@+id/mTvAddressItemEdit"
+            android:background="@drawable/shape_tv_order_list_bg"
+            android:gravity="center"
+            android:paddingBottom="5dp"
+            android:paddingLeft="@dimen/dp_10"
+            android:paddingRight="@dimen/dp_10"
+            android:paddingTop="5dp"
+            android:text="删除"
+            android:textColor="@color/text_deep_dark_color" />
+    </RelativeLayout>
+
+
+</LinearLayout>

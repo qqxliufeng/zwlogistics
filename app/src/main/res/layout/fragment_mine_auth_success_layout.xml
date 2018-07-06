@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/sp_16"
+        android:textColor="@color/deepTextColor"
+        android:text="资料提交成功"
+        android:layout_gravity="center"
+        android:drawableLeft="@drawable/img_duihao_green"
+        android:gravity="center"
+        android:drawablePadding="10dp"
+        android:layout_marginTop="80dp"/>
+
+    <TextView
+        android:id="@+id/mTvAuthSuccessInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:lineSpacingExtra="5dp"
+        android:textSize="@dimen/sp_14"
+        android:textColor="@color/deepTextColor"
+        android:text="您的资料已成功提交，后续工作人员会通过\n电话或短信和您联系，请注意接听或查收"/>
+
+    <Button
+        android:id="@+id/mBtAuthSuccessBack"
+        style="@style/button_style1"
+        android:layout_marginRight="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="50dp"
+        android:text="返回首页" />
+
+
+</LinearLayout>
