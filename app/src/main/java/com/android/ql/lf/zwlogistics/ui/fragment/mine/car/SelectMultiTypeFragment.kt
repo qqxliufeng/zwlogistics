@@ -48,6 +48,7 @@ class SelectMultiTypeFragment :BottomSheetDialogFragment(){
             itemView.findViewById<CheckedTextView>(R.id.mCtvCarTypeItemName).text = it
             lengthContainer.addView(itemView)
         }
+        dialog.setContentView(contentView)
         bottomSheetBehavior = BottomSheetBehavior.from(contentView.parent as View)
         return dialog
     }
