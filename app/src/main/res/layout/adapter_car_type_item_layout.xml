@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content">-->
 
-    <CheckedTextView
+    <CheckedTextView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/mCtvCarTypeItemName"
-        style="@style/ctv_multi_type_style"
-        android:checked="true"
-        android:text="1.8米">
+        style="@style/ctv_multi_type_style">
 
     </CheckedTextView>
-</LinearLayout>
+<!--
+</LinearLayout>-->

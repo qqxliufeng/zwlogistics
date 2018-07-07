@@ -12,7 +12,7 @@ import java.util.List;
  */
 
 public class Constants {
-    public static final String BASE_IP = "http://wrjt.sdqlweb.com/";
+    public static final String BASE_IP = "http://zhongwei.581vv.com/";
 
     private static final String APP_ID = "wrjt123";
     private static final String APP_SEC = "37b082a279e3b7a9403a16b4bb15073b";
@@ -22,7 +22,7 @@ public class Constants {
     public static final String IMAGE_PATH = APP_PATH + "/zwlogistics/";
     public static final String FILE_PROVIDE_PATH = "com.android.ql.lf.zwlogistics.fileProvider";
 
-    public static final String TENCENT_ID = "1106743534";
+    public static final String TENCENT_ID = "1106952325";
     public static final String WX_APP_ID = "wx0b6a3be07b8ed6a0";
     public static final String BUGLY_APP_ID = "c73cdb2f24";
 

@@ -12,7 +12,7 @@
         android:layout_height="20dp"
         android:layout_gravity="center"
         android:visibility="gone"
-        android:src="@drawable/icon_car_manager_select"/>
+        android:src="@drawable/icon_car_manager_unselect"/>
 
     <LinearLayout
         android:padding="@dimen/dp_10"
@@ -23,7 +23,7 @@
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/icon_mine_code" />
+            android:src="@drawable/img_glide_load_default" />
 
         <LinearLayout
             android:layout_marginLeft="@dimen/dp_10"

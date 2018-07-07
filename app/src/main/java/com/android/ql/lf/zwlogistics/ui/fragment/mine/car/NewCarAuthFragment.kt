@@ -6,6 +6,7 @@ import android.text.Html
 import android.view.View
 import com.android.ql.lf.carapp.data.ImageBean
 import com.android.ql.lf.zwlogistics.R
+import com.android.ql.lf.zwlogistics.ui.activity.FragmentContainerActivity
 import com.android.ql.lf.zwlogistics.ui.fragment.base.BaseNetWorkingFragment
 import com.android.ql.lf.zwlogistics.utils.GlideManager
 import com.android.ql.lf.zwlogistics.utils.RxBus
@@ -106,6 +107,10 @@ class NewCarAuthFragment : BaseNetWorkingFragment() {
             selectDateFragment.myShow(childFragmentManager, "date_select_dialog"){
                 mTvAddNewCarCCNF.text = it
             }
+        }
+
+        mTvAddNewCarSubmit.setOnClickListener {
+            FragmentContainerActivity.from(mContext).setClazz(MineAuthSuccessFragment::class.java).setTitle("提交成功").start()
         }
 
     }

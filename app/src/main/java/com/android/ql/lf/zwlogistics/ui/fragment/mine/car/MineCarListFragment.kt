@@ -13,8 +13,11 @@ import com.android.ql.lf.zwlogistics.R
 import com.android.ql.lf.zwlogistics.data.CarBean
 import com.android.ql.lf.zwlogistics.ui.activity.FragmentContainerActivity
 import com.android.ql.lf.zwlogistics.ui.fragment.base.BaseRecyclerViewFragment
+import com.android.ql.lf.zwlogistics.utils.alert
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
+import kotlinx.android.synthetic.main.fragment_mine_car_list_layout.*
+import org.jetbrains.anko.support.v4.alert
 
 class MineCarListFragment :BaseRecyclerViewFragment<CarBean>(){
 
@@ -26,6 +29,10 @@ class MineCarListFragment :BaseRecyclerViewFragment<CarBean>(){
     }
 
     private var menuItem:MenuItem? = null
+
+    private val tempList by lazy {
+        arrayListOf<CarBean>()
+    }
 
     override fun getLayoutId() = R.layout.fragment_mine_car_list_layout
 
@@ -41,6 +48,11 @@ class MineCarListFragment :BaseRecyclerViewFragment<CarBean>(){
             val iv_delete = helper!!.getView<ImageView>(R.id.mIvCarItemDeleteMode)
             if (item!!.isManagerMode){
                 iv_delete.visibility = View.VISIBLE
+                if (item.isSelect){
+                    iv_delete.setImageResource(R.drawable.icon_car_manager_select)
+                }else{
+                    iv_delete.setImageResource(R.drawable.icon_car_manager_unselect)
+                }
             }else{
                 iv_delete.visibility = View.GONE
             }
@@ -64,7 +76,12 @@ class MineCarListFragment :BaseRecyclerViewFragment<CarBean>(){
 //        menuItem?.title = ACTION_ADD
         setRefreshEnable(false)
         setLoadEnable(false)
-        testAdd(CarBean())
+        (0 .. 10).forEach {
+            mArrayList.add(CarBean())
+        }
+        mBaseAdapter.setNewData(mArrayList)
+        onRequestEnd(-1)
+        mBaseAdapter.loadMoreEnd()
     }
 
 
@@ -83,8 +100,23 @@ class MineCarListFragment :BaseRecyclerViewFragment<CarBean>(){
             //如果当前模式是管理，则显示取消，否则显示管理
             if (item.title == ACTION_MANAGER){
                 item.title = ACTION_CANCEL
+                mTvCarListAction.text = "删除"
+                mTvCarListAction.setOnClickListener {
+                    if (tempList.isEmpty()){
+                        return@setOnClickListener
+                    }
+                    alert("是否要删除所选车辆？") { _, _ ->
+                        tempList.forEach {
+                            mArrayList.remove(it)
+                        }
+                        mBaseAdapter.notifyDataSetChanged()
+                    }
+                }
             }else{
                 item.title = ACTION_MANAGER
+                mTvCarListAction.text = "添加新车辆"
+                mTvCarListAction.setOnClickListener {
+                }
             }
             mArrayList.forEach {
                 it.isManagerMode = item.title != ACTION_MANAGER
@@ -97,13 +129,16 @@ class MineCarListFragment :BaseRecyclerViewFragment<CarBean>(){
 
     override fun onMyItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
         super.onMyItemClick(adapter, view, position)
-        if (position == 0){
-            FragmentContainerActivity.from(mContext).setNeedNetWorking(true).setTitle("车辆详情").setClazz(MineCarInfoForComplementAndAuthingFragment::class.java).start()
-        }else if (position == 1){
-            FragmentContainerActivity.from(mContext).setNeedNetWorking(true).setTitle("车辆详情").setClazz(MineCarInfoForFailedFragment::class.java).start()
-        }else if (position == 2){
-            FragmentContainerActivity.from(mContext).setNeedNetWorking(true).setTitle("车辆详情").setClazz(NewCarAuthFragment::class.java).start()
+        val currentItem = mArrayList[position]
+        if (currentItem.isManagerMode){
+            if (currentItem.isSelect){
+                tempList.remove(currentItem)
+                currentItem.isSelect = false
+            }else{
+                tempList.add(currentItem)
+                currentItem.isSelect = true
+            }
+            mBaseAdapter.notifyItemChanged(position)
         }
     }
-
 }

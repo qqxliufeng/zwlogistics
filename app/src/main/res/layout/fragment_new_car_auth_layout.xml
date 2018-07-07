@@ -2,12 +2,27 @@
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/qian_red"
+            android:gravity="center"
+            android:padding="@dimen/dp_10"
+            android:text="身份认证通过才能联系货主，请填写您的真实信息！"
+            android:textColor="@color/colorPrimary" />
+
+        <com.android.ql.lf.zwlogistics.ui.widgets.AuthStepView
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            app:step="2"/>
 
         <TextView
             android:id="@+id/mTvAddNewCarXSZTitle"

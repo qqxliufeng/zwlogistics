@@ -26,7 +26,7 @@ import rx.Observable;
 
 public interface ApiServer {
 
-    String BASE_IP_POSTFIX = "interface.php/v1/{postfix1}/{postfix2}";
+    String BASE_IP_POSTFIX = "/api/{postfix1}/{postfix2}";
 
     /**
      * 以post的请求方式，请求网络数据

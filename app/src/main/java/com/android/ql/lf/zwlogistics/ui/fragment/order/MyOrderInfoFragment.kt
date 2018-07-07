@@ -10,4 +10,5 @@ class MyOrderInfoFragment :BaseNetWorkingFragment(){
 
     override fun initView(view: View?) {
     }
+
 }

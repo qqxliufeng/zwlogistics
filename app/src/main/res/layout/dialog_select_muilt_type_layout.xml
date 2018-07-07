@@ -46,6 +46,7 @@
                 android:layout_height="wrap_content"
                 app:flexWrap="wrap">
 
+
             </com.google.android.flexbox.FlexboxLayout>
 
 
@@ -118,30 +119,33 @@
                 android:background="@color/lineColor" />
 
 
-
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 
     <LinearLayout
-        android:layout_gravity="bottom"
         android:layout_width="match_parent"
         android:layout_height="45dp"
+        android:layout_gravity="bottom"
         android:orientation="horizontal">
+
         <TextView
+            android:id="@+id/mTvSelectMultiTypeClear"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:textColor="@color/deepTextColor"
             android:background="@drawable/shape_tv_bg9"
+            android:gravity="center"
             android:text="清空"
-            android:gravity="center"/>
+            android:textColor="@color/deepTextColor" />
+
         <TextView
+            android:id="@+id/mTvSelectMultiTypeSubmit"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:textColor="#fff"
             android:background="@color/colorPrimary"
+            android:gravity="center"
             android:text="确定"
-            android:gravity="center"/>
+            android:textColor="#fff" />
     </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>

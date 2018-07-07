@@ -10,7 +10,9 @@ import com.android.ql.lf.zwlogistics.R
 import com.android.ql.lf.zwlogistics.ui.activity.FragmentContainerActivity
 import com.android.ql.lf.zwlogistics.ui.activity.MainActivity
 import com.android.ql.lf.zwlogistics.ui.fragment.base.BaseNetWorkingFragment
+import com.android.ql.lf.zwlogistics.ui.fragment.mine.car.NewCarAuthFragment
 import com.android.ql.lf.zwlogistics.utils.showInfoDialog
+import kotlinx.android.synthetic.main.fragment_mine_person_auth_layout.*
 
 class MinePersonAuthFragment : BaseNetWorkingFragment(), FragmentContainerActivity.OnBackPressListener {
 
@@ -24,6 +26,9 @@ class MinePersonAuthFragment : BaseNetWorkingFragment(), FragmentContainerActivi
 
     override fun initView(view: View?) {
         (mContext as FragmentContainerActivity).setOnBackPressListener(this)
+        mTvPersonAuthNext.setOnClickListener {
+            FragmentContainerActivity.from(mContext).setNeedNetWorking(true).setTitle("新车认证").setClazz(NewCarAuthFragment::class.java).start()
+        }
     }
 
 
@@ -41,7 +46,9 @@ class MinePersonAuthFragment : BaseNetWorkingFragment(), FragmentContainerActivi
 
 
     override fun onBackPress(): Boolean {
-        showInfoDialog("身份认证通过才能参与竞标，建议继续完善资料~","放弃","继续完善",null,null)
+        showInfoDialog("身份认证通过才能参与竞标，建议继续完善资料~","放弃","继续完善",{
+            finish()
+        },null)
         return true
     }
 }

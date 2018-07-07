@@ -127,6 +127,7 @@
 
 
     <Button
+        android:id="@+id/mBtTenderInfoSubmit"
         style="@style/button_style1"
         android:text="确认竞标" />
 

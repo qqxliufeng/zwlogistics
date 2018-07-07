@@ -76,8 +76,7 @@ class MyOrderListFragment : AbstractLazyLoadFragment<String>() {
 
     override fun onMyItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
         super.onMyItemClick(adapter, view, position)
-//        FragmentContainerActivity.from(mContext).setNeedNetWorking(true).setClazz(MyOrderInfoFragment::class.java).setTitle("订单信息").start()
-        FragmentContainerActivity.from(mContext).setNeedNetWorking(true).setClazz(TenderSuccessFragment::class.java).setTitle("订单信息").start()
+        FragmentContainerActivity.from(mContext).setNeedNetWorking(true).setClazz(MyOrderInfoFragment::class.java).setTitle("订单信息").start()
     }
 
 }

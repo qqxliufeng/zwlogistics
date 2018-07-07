@@ -1,11 +1,11 @@
 package com.android.ql.lf.zwlogistics.ui.fragment.bottom
 
-import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.View
 
 import android.view.ViewGroup
@@ -21,13 +21,17 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import kotlinx.android.synthetic.main.fragment_index_layout.*
 
 
-class IndexFragment :  BaseRecyclerViewFragment<String>(){
+class IndexFragment : BaseRecyclerViewFragment<String>() {
 
+
+    private var sourceAddress: SelectAddressActivity.SelectAddressItemBean? = null
+
+    private var desAddress: SelectAddressActivity.SelectAddressItemBean? = null
 
     override fun getLayoutId() = R.layout.fragment_index_layout
 
 
-    override fun createAdapter() = OrderItemAdapter(R.layout.adapter_index_order_item_layout,mArrayList)
+    override fun createAdapter() = OrderItemAdapter(R.layout.adapter_index_order_item_layout, mArrayList)
 
     private val selectMultiTypeFragment by lazy {
         SelectMultiTypeFragment()
@@ -40,17 +44,32 @@ class IndexFragment :  BaseRecyclerViewFragment<String>(){
 
         mLlIndexOrderSourceAddressContainer.setOnClickListener {
             mCtvIndexOrderSourceAddress.isChecked = true
-            startActivity(Intent(mContext,SelectAddressActivity::class.java))
-            (mContext as Activity).overridePendingTransition(R.anim.activity_open,0)
+            SelectAddressActivity.startAddressActivityForResult(this, 1)
         }
 
         mLlIndexOrderDesAddressContainer.setOnClickListener {
             mCtvIndexOrderDesAddress.isChecked = true
+            SelectAddressActivity.startAddressActivityForResult(this, 1)
         }
 
         mLlIndexOrderCarTypeContainer.setOnClickListener {
             mCtvIndexOrderCarType.isChecked = true
-            selectMultiTypeFragment.show(childFragmentManager,"select_multi_type_dialog")
+            selectMultiTypeFragment.myShow(childFragmentManager, "select_multi_type_dialog", {
+                mCtvIndexOrderCarType.isChecked = false
+                if (it?.size == 1 && it.contains("")){
+                    mCtvIndexOrderCarType.text = "车型车长"
+                    return@myShow
+                }
+                val stringBuilder = StringBuilder()
+                it?.filter { "" != it }?.forEach {
+                    stringBuilder.append(it).append(",")
+                }
+                stringBuilder.deleteCharAt(stringBuilder.length - 1)
+                Log.e("TAG",stringBuilder.toString())
+                mCtvIndexOrderCarType.text = stringBuilder.toString()
+            }) {
+                mCtvIndexOrderCarType.isChecked = false
+            }
         }
     }
 
@@ -69,6 +88,25 @@ class IndexFragment :  BaseRecyclerViewFragment<String>(){
     override fun onMyItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
         super.onMyItemClick(adapter, view, position)
         FragmentContainerActivity.from(mContext).setTitle("我要竞标").setClazz(OrderInfoFragment::class.java).setNeedNetWorking(true).start()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 1) {
+            mCtvIndexOrderSourceAddress.isChecked = false
+            mCtvIndexOrderDesAddress.isChecked = false
+            if (data != null) {
+                val addressBean = data.getParcelableExtra<SelectAddressActivity.SelectAddressItemBean>(SelectAddressActivity.REQUEST_DATA_FALG)
+                if (mCtvIndexOrderSourceAddress.isChecked) {
+                    sourceAddress = addressBean
+                    mCtvIndexOrderSourceAddress.text = sourceAddress?.name
+                }
+                if (mCtvIndexOrderDesAddress.isChecked) {
+                    desAddress = addressBean
+                    mCtvIndexOrderDesAddress.text = sourceAddress?.name
+                }
+            }
+        }
     }
 
 }

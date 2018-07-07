@@ -47,14 +47,18 @@ fun EditText.getTextString(): String {
 }
 
 
-fun TextView.setDiffColorText(source1:String, source2: String, color1:String = "#c8c9ca", color2:String = "#545557"){
-    text = Html.fromHtml("<font color='$color1'>$source1：</font><font color='$color2'>$source2</font>")
+fun TextView.setDiffColorText(source1: String, source2: String, color1: String = "#c8c9ca", color2: String = "#545557") {
+    text = Html.fromHtml(source1.fromHtml(color1)+source2.fromHtml(color2))
 }
 
 
+fun String.fromHtml(color: String = "#c8c9ca"): String {
+    return "<font color='$color'>$this</font>"
+}
+
 fun View.doClickWithUserStatusStart(token: String, action: (view: View) -> Unit) {
     setOnClickListener {
-//        if (UserInfo.getInstance().isLogin) {
+        //        if (UserInfo.getInstance().isLogin) {
 //            action(this)
 //        } else {
 //            UserInfo.loginToken = token

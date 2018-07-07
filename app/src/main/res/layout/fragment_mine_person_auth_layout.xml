@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -17,89 +18,10 @@
             android:text="身份认证通过才能联系货主，请填写您的真实信息！"
             android:textColor="@color/colorPrimary" />
 
-        <LinearLayout
+        <com.android.ql.lf.zwlogistics.ui.widgets.AuthStepView
             android:layout_width="match_parent"
             android:layout_height="80dp"
-            android:background="@color/lineColor"
-            android:orientation="vertical">
-
-            <RelativeLayout
-                android:layout_width="160dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="15dp">
-
-                <CheckedTextView
-                    android:id="@+id/mTvMinePersonAuth1"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_alignParentLeft="true"
-                    android:background="@drawable/shape_tv_bg6"
-                    android:checked="true"
-                    android:gravity="center"
-                    android:text="1"
-                    android:textAlignment="center"
-                    android:textColor="#fff"
-                    android:textSize="@dimen/sp_12"
-                    android:textStyle="bold" />
-
-                <CheckedTextView
-                    android:layout_width="120dp"
-                    android:layout_height="3dp"
-                    android:layout_centerVertical="true"
-                    android:layout_toLeftOf="@+id/mTvMinePersonAuth2"
-                    android:layout_toRightOf="@+id/mTvMinePersonAuth1"
-                    android:background="@drawable/shape_tv_bg8"
-                    android:checked="true" />
-
-                <CheckedTextView
-                    android:id="@+id/mTvMinePersonAuth2"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_alignParentRight="true"
-                    android:background="@drawable/shape_tv_bg7"
-                    android:gravity="center"
-                    android:text="2"
-                    android:textAlignment="center"
-                    android:textColor="#fff"
-                    android:textSize="@dimen/sp_12"
-                    android:textStyle="bold" />
-
-            </RelativeLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="35dp"
-                android:layout_marginTop="@dimen/dp_10"
-                android:layout_marginRight="35dp"
-                android:orientation="horizontal">
-
-                <CheckedTextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:checked="true"
-                    android:gravity="center"
-                    android:text="个人信息和头像"
-                    android:textAlignment="gravity"
-                    android:textColor="@color/select_tv_color2"
-                    android:textSize="@dimen/sp_12" />
-
-                <CheckedTextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="车辆信息"
-                    android:textAlignment="gravity"
-                    android:textColor="@color/select_tv_color3"
-                    android:textSize="@dimen/sp_12" />
-
-            </LinearLayout>
-
-
-        </LinearLayout>
+            app:step="1"/>
 
         <TextView
             android:id="@+id/mTvAddNewCarXSZTitle"
@@ -208,8 +130,8 @@
                 android:layout_height="90dp"
                 android:layout_gravity="bottom"
                 android:layout_marginLeft="@dimen/dp_10"
-                android:src="@drawable/img_anli_idcard_zheng"
-                android:layout_weight="2" />
+                android:layout_weight="2"
+                android:src="@drawable/img_anli_idcard_zheng" />
 
         </LinearLayout>
 
@@ -250,8 +172,8 @@
                 android:layout_height="90dp"
                 android:layout_gravity="bottom"
                 android:layout_marginLeft="@dimen/dp_10"
-                android:src="@drawable/img_anli_idcard_fan"
-                android:layout_weight="2" />
+                android:layout_weight="2"
+                android:src="@drawable/img_anli_idcard_fan" />
 
         </LinearLayout>
 
@@ -310,8 +232,8 @@
                 android:layout_height="90dp"
                 android:layout_gravity="bottom"
                 android:layout_marginLeft="@dimen/dp_10"
-                android:src="@drawable/img_anli_jsz_zheng"
-                android:layout_weight="2" />
+                android:layout_weight="2"
+                android:src="@drawable/img_anli_jsz_zheng" />
 
         </LinearLayout>
 
@@ -328,6 +250,7 @@
             android:text="上传从业资格证照片（请勿遮挡证件）"
             android:textColor="@color/deepTextColor"
             android:textSize="@dimen/sp_14" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -365,8 +288,8 @@
                 android:layout_height="90dp"
                 android:layout_gravity="bottom"
                 android:layout_marginLeft="@dimen/dp_10"
-                android:src="@drawable/img_anli_cyzg_zheng"
-                android:layout_weight="2" />
+                android:layout_weight="2"
+                android:src="@drawable/img_anli_cyzg_zheng" />
 
         </LinearLayout>
 
@@ -469,10 +392,10 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:background="@color/lineColor"/>
+            android:background="@color/lineColor" />
 
         <TextView
-            android:id="@+id/mTvAddNewCarSubmit"
+            android:id="@+id/mTvPersonAuthNext"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:background="@color/colorPrimary"

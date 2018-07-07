@@ -6,13 +6,17 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.android.ql.lf.zwlogistics.R;
@@ -20,7 +24,7 @@ import com.android.ql.lf.zwlogistics.application.MyApplication;
 import com.android.ql.lf.zwlogistics.component.ApiServerModule;
 import com.android.ql.lf.zwlogistics.component.DaggerApiServerComponent;
 import com.android.ql.lf.zwlogistics.present.GetDataFromNetPresent;
-import com.android.ql.lf.zwlogistics.utils.RxBus;
+import com.android.ql.lf.zwlogistics.utils.RequestParamsHelper;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
@@ -47,6 +51,10 @@ public class SelectAddressActivity extends BaseActivity implements TabLayout.OnT
     public static final int PROVINCE_MODE = 0x0;
     public static final int CITY_MODE = 0x1;
     public static final int AREA_MODE = 0x2;
+
+
+    public static final int REQUEST_CODE = 1;
+    public static final String REQUEST_DATA_FALG = "request_data_flag";
 
     TabLayout mTabLayout;
     SwipeRefreshLayout mSwipeRefreshLayout;
@@ -82,6 +90,8 @@ public class SelectAddressActivity extends BaseActivity implements TabLayout.OnT
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        getWindow().setGravity(Gravity.BOTTOM);
         getWindow().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#55000000")));
         DaggerApiServerComponent.builder().apiServerModule(new ApiServerModule()).appComponent(MyApplication.getInstance().getAppComponent()).build().inject(this);
         mPresent.setNetDataPresenter(this);
@@ -101,6 +111,7 @@ public class SelectAddressActivity extends BaseActivity implements TabLayout.OnT
         mTvClose.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                setResult(1,null);
                 finish();
             }
         });
@@ -119,36 +130,42 @@ public class SelectAddressActivity extends BaseActivity implements TabLayout.OnT
                 if (currentMode == PROVINCE_MODE) {
                     provinceItemBean = provinceList.get(position);
                     mTabLayout.getTabAt(0).setText(provinceItemBean.getName());
-//                    mPresent.getDataByPost(0x1,
-//                            RequestParamsHelper.Companion.getMEMBER_MODEL(),
-//                            RequestParamsHelper.Companion.getACT_CITY(),
-//                            RequestParamsHelper.Companion.getCityParam(provinceItemBean.getId()));
+                    mPresent.getDataByPost(0x1,
+                            RequestParamsHelper.Companion.getAREA_MODEL(),
+                            RequestParamsHelper.Companion.getACT_CITY(),
+                            RequestParamsHelper.Companion.getCityParam(provinceItemBean.getId()));
                 } else if (currentMode == CITY_MODE) {
                     cityItemBean = cityList.get(position);
                     mTabLayout.getTabAt(1).setText(cityItemBean.getName());
-//                    mPresent.getDataByPost(0x2,
-//                            RequestParamsHelper.Companion.getMEMBER_MODEL(),
-//                            RequestParamsHelper.Companion.getACT_PROVINCE_CITY_AREA(),
-//                            RequestParamsHelper.Companion.getProvinceCityAreaParam(cityItemBean.getId()));
+                    mPresent.getDataByPost(0x2,
+                            RequestParamsHelper.Companion.getAREA_MODEL(),
+                            RequestParamsHelper.Companion.getACT_PROVINCE_CITY_AREA(),
+                            RequestParamsHelper.Companion.getProvinceCityAreaParam(cityItemBean.getId()));
                 } else if (currentMode == AREA_MODE) {
                     areaItemBean = areaList.get(position);
                     SelectAddressItemBean resultItemBean = new SelectAddressItemBean();
                     resultItemBean.setName(provinceItemBean.getName() + cityItemBean.getName() + areaItemBean.getName());
                     resultItemBean.setId(provinceItemBean.getId() + "," + cityItemBean.getId() + "," + areaItemBean.getId());
-                    RxBus.getDefault().post(resultItemBean);
-                    finish();
+                    setResultData(resultItemBean);
                 }
             }
         });
     }
 
+    private void setResultData(SelectAddressItemBean resultItemBean) {
+        Intent intent = new Intent();
+        intent.putExtra(REQUEST_DATA_FALG, resultItemBean);
+        setResult(REQUEST_CODE, intent);
+        finish();
+    }
+
     @Override
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-//        mPresent.getDataByPost(0x0,
-//                RequestParamsHelper.Companion.getMEMBER_MODEL(),
-//                RequestParamsHelper.Companion.getACT_PROVINCE(),
-//                RequestParamsHelper.Companion.getProvinceParam());
+        mPresent.getDataByPost(0x0,
+                RequestParamsHelper.Companion.getAREA_MODEL(),
+                RequestParamsHelper.Companion.getACT_PROVINCE(),
+                RequestParamsHelper.Companion.getProvinceParam());
     }
 
     @Override
@@ -220,8 +237,7 @@ public class SelectAddressActivity extends BaseActivity implements TabLayout.OnT
                         SelectAddressItemBean resultItemBean = new SelectAddressItemBean();
                         resultItemBean.setName(provinceItemBean.getName() + cityItemBean.getName());
                         resultItemBean.setId(provinceItemBean.getId() + "," + cityItemBean.getId());
-                        RxBus.getDefault().post(resultItemBean);
-                        finish();
+                        setResultData(resultItemBean);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -237,7 +253,7 @@ public class SelectAddressActivity extends BaseActivity implements TabLayout.OnT
             JSONObject resultJson = new JSONObject(result.toString());
             String code = resultJson.optString("code");
             if ("200".equals(code)) {
-                JSONArray resultJsonArray = resultJson.optJSONArray("result");
+                JSONArray resultJsonArray = resultJson.optJSONArray("data");
                 for (int i = 0; i < resultJsonArray.length(); i++) {
                     JSONObject itemJson = resultJsonArray.optJSONObject(i);
                     list.add(new Gson().fromJson(itemJson.toString(), SelectAddressItemBean.class));
@@ -292,6 +308,12 @@ public class SelectAddressActivity extends BaseActivity implements TabLayout.OnT
 
     }
 
+
+    public void closeActivity(View view){
+        setResult(1,null);
+        finish();
+    }
+
     @Override
     public void finish() {
         super.finish();
@@ -311,7 +333,7 @@ public class SelectAddressActivity extends BaseActivity implements TabLayout.OnT
         }
     }
 
-    public static class SelectAddressItemBean {
+    public static class SelectAddressItemBean implements Parcelable {
 
         private String name;
         private String id;
@@ -331,5 +353,36 @@ public class SelectAddressActivity extends BaseActivity implements TabLayout.OnT
         public void setId(String id) {
             this.id = id;
         }
+
+        @Override
+        public int describeContents() {
+            return 0;
+        }
+
+        @Override
+        public void writeToParcel(Parcel dest, int flags) {
+            dest.writeString(this.name);
+            dest.writeString(this.id);
+        }
+
+        public SelectAddressItemBean() {
+        }
+
+        protected SelectAddressItemBean(Parcel in) {
+            this.name = in.readString();
+            this.id = in.readString();
+        }
+
+        public static final Parcelable.Creator<SelectAddressItemBean> CREATOR = new Parcelable.Creator<SelectAddressItemBean>() {
+            @Override
+            public SelectAddressItemBean createFromParcel(Parcel source) {
+                return new SelectAddressItemBean(source);
+            }
+
+            @Override
+            public SelectAddressItemBean[] newArray(int size) {
+                return new SelectAddressItemBean[size];
+            }
+        };
     }
 }
