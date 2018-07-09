@@ -19,6 +19,7 @@
             android:textColor="@color/colorPrimary" />
 
         <com.android.ql.lf.zwlogistics.ui.widgets.AuthStepView
+            android:id="@+id/mAsvStep"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             app:step="1"/>

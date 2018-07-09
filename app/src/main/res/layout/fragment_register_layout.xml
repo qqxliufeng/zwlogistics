@@ -169,7 +169,7 @@
             android:textColor="@color/colorPrimary" />
     </LinearLayout>
 
-    <FrameLayout
+  <!--  <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
@@ -237,7 +237,7 @@
                 android:src="@drawable/icon_qq_login" />
 
         </FrameLayout>
-    </RelativeLayout>
+    </RelativeLayout>-->
 
 
 </LinearLayout>

@@ -13,9 +13,25 @@ import com.android.ql.lf.zwlogistics.ui.fragment.base.BaseNetWorkingFragment
 import com.android.ql.lf.zwlogistics.ui.fragment.mine.car.NewCarAuthFragment
 import com.android.ql.lf.zwlogistics.utils.showInfoDialog
 import kotlinx.android.synthetic.main.fragment_mine_person_auth_layout.*
+import org.jetbrains.anko.bundleOf
 
 class MinePersonAuthFragment : BaseNetWorkingFragment(), FragmentContainerActivity.OnBackPressListener {
 
+    companion object {
+        val IS_SHOW_JUMP = "is_show_jump"
+        val SHOW_JUMP = 0
+        val NO_SHOW_JUMP = 1
+
+        fun startAuthFragment(mContext:Context,showJump:Int){
+            FragmentContainerActivity
+                    .from(mContext)
+                    .setClazz(MinePersonAuthFragment::class.java)
+                    .setTitle("司机身份认证")
+                    .setExtraBundle(bundleOf(Pair(IS_SHOW_JUMP, showJump)))
+                    .setNeedNetWorking(true)
+                    .start()
+        }
+    }
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
@@ -27,13 +43,30 @@ class MinePersonAuthFragment : BaseNetWorkingFragment(), FragmentContainerActivi
     override fun initView(view: View?) {
         (mContext as FragmentContainerActivity).setOnBackPressListener(this)
         mTvPersonAuthNext.setOnClickListener {
-            FragmentContainerActivity.from(mContext).setNeedNetWorking(true).setTitle("新车认证").setClazz(NewCarAuthFragment::class.java).start()
+            FragmentContainerActivity
+                    .from(mContext)
+                    .setNeedNetWorking(true)
+                    .setTitle("新车认证")
+                    .setExtraBundle(bundleOf(Pair(IS_SHOW_JUMP, SHOW_JUMP)))
+                    .setClazz(NewCarAuthFragment::class.java)
+                    .start()
         }
+
+        if (arguments!!.getInt(IS_SHOW_JUMP) == SHOW_JUMP){
+            mAsvStep.visibility = View.VISIBLE
+        }else{
+            mAsvStep.visibility = View.GONE
+        }
+
     }
 
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
-        inflater!!.inflate(R.menu.auth_person,menu)
+        if (arguments!!.getInt(IS_SHOW_JUMP) == SHOW_JUMP) {
+            inflater!!.inflate(R.menu.auth_person, menu)
+        }else{
+            super.onCreateOptionsMenu(menu, inflater)
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {

@@ -1,6 +1,7 @@
 package com.android.ql.lf.zwlogistics.ui.fragment.mine.car
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.text.Html
 import android.view.View
@@ -8,13 +9,29 @@ import com.android.ql.lf.carapp.data.ImageBean
 import com.android.ql.lf.zwlogistics.R
 import com.android.ql.lf.zwlogistics.ui.activity.FragmentContainerActivity
 import com.android.ql.lf.zwlogistics.ui.fragment.base.BaseNetWorkingFragment
+import com.android.ql.lf.zwlogistics.ui.fragment.mine.driver.MinePersonAuthFragment
 import com.android.ql.lf.zwlogistics.utils.GlideManager
 import com.android.ql.lf.zwlogistics.utils.RxBus
 import com.zhihu.matisse.Matisse
 import com.zhihu.matisse.MimeType
 import kotlinx.android.synthetic.main.fragment_new_car_auth_layout.*
+import org.jetbrains.anko.bundleOf
 
 class NewCarAuthFragment : BaseNetWorkingFragment() {
+
+    companion object {
+
+        fun startCarAuthFragment(mContext:Context,showJump:Int){
+            FragmentContainerActivity
+                    .from(mContext)
+                    .setNeedNetWorking(true)
+                    .setTitle("新车认证")
+                    .setExtraBundle(bundleOf(Pair(MinePersonAuthFragment.IS_SHOW_JUMP, showJump)))
+                    .setClazz(NewCarAuthFragment::class.java)
+                    .start()
+        }
+    }
+
 
     private var currentSelectImage = -1
 

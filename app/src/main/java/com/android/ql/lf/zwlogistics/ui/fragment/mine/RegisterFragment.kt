@@ -3,7 +3,6 @@ package com.android.ql.lf.zwlogistics.ui.fragment.mine
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.os.CountDownTimer
-import android.support.v4.widget.TextViewCompat
 import android.view.View
 import com.android.ql.lf.carapp.utils.getTextString
 import com.android.ql.lf.carapp.utils.isEmpty
@@ -123,8 +122,7 @@ class RegisterFragment : BaseNetWorkingFragment() {
                     toast("获取验证码成功，请注意查收！")
                     code = (check.obj as JSONObject).optString(RESULT_OBJECT)
                 } else {
-                    toast("获取验证码失败！")
-                    timeCount.onFinish()
+                    onRequestFail(requestID,NullPointerException())
                 }
             }
             0x1 -> {

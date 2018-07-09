@@ -8,9 +8,12 @@ import com.android.ql.lf.carapp.utils.getTextString
 import com.android.ql.lf.carapp.utils.isEmpty
 import com.android.ql.lf.carapp.utils.isPhone
 import com.android.ql.lf.zwlogistics.R
+import com.android.ql.lf.zwlogistics.data.BaseNetResult
+import com.android.ql.lf.zwlogistics.data.UserInfo
 import com.android.ql.lf.zwlogistics.present.UserPresent
 import com.android.ql.lf.zwlogistics.ui.activity.FragmentContainerActivity
 import com.android.ql.lf.zwlogistics.ui.fragment.base.BaseNetWorkingFragment
+import com.android.ql.lf.zwlogistics.ui.fragment.mine.driver.MinePersonAuthFragment
 import com.android.ql.lf.zwlogistics.ui.fragment.other.DetailContentFragment
 import com.android.ql.lf.zwlogistics.utils.Constants
 import com.android.ql.lf.zwlogistics.utils.RequestParamsHelper
@@ -112,8 +115,7 @@ class BindPhoneFragment :BaseNetWorkingFragment(){
                     toast("获取验证码成功，请注意查收！")
                     code = (check.obj as JSONObject).optString(RESULT_OBJECT)
                 } else {
-                    toast("获取验证码失败！")
-                    timeCount.onFinish()
+                    onRequestFail(requestID,NullPointerException())
                 }
             }
             0x1 -> {
@@ -121,8 +123,7 @@ class BindPhoneFragment :BaseNetWorkingFragment(){
                 if (check!=null){
                     if (check.code == SUCCESS_CODE){
                         toast("绑定成功！")
-                        userPresent.onLogin((check.obj as JSONObject).optJSONObject(RESULT_OBJECT))
-                        finish()
+                        onLogin(check)
                     }else{
                         toast((check.obj as JSONObject).optString(MSG_FLAG))
                     }
@@ -140,6 +141,18 @@ class BindPhoneFragment :BaseNetWorkingFragment(){
             }
             0x1 -> toast("绑定手机号失败……")
         }
+    }
+
+
+    private fun onLogin(check: BaseNetResult) {
+        val auth = (check.obj as JSONObject).optJSONObject("data").optString("user_is_rank")
+        if (auth == "1") {
+            //认证司机
+            UserInfo.resetLoginSuccessDoActionToken()
+            MinePersonAuthFragment.startAuthFragment(mContext,MinePersonAuthFragment.SHOW_JUMP)
+        }
+        userPresent.onLogin((check.obj as JSONObject).optJSONObject("data"))
+        finish()
     }
 
     override fun onDestroyView() {

@@ -9,10 +9,12 @@ import com.android.ql.lf.carapp.utils.getTextString
 import com.android.ql.lf.carapp.utils.isEmpty
 import com.android.ql.lf.carapp.utils.isPhone
 import com.android.ql.lf.zwlogistics.R
+import com.android.ql.lf.zwlogistics.data.BaseNetResult
 import com.android.ql.lf.zwlogistics.data.UserInfo
 import com.android.ql.lf.zwlogistics.present.UserPresent
 import com.android.ql.lf.zwlogistics.ui.activity.FragmentContainerActivity
 import com.android.ql.lf.zwlogistics.ui.fragment.base.BaseNetWorkingFragment
+import com.android.ql.lf.zwlogistics.ui.fragment.mine.car.MineAuthSuccessFragment
 import com.android.ql.lf.zwlogistics.ui.fragment.mine.driver.MinePersonAuthFragment
 import com.android.ql.lf.zwlogistics.utils.Constants
 import com.android.ql.lf.zwlogistics.utils.RequestParamsHelper
@@ -99,15 +101,7 @@ class LoginFragment : BaseNetWorkingFragment(), IUiListener {
                 val check = checkResultCode(result)
                 if (check != null) {
                     if (check.code == SUCCESS_CODE) {
-                        val auth = (check.obj as JSONObject).optJSONObject("data").optString("user_is_rank")
-                        if (auth == "1") {
-                            userPresent.onLoginNoBus((check.obj as JSONObject).optJSONObject("data"))
-                            //认证司机
-                            FragmentContainerActivity.from(mContext).setClazz(MinePersonAuthFragment::class.java).setTitle("司机身份认证").setNeedNetWorking(true).start()
-                        } else {
-                            userPresent.onLogin((check.obj as JSONObject).optJSONObject("data"))
-                        }
-                        finish()
+                        onLogin(check)
                     } else {
                         toast((check.obj as JSONObject).optString(MSG_FLAG))
                     }
@@ -118,14 +112,7 @@ class LoginFragment : BaseNetWorkingFragment(), IUiListener {
                 if (check != null) {
                     when (check.code) {
                         SUCCESS_CODE -> {
-                            val auth = (check.obj as JSONObject).optJSONObject("data").optString("user_is_rank")
-                            if (auth == "1") {
-                                //认证司机
-                                UserInfo.resetLoginSuccessDoActionToken()
-                                FragmentContainerActivity.from(mContext).setClazz(MinePersonAuthFragment::class.java).setTitle("司机身份认证").setNeedNetWorking(true).start()
-                            }
-                            userPresent.onLogin((check.obj as JSONObject).optJSONObject("data"))
-                            finish()
+                            onLogin(check)
                         }
                         "202" -> { //需要完善资料
                             FragmentContainerActivity.from(mContext)
@@ -139,6 +126,17 @@ class LoginFragment : BaseNetWorkingFragment(), IUiListener {
                 }
             }
         }
+    }
+
+    private fun onLogin(check: BaseNetResult) {
+        val auth = (check.obj as JSONObject).optJSONObject("data").optString("user_is_rank")
+        if (auth == "1") {
+            //认证司机
+            UserInfo.resetLoginSuccessDoActionToken()
+            MinePersonAuthFragment.startAuthFragment(mContext,MinePersonAuthFragment.SHOW_JUMP)
+        }
+        userPresent.onLogin((check.obj as JSONObject).optJSONObject("data"))
+        finish()
     }
 
 

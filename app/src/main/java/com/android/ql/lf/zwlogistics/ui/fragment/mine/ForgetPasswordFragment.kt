@@ -127,10 +127,10 @@ class ForgetPasswordFragment : BaseNetWorkingFragment(){
                         toast("获取验证码成功，请注意查收！")
                         code = (check.obj as JSONObject).optString(RESULT_OBJECT)
                     }else{
-                        toast("短信发送失败")
+                        onRequestFail(requestID,NullPointerException())
                     }
                 }else{
-                    toast("短信发送失败")
+                    onRequestFail(requestID,NullPointerException())
                 }
             }
         }
@@ -145,6 +145,7 @@ class ForgetPasswordFragment : BaseNetWorkingFragment(){
             }
             0x1->{
                 toast("短信发送失败")
+                timeCount.onFinish()
             }
         }
     }
