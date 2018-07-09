@@ -8,6 +8,9 @@ import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import com.android.ql.lf.zwlogistics.R
+import com.android.ql.lf.zwlogistics.data.UserInfo
+import com.android.ql.lf.zwlogistics.ui.activity.FragmentContainerActivity
+import com.android.ql.lf.zwlogistics.ui.fragment.mine.LoginFragment
 import java.util.regex.Pattern
 
 /**
@@ -48,7 +51,7 @@ fun EditText.getTextString(): String {
 
 
 fun TextView.setDiffColorText(source1: String, source2: String, color1: String = "#c8c9ca", color2: String = "#545557") {
-    text = Html.fromHtml(source1.fromHtml(color1)+source2.fromHtml(color2))
+    text = Html.fromHtml(source1.fromHtml(color1) + source2.fromHtml(color2))
 }
 
 
@@ -58,17 +61,17 @@ fun String.fromHtml(color: String = "#c8c9ca"): String {
 
 fun View.doClickWithUserStatusStart(token: String, action: (view: View) -> Unit) {
     setOnClickListener {
-        //        if (UserInfo.getInstance().isLogin) {
-//            action(this)
-//        } else {
-//            UserInfo.loginToken = token
-//            FragmentContainerActivity.from(this.context).setClazz(LoginFragment::class.java).setTitle("登录").setNeedNetWorking(true).start()
-//        }
+        if (UserInfo.getInstance().isLogin) {
+            action(this)
+        } else {
+            UserInfo.loginToken = token
+            LoginFragment.startLogin(this.context)
+        }
     }
 }
 
 fun View.doClickWithUseStatusEnd() {
     performClick()
-//    UserInfo.resetLoginSuccessDoActionToken()
+    UserInfo.resetLoginSuccessDoActionToken()
 }
 

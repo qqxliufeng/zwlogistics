@@ -31,7 +31,6 @@
             android:textSize="22sp"
             android:textColor="@color/colorPrimary"
             android:textStyle="bold"
-            android:text="ADSDFASFD"
             android:layout_marginTop="5dp"
             android:gravity="center"/>
 

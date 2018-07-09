@@ -2,6 +2,7 @@ package com.android.ql.lf.zwlogistics.data;
 
 
 import android.content.Context;
+import android.text.TextUtils;
 
 import com.android.ql.lf.zwlogistics.utils.PreferenceUtils;
 
@@ -158,6 +159,9 @@ public class UserInfo {
         this.kephone = kephone;
     }
 
+    public boolean isLogin() {
+        return !TextUtils.isEmpty(user_id);
+    }
 
     public void loginOut() {
         user_id = null;
@@ -172,6 +176,14 @@ public class UserInfo {
 
     public static void clearUserCache(Context context) {
         PreferenceUtils.setPrefString(context, USER_ID_FLAG, "");
+    }
+
+    public static boolean isCacheUserId(Context context) {
+        return PreferenceUtils.hasKey(context, USER_ID_FLAG) && !TextUtils.isEmpty(PreferenceUtils.getPrefString(context, USER_ID_FLAG, ""));
+    }
+
+    public static String getUserIdFromCache(Context context) {
+        return PreferenceUtils.getPrefString(context, USER_ID_FLAG, "");
     }
 
 }

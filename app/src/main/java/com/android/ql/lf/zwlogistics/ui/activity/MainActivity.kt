@@ -5,12 +5,13 @@ import android.content.Intent
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
-import android.util.Log
 import com.android.ql.lf.zwlogistics.R
+import com.android.ql.lf.zwlogistics.data.UserInfo
 import com.android.ql.lf.zwlogistics.ui.fragment.bottom.IndexFragment
 import com.android.ql.lf.zwlogistics.ui.fragment.bottom.MineFragment
 import com.android.ql.lf.zwlogistics.ui.fragment.bottom.OrderFragment
 import kotlinx.android.synthetic.main.activity_main_layout.*
+import org.jetbrains.anko.toast
 
 class MainActivity : BaseActivity() {
 
@@ -19,6 +20,8 @@ class MainActivity : BaseActivity() {
             context.startActivity(Intent(context,MainActivity::class.java))
         }
     }
+
+    private var exitTime: Long = 0L
 
     override fun getLayoutId() = R.layout.activity_main_layout
 
@@ -46,6 +49,16 @@ class MainActivity : BaseActivity() {
         mMainContainer.adapter =  MainAdapter(supportFragmentManager)
     }
 
+
+    override fun onBackPressed() {
+        if (System.currentTimeMillis() - exitTime > 2000) {
+            toast("再按一次退出")
+            exitTime = System.currentTimeMillis()
+        } else {
+            UserInfo.getInstance().loginOut()
+            finish()
+        }
+    }
 
     class MainAdapter(fragmentManager: FragmentManager) :FragmentStatePagerAdapter(fragmentManager){
 

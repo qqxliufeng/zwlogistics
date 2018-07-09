@@ -2,6 +2,7 @@ package com.android.ql.lf.zwlogistics.utils
 
 import android.text.TextUtils
 import com.android.ql.lf.zwlogistics.component.ApiParams
+import com.android.ql.lf.zwlogistics.data.UserInfo
 
 /**
  * Created by lf on 2017/11/13 0013.
@@ -17,50 +18,76 @@ class RequestParamsHelper {
             return params
         }
 
+        private fun getBaseParams(mod:String,act:String): ApiParams {
+            val params = ApiParams()
+            params.addParam(ApiParams.MOD_NAME, mod).addParam(ApiParams.ACT_NAME, act)
+            params.addParam("pt", "android")
+            return params
+        }
+
         private fun getWithIdParams(): ApiParams {
             val params = getBaseParams()
-//            params.addParam("uid", UserInfo.getInstance().memberId)
+            params.addParam("uid", UserInfo.getInstance().user_id)
             return params
         }
 
         fun getWithPageParams(page: Int, pageSize: Int = 10): ApiParams {
-//            val param = if (UserInfo.getInstance().isLogin) {
-//                getWithIdParams()
-//            } else {
-//                getBaseParams()
-//            }
-            val param = ApiParams()
+            val param = if (UserInfo.getInstance().isLogin) {
+                getWithIdParams()
+            } else {
+                getBaseParams()
+            }
             param.addParam("page", page)
             param.addParam("pagesize", pageSize)
             return param
         }
 
+
+        /**              system model  start           **/
+        val SYSTEM_MODEL = "system"
+        val ACT_PHONE = "phone"
+
+        fun getPhoneParam(phone: String) = getBaseParams(SYSTEM_MODEL, ACT_PHONE)
+                .addParam("phone",phone)
+
+
+
+        /**              system model  end           **/
+
+
+
+
+
         /**              login model  start           **/
         val LOGIN_MODEL = "login"
-        val ACT_REGISTER = "Register"
-        val ACT_CODE = "getcode"
-        val ACT_LOGIN = "Login"
-        val ACT_FORGETPW = "forgetpw"
-        fun getCodeParams(tel: String = ""): ApiParams {
-            val params = getBaseParams()
-            return params.addParam("tel", tel)
-        }
+        val ACT_REGISTER = "loginDo"
+        val ACT_LOGIN = "login"
+        val ACT_FORGETPW = "loginUp"
+        val ACT_BIND_PHONE = "loginUpDo"
 
-        fun getRegisterParams(tel: String = "", pw: String = ""): ApiParams {
-            val params = getBaseParams()
-            params.addParam("tel", tel).addParam("pw", pw)
+        fun getRegisterParams(phone: String = "", pass: String = "",code: String = ""): ApiParams {
+            val params = getBaseParams().addParam(ApiParams.MOD_NAME, LOGIN_MODEL).addParam(ApiParams.ACT_NAME, ACT_REGISTER)
+            params.addParam("phone", phone).addParam("pass", pass).addParam("code",code)
             return params
         }
 
-        fun getLoginParams(tel: String = "", pw: String = ""): ApiParams {
-            val params = getBaseParams()
-            params.addParam("tel", tel).addParam("pw", pw).addParam("stoken", "1")
+        fun getLoginParams(phone: String = "", pass: String = ""): ApiParams {
+            val params = getBaseParams().addParam(ApiParams.MOD_NAME, LOGIN_MODEL).addParam(ApiParams.ACT_NAME, ACT_LOGIN)
+            params.addParam("phone", phone).addParam("pass", pass)
             return params
         }
 
-        fun getForgetPWParams(tel: String = "", pw: String = ""): ApiParams {
-            val params = getBaseParams()
-            params.addParam("tel", tel).addParam("pw", pw)
+        fun getBindPhoneParams(uid: String,phone:String) = getBaseParams().addParam("uid",uid)
+                .addParam(ApiParams.MOD_NAME, LOGIN_MODEL).addParam(ApiParams.ACT_NAME, ACT_BIND_PHONE)
+                .addParam("phone",phone)
+
+
+        fun getUserProtocolParam() = getBaseParams(LOGIN_MODEL,"deal")
+
+
+        fun getForgetPWParams(phone: String = "", pass: String = "",repass:String = ""): ApiParams {
+            val params = getBaseParams().addParam(ApiParams.MOD_NAME, LOGIN_MODEL).addParam(ApiParams.ACT_NAME,ACT_FORGETPW)
+            params.addParam("phone", phone).addParam("pass", pass).addParam("repass",repass)
             return params
         }
 
@@ -83,7 +110,22 @@ class RequestParamsHelper {
 
         /**              member model  start           **/
 
-        val MEMBER_MODEL = "member"
+        val USER_MODEL = "user"
+
+        val ACT_UPDATE_FACE = "pic"
+
+        val ACT_UPDATE_NICK_NAME = "nickname"
+
+        val ACT_UPDATE_PASSWORD = "password"
+
+
+        fun getUpdateNickNameParams(nickname:String) = getWithIdParams().addParam(ApiParams.MOD_NAME, USER_MODEL)
+                .addParam(ApiParams.ACT_NAME, ACT_UPDATE_NICK_NAME).addParam("nickname",nickname)
+
+        fun getResetPasswordParam(ypass:String,xpass:String,rpass:String) = getWithIdParams().addParam(ApiParams.MOD_NAME, USER_MODEL)
+        .addParam(ApiParams.ACT_NAME, ACT_UPDATE_PASSWORD).addParam("ypass",ypass).addParam("xpass",xpass).addParam("rpass",rpass)
+
+
         val ACT_EDIT_PW = "edit_pw"
         fun getEditPWParams(pw: String, newpw: String): ApiParams {
             val param = getWithIdParams()
@@ -176,8 +218,8 @@ class RequestParamsHelper {
         val ACT_REFUND_DEPOSIT = "refund_deposit"
         fun getRefundDepositParam(type: String) = getWithIdParams().addParam("type", type)
 
-        val ACT_PERSONAL = "personal"
-        fun getPersonalParam(uid: String) = getBaseParams().addParam("uid", uid)
+        val ACT_PERSONAL = "info"
+        fun getPersonalParam(uid: String) = getBaseParams().addParam(ApiParams.MOD_NAME, USER_MODEL).addParam(ApiParams.ACT_NAME,ACT_PERSONAL).addParam("uid", uid)
 
         val ACT_MY_MSG = "my_msg"
         fun getMyMsgParam() = getWithIdParams()

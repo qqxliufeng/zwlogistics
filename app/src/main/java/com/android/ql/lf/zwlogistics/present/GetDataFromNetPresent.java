@@ -56,6 +56,19 @@ public class GetDataFromNetPresent {
         parseData(requestId);
     }
 
+
+    /**
+     * 带参的POST
+     *
+     * @param requestId 请求ID
+     * @param params    请求参数
+     */
+    public void getDataByPost(final int requestId,ApiParams params) {
+        checkObservable();
+        observable = apiServer.getDataByPost((String) params.get(ApiParams.MOD_NAME), (String) params.get(ApiParams.ACT_NAME), params, Constants.md5Token());
+        parseData(requestId);
+    }
+
     /**
      * 不带参的POST
      *

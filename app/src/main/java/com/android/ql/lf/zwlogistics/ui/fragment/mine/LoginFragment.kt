@@ -5,12 +5,15 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.PorterDuff
 import android.view.View
+import com.android.ql.lf.carapp.utils.getTextString
 import com.android.ql.lf.carapp.utils.isEmpty
 import com.android.ql.lf.carapp.utils.isPhone
 import com.android.ql.lf.zwlogistics.R
+import com.android.ql.lf.zwlogistics.data.UserInfo
 import com.android.ql.lf.zwlogistics.present.UserPresent
 import com.android.ql.lf.zwlogistics.ui.activity.FragmentContainerActivity
 import com.android.ql.lf.zwlogistics.ui.fragment.base.BaseNetWorkingFragment
+import com.android.ql.lf.zwlogistics.ui.fragment.mine.driver.MinePersonAuthFragment
 import com.android.ql.lf.zwlogistics.utils.Constants
 import com.android.ql.lf.zwlogistics.utils.RequestParamsHelper
 import com.android.ql.lf.zwlogistics.utils.ThirdLoginManager
@@ -41,6 +44,7 @@ class LoginFragment : BaseNetWorkingFragment(), IUiListener {
     override fun getLayoutId() = R.layout.fragment_login_layout
 
     override fun initView(view: View?) {
+        registerLoginSuccessBus()
         (mContext as FragmentContainerActivity).setToolBarBackgroundColor(Color.WHITE)
         (mContext as FragmentContainerActivity).setStatusBarLightColor(false)
         val toolbar = (mContext as FragmentContainerActivity).toolbar
@@ -55,6 +59,8 @@ class LoginFragment : BaseNetWorkingFragment(), IUiListener {
         mFlLoginQQContainer.setOnClickListener {
             ThirdLoginManager.qqLogin(Tencent.createInstance(Constants.TENCENT_ID, mContext.applicationContext), this@LoginFragment, this@LoginFragment)
         }
+        mEtLoginUserName.setText("15910101117")
+        mEtLoginUserPassword.setText("123456")
         mBtLogin.setOnClickListener {
             if (mEtLoginUserName.isEmpty()) {
                 toast("请输入手机号")
@@ -68,6 +74,7 @@ class LoginFragment : BaseNetWorkingFragment(), IUiListener {
                 toast("请输入密码")
                 return@setOnClickListener
             }
+            mPresent.getDataByPost(0x0, RequestParamsHelper.getLoginParams(mEtLoginUserName.getTextString(), mEtLoginUserPassword.getTextString()))
         }
         mFlLoginWxContainer.setOnClickListener {
             FragmentContainerActivity.from(mContext).setNeedNetWorking(true).setTitle("手机号绑定").setClazz(BindPhoneFragment::class.java).start()
@@ -89,20 +96,42 @@ class LoginFragment : BaseNetWorkingFragment(), IUiListener {
         super.onRequestSuccess(requestID, result)
         when (requestID) {
             0x0 -> {
-
+                val check = checkResultCode(result)
+                if (check != null) {
+                    if (check.code == SUCCESS_CODE) {
+                        val auth = (check.obj as JSONObject).optJSONObject("data").optString("user_is_rank")
+                        if (auth == "1") {
+                            userPresent.onLoginNoBus((check.obj as JSONObject).optJSONObject("data"))
+                            //认证司机
+                            FragmentContainerActivity.from(mContext).setClazz(MinePersonAuthFragment::class.java).setTitle("司机身份认证").setNeedNetWorking(true).start()
+                        } else {
+                            userPresent.onLogin((check.obj as JSONObject).optJSONObject("data"))
+                        }
+                        finish()
+                    } else {
+                        toast((check.obj as JSONObject).optString(MSG_FLAG))
+                    }
+                }
             }
             0x1 -> {
                 val check = checkResultCode(result)
                 if (check != null) {
                     when (check.code) {
                         SUCCESS_CODE -> {
+                            val auth = (check.obj as JSONObject).optJSONObject("data").optString("user_is_rank")
+                            if (auth == "1") {
+                                //认证司机
+                                UserInfo.resetLoginSuccessDoActionToken()
+                                FragmentContainerActivity.from(mContext).setClazz(MinePersonAuthFragment::class.java).setTitle("司机身份认证").setNeedNetWorking(true).start()
+                            }
                             userPresent.onLogin((check.obj as JSONObject).optJSONObject("data"))
+                            finish()
                         }
                         "202" -> { //需要完善资料
                             FragmentContainerActivity.from(mContext)
                                     .setNeedNetWorking(true)
                                     .setTitle("绑定手机号")
-                                    .setExtraBundle(bundleOf(Pair("info", qqLoginInfo)))
+                                    .setExtraBundle(bundleOf(Pair("info", (check.obj as JSONObject).optJSONObject("data").optString("user_id"))))
                                     .setClazz(BindPhoneFragment::class.java)
                                     .start()
                         }
@@ -150,5 +179,10 @@ class LoginFragment : BaseNetWorkingFragment(), IUiListener {
     }
     //   ==============================QQ登录回调==============================
 
+
+    override fun onLoginSuccess(userInfo: UserInfo?) {
+        super.onLoginSuccess(userInfo)
+        finish()
+    }
 
 }

@@ -12,9 +12,12 @@ import com.android.ql.lf.zwlogistics.R;
 import com.android.ql.lf.zwlogistics.application.MyApplication;
 import com.android.ql.lf.zwlogistics.component.ApiServerModule;
 import com.android.ql.lf.zwlogistics.component.DaggerApiServerComponent;
+import com.android.ql.lf.zwlogistics.data.UserInfo;
 import com.android.ql.lf.zwlogistics.present.GetDataFromNetPresent;
+import com.android.ql.lf.zwlogistics.present.UserPresent;
 import com.android.ql.lf.zwlogistics.ui.fragment.mine.LoginFragment;
 import com.android.ql.lf.zwlogistics.utils.ContextKtKt;
+import com.android.ql.lf.zwlogistics.utils.RequestParamsHelper;
 
 import org.jetbrains.anko.ContextUtilsKt;
 import org.jetbrains.annotations.NotNull;
@@ -51,7 +54,7 @@ public class SplashActivity extends BaseActivity implements EasyPermissions.Perm
     @Inject
     GetDataFromNetPresent mPresent;
 
-//    private UserPresent userPresent = new UserPresent();
+    private UserPresent userPresent = new UserPresent();
 
 
     @Override
@@ -154,6 +157,7 @@ public class SplashActivity extends BaseActivity implements EasyPermissions.Perm
         try {
             JSONObject json = new JSONObject(result.toString());
             if ("200".equals(json.optString("code"))) {
+                userPresent.onLoginNoBus(json.optJSONObject("data"));
                 startMain();
             } else {
                 startMain();
@@ -179,20 +183,14 @@ public class SplashActivity extends BaseActivity implements EasyPermissions.Perm
      */
     private void isLogin() {
 //        if(ContextKtKt.checkGpsIsOpen(this)){
-            startMain();
+//            startMain();
 //        }else {
 //            startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
 //        }
-
-
-
-//        if (UserInfo.isCacheUserId(this)) {
-//            mPresent.getDataByPost(0x0,
-//                    RequestParamsHelper.Companion.getMEMBER_MODEL(),
-//                    RequestParamsHelper.Companion.getACT_PERSONAL(),
-//                    RequestParamsHelper.Companion.getPersonalParam(UserInfo.getUserIdFromCache(this)));
-//        } else {
-//            startMain();
-//        }
+        if (UserInfo.isCacheUserId(this)) {
+            mPresent.getDataByPost(0x0,RequestParamsHelper.Companion.getPersonalParam(UserInfo.getUserIdFromCache(this)));
+        } else {
+            startMain();
+        }
     }
 }

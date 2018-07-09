@@ -54,13 +54,13 @@ public class GlideManager {
     public static void loadFaceCircleImage(Context context, String path, ImageView imageView) {
         String tempPath;
         if (path != null) {
-//            if (path.startsWith("http://") || path.startsWith("http://")) {
-//                tempPath = path;
-//            } else {
-//                tempPath = Constants.BASE_IP + path;
-//            }
+            if (path.startsWith("http://") || path.startsWith("http://")) {
+                tempPath = path;
+            } else {
+                tempPath = Constants.BASE_IP + path;
+            }
             Glide.with(context)
-                    .load(path)
+                    .load(tempPath)
                     .error(R.drawable.img_glide_load_default)
                     .placeholder(R.drawable.img_glide_load_default)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)

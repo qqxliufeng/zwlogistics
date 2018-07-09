@@ -61,10 +61,7 @@ class DetailContentFragment : BaseNetWorkingFragment() {
         mapParams.forEach {
             apiParam.addParam(it.key, it.value)
         }
-        mPresent.getDataByPost(0x0,
-                arguments!!.getString(MODEL_NAME_FLAG),
-                arguments!!.getString(ACT_NAME_FLAG),
-                apiParam)
+        mPresent.getDataByPost(0x0, apiParam)
     }
 
     override fun onRequestStart(requestID: Int) {
@@ -77,7 +74,7 @@ class DetailContentFragment : BaseNetWorkingFragment() {
         val check = checkResultCode(result)
         if (check != null) {
             if (SUCCESS_CODE == check.code) {
-                mWbDetailContent.loadData((check.obj as JSONObject).optJSONObject("result").optString("lunbo_content"), "text/html; charset=UTF-8", null)
+                mWbDetailContent.loadData((check.obj as JSONObject).optString(RESULT_OBJECT), "text/html; charset=UTF-8", null)
             }
         }
     }

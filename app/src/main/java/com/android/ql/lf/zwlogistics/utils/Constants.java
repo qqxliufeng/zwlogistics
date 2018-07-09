@@ -33,7 +33,7 @@ public class Constants {
 
     private static final String APP_TOKEN = "d5a131f90e76db03df4eff4154e56dbe";
     private static String md5Token = null;
-    public static final long MAX_COUNT_DOWN = 1000 * 120;
+    public static final long MAX_COUNT_DOWN = 1000 * 10;
 
     public static String md5Token() {
         return APP_TOKEN;

@@ -24,7 +24,7 @@
             android:id="@+id/mIvMineInfoFace"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/test_user_face"
+            android:src="@drawable/icon_default_face"
             android:layout_alignParentRight="true"
             android:layout_marginRight="40dp"/>
 
@@ -54,7 +54,6 @@
             android:layout_alignParentRight="true"
             android:textColor="@color/normalTextColor"
             android:layout_marginLeft="50dp"
-            android:text="卡卡卡卡"
             android:layout_centerVertical="true"
             android:maxLength="16"
             android:layout_marginRight="40dp"/>

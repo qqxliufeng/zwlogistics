@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#feffff"
@@ -20,6 +21,7 @@
             style="@style/edit_style1"
             android:drawableLeft="@drawable/icon_user_name"
             android:drawablePadding="@dimen/dp_10"
+            android:paddingRight="@dimen/dp_10"
             android:hint="请输入手机号"
             android:inputType="phone"
             android:maxLength="11" />
@@ -34,17 +36,21 @@
         android:background="@color/lineColor" />
 
     <android.support.design.widget.TextInputLayout
-        android:layout_marginTop="@dimen/dp_10"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
+        app:passwordToggleEnabled="true">
 
-        <com.android.ql.lf.zwlogistics.ui.widgets.DJEditText
+        <android.support.design.widget.TextInputEditText
             android:id="@+id/mEtLoginUserPassword"
             style="@style/edit_style1"
             android:drawableLeft="@drawable/icon_user_password"
+            android:drawableStart="@drawable/icon_user_password"
             android:drawablePadding="@dimen/dp_10"
             android:hint="请输入密码"
+            android:maxLength="16"
             android:inputType="textPassword" />
+
     </android.support.design.widget.TextInputLayout>
 
     <View
