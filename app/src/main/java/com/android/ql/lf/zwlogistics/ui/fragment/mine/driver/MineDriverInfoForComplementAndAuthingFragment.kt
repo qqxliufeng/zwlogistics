@@ -5,6 +5,7 @@ import com.android.ql.lf.zwlogistics.R
 import com.android.ql.lf.zwlogistics.data.DriverAuthBean
 import com.android.ql.lf.zwlogistics.data.UserInfo
 import com.android.ql.lf.zwlogistics.ui.fragment.base.BaseNetWorkingFragment
+import com.android.ql.lf.zwlogistics.ui.fragment.other.BrowserImageFragment
 import com.android.ql.lf.zwlogistics.utils.GlideManager
 import com.android.ql.lf.zwlogistics.utils.RequestParamsHelper
 import com.google.gson.Gson
@@ -63,6 +64,29 @@ class MineDriverInfoForComplementAndAuthingFragment : BaseNetWorkingFragment() {
         GlideManager.loadRoundImage(mContext,driverAuthBean?.user_rank_idcard_back,mIvDriverInfoForComplementIdCardBackGround,20)
         GlideManager.loadRoundImage(mContext,driverAuthBean?.user_rank_driving,mIvDriverInfoForComplementDriverCard,20)
         GlideManager.loadRoundImage(mContext,driverAuthBean?.user_rank_appraisal,mIvDriverInfoForComplementCYZG,20)
+
+        mIvDriverInfoForComplementFace.setOnClickListener {
+            startPhoto(0)
+        }
+        mIvDriverInfoForComplementIdCardFront.setOnClickListener {
+            startPhoto(1)
+        }
+        mIvDriverInfoForComplementIdCardBackGround.setOnClickListener {
+            startPhoto(2)
+        }
+        mIvDriverInfoForComplementDriverCard.setOnClickListener {
+            startPhoto(3)
+        }
+        mIvDriverInfoForComplementCYZG.setOnClickListener {
+            startPhoto(4)
+        }
+    }
+
+    private fun startPhoto(index:Int) {
+        val list = driverAuthBean?.imageList
+        if (list != null) {
+            BrowserImageFragment.startBrowserImage(mContext, list, index)
+        }
     }
 
 }

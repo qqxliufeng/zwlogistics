@@ -1,6 +1,5 @@
 package com.android.ql.lf.zwlogistics.ui.fragment.bottom
 
-import android.app.Activity
 import android.support.design.widget.Snackbar
 import android.text.TextUtils
 import android.view.View
@@ -20,14 +19,10 @@ import com.android.ql.lf.zwlogistics.ui.fragment.mine.car.MineCarListFragment
 import com.android.ql.lf.zwlogistics.ui.fragment.mine.driver.MineDriverInfoEmptyFragment
 import com.android.ql.lf.zwlogistics.ui.fragment.mine.driver.MineDriverInfoForComplementAndAuthingFragment
 import com.android.ql.lf.zwlogistics.ui.fragment.mine.driver.MineDriverInfoForFailedFragment
-import com.android.ql.lf.zwlogistics.ui.fragment.mine.driver.MinePersonAuthFragment
 import com.android.ql.lf.zwlogistics.utils.GlideManager
 import com.android.ql.lf.zwlogistics.utils.RequestParamsHelper
 import com.android.ql.lf.zwlogistics.utils.RxBus
-import de.keyboardsurfer.android.widget.crouton.Crouton
-import de.keyboardsurfer.android.widget.crouton.Style
 import kotlinx.android.synthetic.main.fragment_mine_layout.*
-import org.jetbrains.anko.support.v4.toast
 import org.json.JSONObject
 
 class MineFragment : BaseNetWorkingFragment() {
@@ -43,7 +38,6 @@ class MineFragment : BaseNetWorkingFragment() {
     private val userPresent by lazy {
         UserPresent()
     }
-
 
     private val modifyInfoSubscription by lazy {
         RxBus.getDefault().toObservable(String::class.java).subscribe {

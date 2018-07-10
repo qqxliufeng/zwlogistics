@@ -1,5 +1,7 @@
 package com.android.ql.lf.zwlogistics.data;
 
+import java.util.ArrayList;
+
 public class DriverAuthBean {
     private String user_rank_id;
     private String user_rank_uid;
@@ -117,5 +119,21 @@ public class DriverAuthBean {
 
     public void setUser_is_rank(String user_is_rank) {
         this.user_is_rank = user_is_rank;
+    }
+
+
+    public ArrayList<String> getImageList(){
+        if (user_rank_pic == null || user_rank_idcard_front == null ||
+                user_rank_idcard_back == null || user_rank_driving == null ||
+                user_rank_appraisal == null){
+            return null;
+        }
+        ArrayList<String> list = new ArrayList<>();
+        list.add(user_rank_pic);
+        list.add(user_rank_idcard_front);
+        list.add(user_rank_idcard_back);
+        list.add(user_rank_driving);
+        list.add(user_rank_appraisal);
+        return list;
     }
 }
