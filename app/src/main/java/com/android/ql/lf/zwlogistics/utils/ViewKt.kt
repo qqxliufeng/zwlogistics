@@ -41,8 +41,17 @@ fun EditText.isPhone(): Boolean {
     return Pattern.compile(PHONE_REG).matcher(this.text).matches()
 }
 
+
+fun String.isPhone(): Boolean {
+    return Pattern.compile(PHONE_REG).matcher(this).matches()
+}
+
 fun EditText.isIdCard(): Boolean {
     return Pattern.compile(IDCARD_REG).matcher(this.text).matches()
+}
+
+fun String.isIdCard():Boolean{
+    return Pattern.compile(IDCARD_REG).matcher(this).matches()
 }
 
 fun EditText.getTextString(): String {

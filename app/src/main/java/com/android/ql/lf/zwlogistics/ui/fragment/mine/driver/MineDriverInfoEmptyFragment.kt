@@ -20,21 +20,18 @@ class MineDriverInfoEmptyFragment :BaseFragment(){
     override fun getLayoutId() = R.layout.fragment_mine_driver_info_empty_layout
 
     override fun initView(view: View?) {
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
        inflater!!.inflate(R.menu.driver_auth_empty,menu)
     }
 
-
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         if (item!!.itemId == R.id.mMenuEmptyDriverAuth){
-            FragmentContainerActivity.from(mContext).setClazz(MinePersonAuthFragment::class.java).setTitle("我的认证").start()
+            MinePersonAuthFragment.startAuthFragment(mContext,MinePersonAuthFragment.NO_SHOW_JUMP)
             finish()
         }
         return super.onOptionsItemSelected(item)
     }
-
 
 }

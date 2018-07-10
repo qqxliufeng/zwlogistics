@@ -8,18 +8,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <TextView
+            android:id="@+id/mTvDriverInfoForFailTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/qian_red"
             android:gravity="center"
             android:padding="@dimen/dp_10"
-            android:text="审核失败原因：请上传清晰的驾驶证"
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/sp_14" />
 
         <LinearLayout
-            android:id="@+id/mLlAddNewCarCXContainer"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:gravity="center"
@@ -34,6 +34,7 @@
                 android:textColor="@color/deepTextColor" />
 
             <com.android.ql.lf.zwlogistics.ui.widgets.DJEditText
+                android:id="@+id/mEtDriverInfoForFailName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -68,6 +69,7 @@
                 android:textColor="@color/deepTextColor" />
 
             <com.android.ql.lf.zwlogistics.ui.widgets.DJEditText
+                android:id="@+id/mEtDriverInfoForFailIdCardNum"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -101,11 +103,14 @@
                 android:textColor="@color/deepTextColor" />
 
             <com.android.ql.lf.zwlogistics.ui.widgets.DJEditText
+                android:id="@+id/mEtDriverInfoForFailPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:background="@null"
                 android:hint="请输入手机号"
+                android:inputType="phone"
+                android:maxLength="11"
                 android:textColor="@color/deepTextColor"
                 android:textColorHint="@color/normalTextColor"
                 android:textSize="@dimen/sp_14" />
@@ -132,18 +137,20 @@
                 android:textSize="@dimen/sp_14" />
 
             <FrameLayout
+                android:id="@+id/mFlDriverInfoForFailFaceContainer"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_marginTop="@dimen/dp_10">
 
                 <ImageView
-                    android:id="@+id/mIvAddNewCarXSZ"
+                    android:id="@+id/mIvDriverInfoForFailFace"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
                     android:src="@drawable/img_anli_face" />
 
                 <TextView
+                    android:id="@+id/mTvDriverInfoForFailFace"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/shape_tv_bg5"
@@ -178,17 +185,19 @@
                 android:textSize="@dimen/sp_14" />
 
             <FrameLayout
+                android:id="@+id/mFlDriverInfoForFailIdCardFrontContainer"
                 style="@style/iv_show_photo_style"
                 android:layout_marginTop="@dimen/dp_10">
 
                 <ImageView
-                    android:id="@+id/mIvAddNewCarYXZ"
+                    android:id="@+id/mIvDriverInfoForFailIdCardFront"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
                     android:src="@drawable/img_anli_idcard_zheng" />
 
                 <TextView
+                    android:id="@+id/mTvDriverInfoForFailIdCardFront"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/shape_tv_bg5"
@@ -202,16 +211,19 @@
             </FrameLayout>
 
             <FrameLayout
+                android:id="@+id/mFlDriverInfoForFailIdCardBackgroundContainer"
                 style="@style/iv_show_photo_style"
                 android:layout_marginTop="@dimen/dp_10">
 
                 <ImageView
+                    android:id="@+id/mIvDriverInfoForFailIdCardBack"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
                     android:src="@drawable/img_anli_idcard_fan" />
 
                 <TextView
+                    android:id="@+id/mTvDriverInfoForFailIdCardBack"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/shape_tv_bg5"
@@ -246,17 +258,19 @@
                 android:textSize="@dimen/sp_14" />
 
             <FrameLayout
+                android:id="@+id/mFlDriverInfoForFailDriverCardContainer"
                 style="@style/iv_show_photo_style"
                 android:layout_marginTop="@dimen/dp_10">
 
                 <ImageView
-                    android:id="@+id/mIvAddNewCarCPH"
+                    android:id="@+id/mIvDriverInfoForFailDriverCard"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
                     android:src="@drawable/img_anli_jsz_zheng" />
 
                 <TextView
+                    android:id="@+id/mTvDriverInfoForFailDriverCard"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/shape_tv_bg5"
@@ -286,16 +300,19 @@
                 android:textSize="@dimen/sp_14" />
 
             <FrameLayout
+                android:id="@+id/mFlDriverInfoForFailCYZGContainer"
                 style="@style/iv_show_photo_style"
                 android:layout_marginTop="@dimen/dp_10">
 
                 <ImageView
+                    android:id="@+id/mIvDriverInfoForFailCYZG"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
                     android:src="@drawable/img_anli_cyzg_zheng" />
 
                 <TextView
+                    android:id="@+id/mTvDriverInfoForFailCYZG"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/shape_tv_bg5"
@@ -316,6 +333,7 @@
             android:background="@color/lineColor"/>
 
         <TextView
+            android:id="@+id/mTvDriverInfoForFailSubmit"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:background="@color/colorPrimary"

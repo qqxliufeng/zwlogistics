@@ -130,6 +130,34 @@ public abstract class BaseNetWorkingFragment extends BaseFragment implements INe
         }
     }
 
+    public <T> void handleSuccess(int requestID,T result){
+        try {
+            BaseNetResult check = checkResultCode(result);
+            if (check != null) {
+                if (check.code.equals(SUCCESS_CODE)){
+                    if (check.obj instanceof JSONObject) {
+                        onHandleSuccess(requestID, ((JSONObject) check.obj).optJSONObject(RESULT_OBJECT));
+                    }else {
+                        onHandleSuccess(requestID,check.obj);
+                    }
+                }else {
+                    onRequestFail(requestID, new NullPointerException());
+                }
+            }else {
+                onRequestFail(requestID, new NullPointerException());
+            }
+        } catch (Exception e) {
+            onRequestFail(requestID, e);
+        }
+    }
+
+    public void onHandleSuccess(int requestID,JSONObject jsonObject){
+    }
+
+    public void onHandleSuccess(int requestID,Object obj){
+    }
+
+
     @Override
     public void onDestroyView() {
         unsubscribe(logoutSubscription);

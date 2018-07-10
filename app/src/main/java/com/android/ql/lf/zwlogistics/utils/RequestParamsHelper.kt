@@ -118,6 +118,8 @@ class RequestParamsHelper {
 
         val ACT_UPDATE_PASSWORD = "password"
 
+        val ACT_RANKDO = "rankDo"
+
 
         fun getUpdateNickNameParams(nickname:String) = getWithIdParams().addParam(ApiParams.MOD_NAME, USER_MODEL)
                 .addParam(ApiParams.ACT_NAME, ACT_UPDATE_NICK_NAME).addParam("nickname",nickname)
@@ -126,255 +128,19 @@ class RequestParamsHelper {
         .addParam(ApiParams.ACT_NAME, ACT_UPDATE_PASSWORD).addParam("ypass",ypass).addParam("xpass",xpass).addParam("rpass",rpass)
 
 
-        val ACT_EDIT_PW = "edit_pw"
-        fun getEditPWParams(pw: String, newpw: String): ApiParams {
-            val param = getWithIdParams()
-            return param.addParam("pw", pw).addParam("newpw", newpw)
-        }
+        fun getDriverAuthParams() = getWithIdParams()
+                        .addParam(ApiParams.MOD_NAME, USER_MODEL)
+                        .addParam(ApiParams.ACT_NAME, ACT_RANKDO)
 
-        val ACT_EDIT_PERSONAL = "edit_personal"
-        fun getEditPersonalParam(account: String = "", idcard: String = ""): ApiParams {
-            val params = getWithIdParams()
-            if (!TextUtils.isEmpty(account)) {
-                params.addParam("account", account)
-            }
-            if (!TextUtils.isEmpty(idcard)) {
-                params.addParam("idcard", idcard)
-            }
-            return params
-        }
-
-        val ACT_MY_GRADES = "my_grades"
-        fun getMyGradesParam() = getWithIdParams()
-
-        val ACT_PTGG = "ptgg"
-        fun getPtggParam(pid: String) = getBaseParams().addParam("pid", pid)
-
-        val ACT_INTEGRAL = "integral"
-        fun getIntegralParam(page: Int) = getWithPageParams(page)
-
-        val ACT_PERSONAL_SERVICE = "personal_service"
-        fun getPersonalServiceParam() = getWithIdParams()
-
-        val ACT_APPLY = "apply"
-        fun getApplyParam(type: String, name: String, mpic: ArrayList<String>, sypic: ArrayList<String>, phone: String, address: String, detailAddress: String, num: String, content: String): ApiParams {
-            val param = getWithIdParams()
-            param.addParam("type", type)
-            param.addParam("name", name)
-            param.addParam("mpic", mpic.toString().removePrefix("[").removeSuffix("]"))
-            param.addParam("sypic", sypic.toString().removePrefix("[").removeSuffix("]"))
-            param.addParam("phone", phone)
-            param.addParam("address", address)
-            param.addParam("detail_address", detailAddress)
-            param.addParam("num", num)
-            param.addParam("content", content)
-            return param
-        }
-
-        val ACT_MY_WITHDRAW = "my_withdraw"
-        fun getMyWithdrawParam() = getWithIdParams()
-
-        val ACT_MY_WITHDRAW_RECORD = "my_withdraw_record"
-        fun getMyWithdrawRecordParam(page: Int) = getWithPageParams(page)
-
-        val ACT_MY_WITHDRAW_OPERATION = "my_withdraw_operation"
-        fun getMyWithdrawOperationParam(price: String, type: String) = getWithIdParams().addParam("price", price).addParam("type", type)
-
-        val ACT_BIND_ALIPAY = "bind_alipay"
-        fun getBindAlipayParam(account: String, autonym: String) = getWithIdParams().addParam("account", account).addParam("autonym", autonym)
-
-        val ACT_BIND_WXPAY = "bind_wxpay"
-        fun getBindWxpayParam(idcard: String, autonym: String) = getWithIdParams().addParam("idcard", idcard).addParam("autonym", autonym)
-
-        val ACT_WX_AUTHORIZATION = "wx_authorization"
-        fun getWxAuthorizationParam(code: String) = getWithIdParams().addParam("code", code)
-
-        val ACT_M_P = "m_p"
-        fun getEnsureMoneyProductParam() = getWithIdParams()
-
-        val ACT_EDIT_PERSONAL_SERVICE = "edit_personal_service"
-        fun getEditePersonalServiceParam(sid: String, address: String, detailAddress: String, ppa: String, starttime: String, endtime: String, content: String): ApiParams {
-            val param = getWithIdParams()
-            param.addParam("sid", sid)
-            param.addParam("address", address)
-            param.addParam("detail_address", detailAddress)
-            param.addParam("ppa", ppa)
-            param.addParam("starttime", starttime)
-            param.addParam("endtime", endtime)
-            param.addParam("content", content)
-            return param
-        }
-
-        val ACT_PAYMENT_DEPOSIT = "payment_deposit"
-        fun getPaymentDepositParam(type: String, mid: String, paytype: String, price: String): ApiParams {
-            val param = getWithIdParams()
-            param.addParam("type", type)
-            param.addParam("mid", mid)
-            param.addParam("paytype", paytype)
-            param.addParam("price", price)
-            return param
-        }
-
-        val ACT_REFUND_DEPOSIT = "refund_deposit"
-        fun getRefundDepositParam(type: String) = getWithIdParams().addParam("type", type)
 
         val ACT_PERSONAL = "info"
         fun getPersonalParam(uid: String) = getBaseParams().addParam(ApiParams.MOD_NAME, USER_MODEL).addParam(ApiParams.ACT_NAME,ACT_PERSONAL).addParam("uid", uid)
 
-        val ACT_MY_MSG = "my_msg"
-        fun getMyMsgParam() = getWithIdParams()
 
-        val ACT_MY_MSG_DETAIL = "my_msg_detail"
-        fun getMyMsgDetailParam(status: String, page: Int) = getWithPageParams(page).addParam("status", status)
+        val ACT_RANK_INFO = "rankinfo"
 
-        val ACT_EDIT_MYMSG_STATUS = "edit_mymsg_status"
-        fun getEditMyMsgStatus(mid: String) = getWithIdParams().addParam("mid", mid)
+        fun getAuthInfoParams() = getWithIdParams().addParam(ApiParams.MOD_NAME, USER_MODEL).addParam(ApiParams.ACT_NAME, ACT_RANK_INFO)
 
-        val ACT_ADD_ADDRESS = "add_address"
-        fun getAddAddressListParams(aid: String? = "", name: String = "", phone: String = "", addressInfo: String = "", code: String = "", detail: String = ""): ApiParams {
-            val params = getWithIdParams()
-            params.addParam("aid", aid)
-            params.addParam("name", name)
-            params.addParam("phone", phone)
-            params.addParam("address", addressInfo)
-            params.addParam("detail", detail)
-            params.addParam("postcode", code)
-            return params
-        }
-
-        val ACT_ADDRESS_LIST = "address"
-        fun getAddressListParams() = getWithIdParams()
-
-        val ACT_DEFAULT_ADDRESS = "default_address"
-        fun getDefaultAddressParams(topAid: String, setAid: String): ApiParams {
-            val params = getWithIdParams()
-            params.addParam("topaid", topAid)
-            params.addParam("aid", setAid)
-            return params
-        }
-
-        val ACT_DEL_ADDRESS = "del_address"
-        fun getDelAddressParams(aid: String): ApiParams {
-            val params = getWithIdParams()
-            params.addParam("aid", aid)
-            return params
-        }
-
-        val ACT_BIND_ACCOUNT = "bind_account"
-        fun getBindAccountParam() = getWithIdParams()
-
-        //购物车
-        val ACT_SHOPCART = "shopcart"
-
-        fun getShopcartParam(page: Int, pageSize: Int = 10) = getWithPageParams(page, pageSize)
-
-        val ACT_ADD_SHOPCART = "add_shopcart"
-        fun getAddShopcartParam(gid: String, shopid: String, num: String, specification: String, pic: String, price: String, key: String) =
-                getWithIdParams()
-                        .addParam("gid", gid)
-                        .addParam("shopid", shopid)
-                        .addParam("num", num)
-                        .addParam("pic", pic)
-                        .addParam("specification", specification)
-                        .addParam("price", price)
-                        .addParam("key", key)
-
-
-        //删除购物车商品
-        val ACT_DEL_SHOPCART = "del_shopcart"
-
-        fun getDelShopcartParam(cid: String): ApiParams {
-            val param = getWithIdParams()
-            param.addParam("cid", cid)
-            return param
-        }
-
-
-        //修改商品数量
-        val ACT_UPDATE_SHOPCART = "update_shopcart"
-
-        fun getUpdateShopcart(cid: String, num: String): ApiParams {
-            val param = getWithIdParams()
-            param.addParam("cid", cid)
-            param.addParam("num", num)
-            return param
-        }
-
-
-        val ACT_MYORDER_STATUS = "myorder_status"
-        fun getMyorderStatusParams(status: String, page: Int) = getWithPageParams(page).addParam("status", status)
-
-        val ACT_MYORDER = "myorder"
-        fun getMyorderParams(page: Int) = getWithPageParams(page)
-
-        val ACT_EDIT_ORDER_STATUS = "edit_order_status"
-        fun getEditOrderStatusParam(oid: String, status: String) = getWithIdParams()
-                .addParam("status", status)
-                .addParam("oid", oid)
-
-        val ACT_EVALUATE = "evaluate"
-        fun getEvaluateParam(oid: String, gid: String, content: String, f: String, sn: String): ApiParams {
-            val param = getWithIdParams()
-            param.addParam("oid", oid)
-            param.addParam("gid", gid)
-            param.addParam("content", content)
-            param.addParam("f", f)
-            param.addParam("sn", sn)
-            return param
-        }
-
-        val ACT_MY_SHOP_COLLECT = "my_shop_collect"
-        fun getMyShopCollectParams(page: Int) = getWithPageParams(page)
-
-        val ACT_MY_CONCERM_SHOP = "my_concerm_shop"
-        fun getMyConcermShopParams(page: Int) = getWithPageParams(page)
-
-        val ACT_MY_SPOOR = "my_spoor"
-        fun getMySpoorParmas(page: Int) = getWithPageParams(page)
-
-        val ACT_VERIFY_SECOND_PW = "verify_second_pw"
-        fun getVerifySecondPw(tel: String, second_pw: String) = getWithIdParams().addParam("tel", tel).addParam("second_pw", second_pw)
-
-        val ACT_SET_SECOND_PW = "set_second_pw"
-        fun getSetSecondPW(tel: String, second_pw: String) = getWithIdParams().addParam("tel", tel).addParam("second_pw", second_pw)
-
-        val ACT_EDIT_SECOND_PW = "edit_second_pw"
-        fun getEditSecondPW(tel: String, old_second_pw: String, new_second_pw: String) =
-                getWithIdParams().addParam("tel", tel).addParam("old_second_pw", old_second_pw).addParam("new_second_pw", new_second_pw)
-
-        val ACT_FORGET_SECOND_PW = "forget_second_pw"
-        fun getForgetSecondPW(tel: String, second_pw: String) = getWithIdParams().addParam("tel", tel).addParam("second_pw", second_pw)
-
-        val ACT_MY_QRCODE = "my_qrcode"
-        fun getMyQrcodeParam() = getWithIdParams()
-
-        val ACT_MY_SHOP_HEADER = "my_shop_header"
-        fun getMyShopHeaderParam() = getWithIdParams()
-
-        val ACT_EDIT_MY_SHOP_HEADER = "edit_my_shop_header"
-        fun getEditMyShopHeaderParam(sid: String, name: String, phone: String, address: String, d: String, content: String) =
-                getWithIdParams()
-                        .addParam("sid", sid)
-                        .addParam("name", name)
-                        .addParam("phone", phone)
-                        .addParam("address", address)
-                        .addParam("d", d)
-                        .addParam("content", content)
-
-        val ACT_MY_COMMENT = "my_comment"
-        fun getMyCommentParam(f: String, page: Int) = getWithPageParams(page).addParam("f", f)
-
-        //快递查询
-        val ACT_GETLOGISTICS = "getlogistics"
-
-        fun getGetlogisticsParam(num: String): ApiParams {
-            val param = getWithIdParams()
-            param.addParam("nu", num)
-            return param
-        }
-
-        val ACT_GET_DISCOUNT = "getdiscount"
-        fun getDiscountParam(theme: String) = getWithIdParams().addParam("theme", theme)
 
         /**              member model  end           **/
 

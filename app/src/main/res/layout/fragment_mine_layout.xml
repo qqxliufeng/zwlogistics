@@ -25,173 +25,178 @@
 
     </LinearLayout>
 
-
-    <android.support.v4.widget.NestedScrollView
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/mSrfMine"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:paddingBottom="30dp">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="220dp"
-                android:background="@drawable/img_mine_bg"
-                android:padding="30dp">
-
-                <LinearLayout
-                    android:id="@+id/mLlMineUserInfoContainer"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/mMineUserFace"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:src="@drawable/icon_default_face" />
-
-                    <TextView
-                        android:id="@+id/mMineUserNickName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="@dimen/dp_10"
-                        android:text="点击登录"
-                        android:singleLine="true"
-                        android:ellipsize="end"
-                        android:textStyle="bold"
-                        android:textColor="#fff"
-                        android:textSize="@dimen/sp_14" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/mLlMineUserInfoContainer"
-                    android:layout_marginTop="50dp"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/mMineUserYFaFangShouYi"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="￥0.00"
-                            android:textColor="#fff"
-                            android:textSize="@dimen/sp_16"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/dp_10"
-                            android:text="已发放收益"
-                            android:textColor="#fff"
-                            android:textSize="@dimen/sp_14" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/mMineUserWFaFangShouYi"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="￥0.00"
-                            android:textColor="#fff"
-                            android:textSize="@dimen/sp_16"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/dp_10"
-                            android:text="未发放收益"
-                            android:textColor="#fff"
-                            android:textSize="@dimen/sp_14" />
-                    </LinearLayout>
-
-                </LinearLayout>
-            </RelativeLayout>
-
+            android:layout_height="match_parent">
 
             <LinearLayout
+                android:id="@+id/mLlMine"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dp_10"
-                android:layout_marginRight="@dimen/dp_10"
-                android:orientation="vertical">
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingBottom="30dp">
 
-                <TextView
-                    android:id="@+id/mTvMineUserInfo"
-                    style="@style/tv_mine_style"
-                    android:background="@drawable/shape_tv_bg1"
-                    android:drawableLeft="@drawable/icon_mine_info"
-                    android:text="我的信息" />
-
-                <View
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/lineColor" />
+                    android:layout_height="220dp"
+                    android:background="@drawable/img_mine_bg"
+                    android:padding="30dp">
 
-                <TextView
-                    android:id="@+id/mTvMineAuthInfo"
-                    style="@style/tv_mine_style"
-                    android:drawableLeft="@drawable/icon_mine_verify"
-                    android:text="我的认证" />
+                    <LinearLayout
+                        android:id="@+id/mLlMineUserInfoContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
-                <View
+                        <ImageView
+                            android:id="@+id/mMineUserFace"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:src="@drawable/icon_default_face" />
+
+                        <TextView
+                            android:id="@+id/mMineUserNickName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/dp_10"
+                            android:ellipsize="end"
+                            android:singleLine="true"
+                            android:text="点击登录"
+                            android:textColor="#fff"
+                            android:textSize="@dimen/sp_14"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/mLlMineUserInfoContainer"
+                        android:layout_marginTop="50dp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/mMineUserYFaFangShouYi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="￥0.00"
+                                android:textColor="#fff"
+                                android:textSize="@dimen/sp_16"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/dp_10"
+                                android:text="已发放收益"
+                                android:textColor="#fff"
+                                android:textSize="@dimen/sp_14" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/mMineUserWFaFangShouYi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="￥0.00"
+                                android:textColor="#fff"
+                                android:textSize="@dimen/sp_16"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/dp_10"
+                                android:text="未发放收益"
+                                android:textColor="#fff"
+                                android:textSize="@dimen/sp_14" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </RelativeLayout>
+
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/lineColor" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:layout_marginRight="@dimen/dp_10"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/mMineCarList"
-                    style="@style/tv_mine_style"
-                    android:drawableLeft="@drawable/icon_mine_car"
-                    android:text="我的车辆" />
+                    <TextView
+                        android:id="@+id/mTvMineUserInfo"
+                        style="@style/tv_mine_style"
+                        android:background="@drawable/shape_tv_bg1"
+                        android:drawableLeft="@drawable/icon_mine_info"
+                        android:text="我的信息" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/lineColor" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/lineColor" />
 
-                <TextView
-                    android:id="@+id/mTvMineInviteCode"
-                    style="@style/tv_mine_style"
-                    android:drawableLeft="@drawable/icon_mine_code"
-                    android:text="我的邀请码" />
+                    <TextView
+                        android:id="@+id/mTvMineAuthInfo"
+                        style="@style/tv_mine_style"
+                        android:drawableLeft="@drawable/icon_mine_verify"
+                        android:text="我的认证" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/lineColor" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/lineColor" />
 
-                <TextView
-                    android:id="@+id/mTvMineKefu"
-                    style="@style/tv_mine_style"
-                    android:drawableLeft="@drawable/icon_mine_kefu"
-                    android:background="@drawable/shape_tv_bg2"
-                    android:text="我的客服" />
+                    <TextView
+                        android:id="@+id/mMineCarList"
+                        style="@style/tv_mine_style"
+                        android:drawableLeft="@drawable/icon_mine_car"
+                        android:text="我的车辆" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/lineColor" />
+
+                    <TextView
+                        android:id="@+id/mTvMineInviteCode"
+                        style="@style/tv_mine_style"
+                        android:drawableLeft="@drawable/icon_mine_code"
+                        android:text="我的邀请码" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/lineColor" />
+
+                    <TextView
+                        android:id="@+id/mTvMineKefu"
+                        style="@style/tv_mine_style"
+                        android:background="@drawable/shape_tv_bg2"
+                        android:drawableLeft="@drawable/icon_mine_kefu"
+                        android:text="我的客服" />
+
+                </LinearLayout>
 
             </LinearLayout>
-
-        </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
-
+        </android.support.v4.widget.NestedScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
 </LinearLayout>

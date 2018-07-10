@@ -19,7 +19,7 @@ public class Constants {
 
     public static final String BASE_PATH = Environment.getExternalStorageDirectory().getAbsolutePath();
     public static final String APP_PATH = BASE_PATH + "/zwlogistics/";
-    public static final String IMAGE_PATH = APP_PATH + "/zwlogistics/";
+    public static final String IMAGE_PATH = APP_PATH + "/img/";
     public static final String FILE_PROVIDE_PATH = "com.android.ql.lf.zwlogistics.fileProvider";
 
     public static final String TENCENT_ID = "1106952325";

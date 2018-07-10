@@ -42,7 +42,7 @@
             android:padding="@dimen/dp_10">
 
             <FrameLayout
-                android:id="@+id/mFlAddNewCarXSZContainer"
+                android:id="@+id/mFlAuthDriverFaceContainer"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_marginRight="@dimen/dp_10">
@@ -60,7 +60,7 @@
                     android:textSize="@dimen/sp_12" />
 
                 <ImageView
-                    android:id="@+id/mIvAddNewCarXSZ"
+                    android:id="@+id/mIvAuthDriverFace"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
@@ -101,7 +101,7 @@
 
 
             <FrameLayout
-                android:id="@+id/mFlAddNewCarYXZContainer"
+                android:id="@+id/mFlmFlAuthDriverIdCardFrontContainer"
                 android:layout_width="0dp"
                 android:layout_height="120dp"
                 android:layout_marginRight="@dimen/dp_10"
@@ -120,7 +120,7 @@
                     android:textSize="@dimen/sp_12" />
 
                 <ImageView
-                    android:id="@+id/mIvAddNewCarYXZ"
+                    android:id="@+id/mIvmIvAuthDriverIdCardFront"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:visibility="gone" />
@@ -145,6 +145,7 @@
 
 
             <FrameLayout
+                android:id="@+id/mFlAuthDriverIdCardBackContainer"
                 android:layout_width="0dp"
                 android:layout_height="120dp"
                 android:layout_marginRight="@dimen/dp_10"
@@ -163,6 +164,7 @@
                     android:textSize="@dimen/sp_12" />
 
                 <ImageView
+                    android:id="@+id/mIvmIvAuthDriverIdCardBackGround"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:visibility="gone" />
@@ -202,7 +204,7 @@
             android:padding="@dimen/dp_10">
 
             <FrameLayout
-                android:id="@+id/mFlAddNewCarCPHContainer"
+                android:id="@+id/mFlAuthDriverCardContainer"
                 android:layout_width="0dp"
                 android:layout_height="120dp"
                 android:layout_marginRight="@dimen/dp_10"
@@ -221,7 +223,7 @@
                     android:textSize="@dimen/sp_12" />
 
                 <ImageView
-                    android:id="@+id/mIvAddNewCarCPH"
+                    android:id="@+id/mIvAuthDriverCard"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:visibility="gone" />
@@ -260,6 +262,7 @@
             android:padding="@dimen/dp_10">
 
             <FrameLayout
+                android:id="@+id/mFlAuthDriverCYZGCardContainer"
                 android:layout_width="0dp"
                 android:layout_height="120dp"
                 android:layout_marginRight="@dimen/dp_10"
@@ -278,6 +281,7 @@
                     android:textSize="@dimen/sp_12" />
 
                 <ImageView
+                    android:id="@+id/mIvAuthDriverCYZG"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:visibility="gone" />
@@ -314,6 +318,7 @@
                 android:textColor="@color/deepTextColor" />
 
             <com.android.ql.lf.zwlogistics.ui.widgets.DJEditText
+                android:id="@+id/mEtAuthDriverName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -347,11 +352,13 @@
                 android:textColor="@color/deepTextColor" />
 
             <com.android.ql.lf.zwlogistics.ui.widgets.DJEditText
+                android:id="@+id/mEtAuthDriverIdCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:background="@null"
                 android:hint="请输入身份证号"
+                android:singleLine="true"
                 android:textColor="@color/deepTextColor"
                 android:textColorHint="@color/normalTextColor"
                 android:textSize="@dimen/sp_14" />
@@ -379,11 +386,14 @@
                 android:textColor="@color/deepTextColor" />
 
             <com.android.ql.lf.zwlogistics.ui.widgets.DJEditText
+                android:id="@+id/mEtAuthDriverPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:background="@null"
                 android:hint="请输入手机号"
+                android:inputType="phone"
+                android:maxLength="11"
                 android:textColor="@color/deepTextColor"
                 android:textColorHint="@color/normalTextColor"
                 android:textSize="@dimen/sp_14" />
