@@ -4,16 +4,16 @@
     android:layout_height="wrap_content">
 
     <com.android.ql.lf.zwlogistics.ui.widgets.DJEditText
-        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/mEtCarLengthCustom"
         android:layout_width="150dp"
         android:layout_height="40dp"
         android:layout_margin="10dp"
         android:layout_marginLeft="@dimen/dp_10"
         android:background="@drawable/shape_tv_bg4"
         android:hint="请输入其它车长"
+        android:inputType="numberDecimal"
         android:padding="@dimen/dp_10"
-        android:textSize="@dimen/sp_14"
-        tools:showIn="@layout/dialog_select_car_length_layout" />
+        android:textSize="@dimen/sp_14"/>
 
 
 

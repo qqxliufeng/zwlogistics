@@ -83,35 +83,35 @@ class MineFragment : BaseNetWorkingFragment() {
         }
 
         mTvMineAuthInfo.doClickWithUserStatusStart(AUTH_PERSON_FLAG) {
-            when(UserInfo.getInstance().user_is_rank.toInt()){
-                UserInfo.UserInfoAuthStatus.WEI_SHENG_HE.statusCode->{
+            when (UserInfo.getInstance().user_is_rank.toInt()) {
+                UserInfo.UserInfoAuthStatus.WEI_SHENG_HE.statusCode -> {
                     FragmentContainerActivity.from(mContext).setTitle("我的认证").setNeedNetWorking(true).setClazz(MineDriverInfoEmptyFragment::class.java).start()
                 }
-                UserInfo.UserInfoAuthStatus.SHENG_HE_ZHONG.statusCode->{
+                UserInfo.UserInfoAuthStatus.SHENG_HE_ZHONG.statusCode -> {
                     FragmentContainerActivity.from(mContext).setTitle("我的认证").setNeedNetWorking(true).setClazz(MineDriverInfoForComplementAndAuthingFragment::class.java).start()
                 }
-                UserInfo.UserInfoAuthStatus.SHENG_HE_TONG_GUO.statusCode->{
+                UserInfo.UserInfoAuthStatus.SHENG_HE_TONG_GUO.statusCode -> {
                     FragmentContainerActivity.from(mContext).setTitle("我的认证").setNeedNetWorking(true).setClazz(MineDriverInfoForComplementAndAuthingFragment::class.java).start()
                 }
-                UserInfo.UserInfoAuthStatus.SHENG_HE_SHI_BAI.statusCode->{
+                UserInfo.UserInfoAuthStatus.SHENG_HE_SHI_BAI.statusCode -> {
                     FragmentContainerActivity.from(mContext).setTitle("我的认证").setNeedNetWorking(true).setClazz(MineDriverInfoForFailedFragment::class.java).start()
                 }
             }
         }
 
         mMineCarList.doClickWithUserStatusStart(AUTH_CAR_FLAG) {
-            when(UserInfo.getInstance().user_is_rank.toInt()){
-                UserInfo.UserInfoAuthStatus.WEI_SHENG_HE.statusCode->{
-                    Snackbar.make(mSrfMine,"您还未认证成为当司机，请先认证成为司机",Snackbar.LENGTH_LONG).show()
+            when (UserInfo.getInstance().user_is_rank.toInt()) {
+                UserInfo.UserInfoAuthStatus.WEI_SHENG_HE.statusCode -> {
+                    Snackbar.make(mSrfMine, "您还未认证成为当司机，请先认证成为司机", Snackbar.LENGTH_LONG).show()
                 }
-                UserInfo.UserInfoAuthStatus.SHENG_HE_ZHONG.statusCode->{
-                    Snackbar.make(mSrfMine,"您当前提交的司机身份正在审核，请耐心等待",Snackbar.LENGTH_LONG).show()
+                UserInfo.UserInfoAuthStatus.SHENG_HE_ZHONG.statusCode -> {
+                    Snackbar.make(mSrfMine, "您当前提交的司机身份正在审核，请耐心等待", Snackbar.LENGTH_LONG).show()
                 }
-                UserInfo.UserInfoAuthStatus.SHENG_HE_TONG_GUO.statusCode->{
+                UserInfo.UserInfoAuthStatus.SHENG_HE_TONG_GUO.statusCode -> {
                     FragmentContainerActivity.from(mContext).setTitle("我的车辆").setClazz(MineCarListFragment::class.java).setNeedNetWorking(true).start()
                 }
-                UserInfo.UserInfoAuthStatus.SHENG_HE_SHI_BAI.statusCode->{
-                    Snackbar.make(mSrfMine,"您当前提交的司机身份审核失败，请重新提交认证",Snackbar.LENGTH_LONG).show()
+                UserInfo.UserInfoAuthStatus.SHENG_HE_SHI_BAI.statusCode -> {
+                    Snackbar.make(mSrfMine, "您当前提交的司机身份审核失败，请重新提交认证", Snackbar.LENGTH_LONG).show()
                 }
             }
         }
@@ -171,8 +171,13 @@ class MineFragment : BaseNetWorkingFragment() {
                 GlideManager.loadFaceCircleImage(mContext, UserInfo.getInstance().user_pic, mMineUserFace)
             }
             mMineUserNickName.text = UserInfo.getInstance().user_nickname
-            mMineUserYFaFangShouYi.text = "￥${UserInfo.getInstance().user_y_sum}"
-            mMineUserWFaFangShouYi.text = "￥${UserInfo.getInstance().user_w_sum}"
+            try {
+                mMineUserYFaFangShouYi.text = "￥${java.lang.Double.parseDouble(UserInfo.getInstance().user_y_sum)}"
+                mMineUserWFaFangShouYi.text = "￥${java.lang.Double.parseDouble(UserInfo.getInstance().user_w_sum)}"
+            } catch (e: NumberFormatException) {
+                mMineUserYFaFangShouYi.text = "￥${UserInfo.getInstance().user_y_sum}"
+                mMineUserWFaFangShouYi.text = "￥${UserInfo.getInstance().user_w_sum}"
+            }
         }
     }
 

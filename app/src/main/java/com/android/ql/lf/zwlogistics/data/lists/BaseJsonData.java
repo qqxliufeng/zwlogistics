@@ -14,14 +14,14 @@ public class BaseJsonData {
     private String msg;
     private Object arr;
     private Object arr1;
-    private ArrayList<Object> result;
+    private ArrayList<Object> data;
 
-    public ArrayList<Object> getResult() {
-        return result;
+    public ArrayList<Object> getData() {
+        return data;
     }
 
-    public void setResult(ArrayList<Object> result) {
-        this.result = result;
+    public void setData(ArrayList<Object> data) {
+        this.data = data;
     }
 
     public String getCode() {

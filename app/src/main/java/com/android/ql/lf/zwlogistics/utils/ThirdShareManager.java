@@ -1,14 +1,23 @@
 package com.android.ql.lf.zwlogistics.utils;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 
 import com.tencent.connect.share.QQShare;
 import com.tencent.connect.share.QzoneShare;
+import com.tencent.mm.opensdk.modelmsg.SendMessageToWX;
+import com.tencent.mm.opensdk.modelmsg.WXImageObject;
+import com.tencent.mm.opensdk.modelmsg.WXMediaMessage;
+import com.tencent.mm.opensdk.modelmsg.WXWebpageObject;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.tauth.IUiListener;
 import com.tencent.tauth.Tencent;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
+
+import okhttp3.internal.Util;
 
 public class ThirdShareManager {
 
@@ -35,4 +44,34 @@ public class ThirdShareManager {
         mTencent.shareToQzone(context, params, uiListener);
     }
 
+
+    public static void wxShare(IWXAPI api, Bitmap bitmap, int type) {
+        WXWebpageObject wxWebpageObject = new WXWebpageObject();
+        wxWebpageObject.webpageUrl = "http://www.baidu.com";
+        WXMediaMessage wxMediaMessage = new WXMediaMessage(wxWebpageObject);
+        wxMediaMessage.description = "this is description";
+        wxMediaMessage.title = "this is title";
+        wxMediaMessage.thumbData = bmpToByteArray(Bitmap.createScaledBitmap(bitmap, 150, 150, true), true);
+        SendMessageToWX.Req req = new SendMessageToWX.Req();
+        req.message = wxMediaMessage;
+        req.scene = type;
+        api.sendReq(req);
+    }
+
+    public static byte[] bmpToByteArray(final Bitmap bmp, final boolean needRecycle) {
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.PNG, 100, output);
+        if (needRecycle) {
+            bmp.recycle();
+        }
+
+        byte[] result = output.toByteArray();
+        try {
+            output.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
 }

@@ -9,11 +9,13 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.location.LocationManager
 import android.net.Uri
+import android.os.IBinder
 import android.provider.Settings
 import android.support.v4.app.Fragment
 import android.support.v7.app.AlertDialog
 import android.util.DisplayMetrics
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.TextView
 import com.android.ql.lf.zwlogistics.R
@@ -26,6 +28,16 @@ fun Context.checkGpsIsOpen():Boolean{
 
 fun Activity.openGpsPage(requestCode:Int = -1){
     startActivityForResult(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS),requestCode)
+}
+
+fun Context.hiddenKeyBoard(token: IBinder) {
+    val inputManager = this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    inputManager.hideSoftInputFromWindow(token, InputMethodManager.HIDE_NOT_ALWAYS)
+}
+
+fun Context.showKeyBoard(token: View) {
+    val inputManager = this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    inputManager.showSoftInput(token, InputMethodManager.SHOW_FORCED)
 }
 
 fun Fragment.startPhone(phone: String) {

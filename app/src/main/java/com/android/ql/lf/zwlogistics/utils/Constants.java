@@ -14,25 +14,16 @@ import java.util.List;
 public class Constants {
     public static final String BASE_IP = "http://zhongwei.581vv.com/";
 
-    private static final String APP_ID = "wrjt123";
-    private static final String APP_SEC = "37b082a279e3b7a9403a16b4bb15073b";
-
     public static final String BASE_PATH = Environment.getExternalStorageDirectory().getAbsolutePath();
     public static final String APP_PATH = BASE_PATH + "/zwlogistics/";
     public static final String IMAGE_PATH = APP_PATH + "/img/";
     public static final String FILE_PROVIDE_PATH = "com.android.ql.lf.zwlogistics.fileProvider";
 
     public static final String TENCENT_ID = "1106952325";
-    public static final String WX_APP_ID = "wx0b6a3be07b8ed6a0";
-    public static final String BUGLY_APP_ID = "c73cdb2f24";
-
-    public static final String NO_FUNCTION_NOTIFY_MESSAGE = "此功能暂未开放！";
-
-    public static final String APP_IS_ALIVE = "isAlive";
+    public static final String WX_APP_ID = "wxf470a963560eab15";
 
 
     private static final String APP_TOKEN = "d5a131f90e76db03df4eff4154e56dbe";
-    private static String md5Token = null;
     public static final long MAX_COUNT_DOWN = 1000 * 10;
 
     public static String md5Token() {

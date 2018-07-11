@@ -20,10 +20,10 @@ public class ListParseHelper<T> extends BaseJsonData {
                 String newContent = content.replace("\"\"", "暂无");
                 ListParseHelper m = new Gson().fromJson(newContent, ListParseHelper.class);
                 if (m != null) {
-                    if (m.getResult() != null) {
+                    if (m.getData() != null) {
                         ArrayList<T> result = new ArrayList<>();
-                        for (int i = 0; i < m.getResult().size(); i++) {
-                            result.add(new Gson().fromJson(new Gson().toJson(m.getResult().get(i)), clazz));
+                        for (int i = 0; i < m.getData().size(); i++) {
+                            result.add(new Gson().fromJson(new Gson().toJson(m.getData().get(i)), clazz));
                         }
                         return result;
                     }

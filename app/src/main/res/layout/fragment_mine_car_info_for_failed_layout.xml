@@ -2,6 +2,7 @@
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <LinearLayout
@@ -10,12 +11,13 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/mTvMineCarFailTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/qian_red"
             android:gravity="center"
             android:padding="@dimen/dp_10"
-            android:text="审核失败原因：请上传清晰的车辆行驶证"
+            tools:text="审核失败原因：请上传清晰的车辆行驶证"
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/sp_14" />
 
@@ -27,6 +29,7 @@
             android:padding="@dimen/dp_10">
 
             <TextView
+                android:id="@+id/mTvMineCarFailDriverCardTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="车辆行驶证"
@@ -34,17 +37,19 @@
                 android:textSize="@dimen/sp_14" />
 
             <FrameLayout
+                android:id="@+id/mFlMineCarFailDriverCardContainer"
                 style="@style/iv_show_photo_style"
                 android:layout_marginTop="@dimen/dp_10">
 
                 <ImageView
-                    android:id="@+id/mIvAddNewCarXSZ"
+                    android:id="@+id/mIvMineCarFailDriverCard"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
                     android:src="@drawable/icon_car_xsz_img" />
 
                 <TextView
+                    android:id="@+id/mTvMineCarFailDriverCard"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/shape_tv_bg5"
@@ -72,6 +77,7 @@
             android:padding="@dimen/dp_10">
 
             <TextView
+                android:id="@+id/mTvMineCarFailYYZTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="车辆营运证"
@@ -79,17 +85,19 @@
                 android:textSize="@dimen/sp_14" />
 
             <FrameLayout
+                android:id="@+id/mFlMineCarFailYYZContainer"
                 style="@style/iv_show_photo_style"
                 android:layout_marginTop="@dimen/dp_10">
 
                 <ImageView
-                    android:id="@+id/mIvAddNewCarYXZ"
+                    android:id="@+id/mIvMineCarFailYYZ"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
                     android:src="@drawable/icon_car_ysz_img" />
 
                 <TextView
+                    android:id="@+id/mTvMineCarFailYYZ"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/shape_tv_bg5"
@@ -117,6 +125,7 @@
             android:padding="@dimen/dp_10">
 
             <TextView
+                android:id="@+id/mTvMineCarFailNumTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="车牌号"
@@ -124,17 +133,19 @@
                 android:textSize="@dimen/sp_14" />
 
             <FrameLayout
+                android:id="@+id/mFlMineCarFailNumContainer"
                 style="@style/iv_show_photo_style"
                 android:layout_marginTop="@dimen/dp_10">
 
                 <ImageView
-                    android:id="@+id/mIvAddNewCarCPH"
+                    android:id="@+id/mIvMineCarFailNum"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
                     android:src="@drawable/icon_car_cph_img" />
 
                 <TextView
+                    android:id="@+id/mTvMineCarFailNum"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/shape_tv_bg5"
@@ -150,7 +161,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/mLlAddNewCarCXContainer"
+            android:id="@+id/mLlMineCarFailCarTypeContainer"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:gravity="center"
@@ -165,7 +176,7 @@
                 android:textColor="@color/deepTextColor" />
 
             <TextView
-                android:id="@+id/mTvAddNewCarCX"
+                android:id="@+id/mTvMineCarFailCarType"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -184,7 +195,7 @@
 
 
         <LinearLayout
-            android:id="@+id/mLlAddNewCarCCContainer"
+            android:id="@+id/mLlMineCarFailCarLengthContainer"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:gravity="center"
@@ -199,7 +210,7 @@
                 android:textColor="@color/deepTextColor" />
 
             <TextView
-                android:id="@+id/mTvAddNewCarCC"
+                android:id="@+id/mTvMineCarFailCarLength"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -231,11 +242,12 @@
                 android:textColor="@color/deepTextColor" />
 
             <com.android.ql.lf.zwlogistics.ui.widgets.DJEditText
-                android:id="@+id/mEtAddNewCarDS"
+                android:id="@+id/mEtMineCarFailCarWeight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:background="@null"
+                android:inputType="numberDecimal"
                 android:hint="请输入车辆吨数"
                 android:textColor="@color/deepTextColor"
                 android:textColorHint="@color/normalTextColor"
@@ -265,7 +277,7 @@
                 android:textColor="@color/deepTextColor" />
 
             <com.android.ql.lf.zwlogistics.ui.widgets.DJEditText
-                android:id="@+id/mEtAddNewCarName"
+                android:id="@+id/mEtMineCarFailCarName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -285,7 +297,7 @@
             android:background="@color/lineColor" />
 
         <LinearLayout
-            android:id="@+id/mLlAddNewCarCCNFContainer"
+            android:id="@+id/mLlMineCarFailCarDateContainer"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:gravity="center"
@@ -300,7 +312,7 @@
                 android:textColor="@color/deepTextColor" />
 
             <TextView
-                android:id="@+id/mTvAddNewCarCCNF"
+                android:id="@+id/mTvMineCarFailCarDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -317,6 +329,7 @@
             android:background="@color/lineColor"/>
 
         <TextView
+            android:id="@+id/mTvMineCarFailSubmit"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:background="@color/colorPrimary"

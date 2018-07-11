@@ -12,11 +12,19 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
 import com.android.ql.lf.zwlogistics.data.UserInfo
 import com.android.ql.lf.zwlogistics.utils.Constants
 import com.android.ql.lf.zwlogistics.utils.ThirdShareManager
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.animation.GlideAnimation
+import com.bumptech.glide.request.target.SimpleTarget
 import com.tencent.connect.share.QQShare
+import com.tencent.mm.opensdk.modelmsg.SendMessageToWX
+import com.tencent.mm.opensdk.openapi.IWXAPI
+import com.tencent.mm.opensdk.openapi.WXAPIFactory
 import com.tencent.tauth.IUiListener
 import com.tencent.tauth.Tencent
 import com.tencent.tauth.UiError
@@ -31,15 +39,38 @@ class MineInviteFragment : BaseNetWorkingFragment(), IUiListener {
         BottomSheetDialog(mContext)
     }
 
+    private val iwxapi by lazy {
+        WXAPIFactory.createWXAPI(mContext,Constants.WX_APP_ID,true)
+    }
+
+
     //分享布局
     private val shareContentView by lazy {
         val content = View.inflate(mContext, R.layout.dialog_invite_share_layout, null)
         content.findViewById<TextView>(R.id.mTvShareWX).setOnClickListener {
             bottomSheetDialog.dismiss()
+            Glide.with(this)
+                    .load("https://mmbiz.qlogo.cn/mmbiz_png/5Xoh2ibCr2c1Z4ibGeDh5fJTyhVnW3uVlUriazwsYicyqibdHIeFI1lbelH6jGmPicm0JlVjM2HvcWEQlhFicoA43ibwbw/0?wx_fmt=png")
+                    .asBitmap()
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .into(object : SimpleTarget<Bitmap>(150,150) {
+                        override fun onResourceReady(resource: Bitmap?, glideAnimation: GlideAnimation<in Bitmap>?) {
+                            ThirdShareManager.wxShare(iwxapi,resource,SendMessageToWX.Req.WXSceneSession)
+                        }
+                    })
         }
 
         content.findViewById<TextView>(R.id.mTvShareWXCircle).setOnClickListener {
             bottomSheetDialog.dismiss()
+            Glide.with(this)
+                    .load("https://mmbiz.qlogo.cn/mmbiz_png/5Xoh2ibCr2c1Z4ibGeDh5fJTyhVnW3uVlUriazwsYicyqibdHIeFI1lbelH6jGmPicm0JlVjM2HvcWEQlhFicoA43ibwbw/0?wx_fmt=png")
+                    .asBitmap()
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .into(object : SimpleTarget<Bitmap>(150,150) {
+                        override fun onResourceReady(resource: Bitmap?, glideAnimation: GlideAnimation<in Bitmap>?) {
+                            ThirdShareManager.wxShare(iwxapi,resource,SendMessageToWX.Req.WXSceneTimeline)
+                        }
+                    })
         }
 
         content.findViewById<TextView>(R.id.mTvShareQQ).setOnClickListener {

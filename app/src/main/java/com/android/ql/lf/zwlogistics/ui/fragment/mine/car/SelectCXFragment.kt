@@ -1,5 +1,6 @@
 package com.android.ql.lf.zwlogistics.ui.fragment.mine.car
 
+import android.content.Context
 import android.os.Bundle
 import android.support.design.widget.BottomSheetDialogFragment
 import android.support.v4.app.FragmentManager
@@ -8,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.android.ql.lf.zwlogistics.R
+import com.android.ql.lf.zwlogistics.data.CarParamBean
 import com.android.ql.lf.zwlogistics.utils.RxBus
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
@@ -18,9 +20,11 @@ import org.jetbrains.anko.collections.forEachWithIndex
 class SelectCXFragment : BottomSheetDialogFragment() {
 
 
-    private var dataList :ArrayList<CarTypeBean>? = null
+    private var dataList: ArrayList<CarParamBean>? = null
 
-    private var listener:((carType:CarTypeBean)->Unit)? = null
+    private var listener: ((carType: CarParamBean) -> Unit)? = null
+
+    private var currentSelectBean: CarParamBean? = null
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -34,37 +38,29 @@ class SelectCXFragment : BottomSheetDialogFragment() {
 
     private fun initView() {
         mRvSelectCX.layoutManager = GridLayoutManager(context, 4)
-        mRvSelectCX.adapter = object : BaseQuickAdapter<CarTypeBean, BaseViewHolder>(R.layout.adapter_cx_select_item_layout, dataList) {
-            override fun convert(helper: BaseViewHolder?, item: CarTypeBean?) {
+        mRvSelectCX.adapter = object : BaseQuickAdapter<CarParamBean, BaseViewHolder>(R.layout.adapter_cx_select_item_layout, dataList) {
+            override fun convert(helper: BaseViewHolder?, item: CarParamBean?) {
                 helper!!.setText(R.id.mTvSelectCXItem, item!!.name)
-                helper.setChecked(R.id.mTvSelectCXItem,item.isSelect)
+                helper.setChecked(R.id.mTvSelectCXItem, item.isSelect)
             }
         }
         mRvSelectCX.addOnItemTouchListener(object : OnItemClickListener() {
             override fun onSimpleItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
-                listener?.invoke(dataList!![position])
+                currentSelectBean = dataList!![position]
+                currentSelectBean?.isSelect = true
+                listener?.invoke(currentSelectBean!!)
                 dismiss()
             }
         })
     }
 
 
-    fun getCurrentPosition(position:Int = 0){
-        dataList?.forEachWithIndex{ index,carType->
-            carType.isSelect = index == position
-        }
-    }
-
-    fun setDataSource(list:ArrayList<CarTypeBean>){
+    fun setDataSource(list: ArrayList<CarParamBean>) {
         dataList = list
     }
 
-    fun myShow(manager: FragmentManager?, tag: String?,listener:((carType:CarTypeBean)->Unit)?) {
+    fun myShow(manager: FragmentManager?, tag: String?, listener: ((carType: CarParamBean) -> Unit)?) {
         this.listener = listener
         super.show(manager, tag)
     }
-
-
-    class CarTypeBean(var id: String?, var name: String,var isSelect:Boolean = false)
-
 }

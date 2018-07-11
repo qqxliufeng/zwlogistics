@@ -62,55 +62,7 @@
                 android:id="@+id/mFlSelectMultiTypeCarTypeContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:flexWrap="wrap">
-
-                <CheckedTextView
-                    style="@style/ctv_multi_type_style"
-                    android:layout_marginLeft="@dimen/dp_10"
-                    android:text="整车" />
-
-                <CheckedTextView
-                    style="@style/ctv_multi_type_style"
-                    android:layout_marginLeft="@dimen/dp_10"
-                    android:text="整车" />
-
-                <CheckedTextView
-                    style="@style/ctv_multi_type_style"
-                    android:layout_marginLeft="@dimen/dp_10"
-                    android:text="整车" />
-
-                <CheckedTextView
-                    style="@style/ctv_multi_type_style"
-                    android:layout_marginLeft="@dimen/dp_10"
-                    android:text="整车" />
-
-                <CheckedTextView
-                    style="@style/ctv_multi_type_style"
-                    android:layout_marginLeft="@dimen/dp_10"
-                    android:text="整车" />
-
-                <CheckedTextView
-                    style="@style/ctv_multi_type_style"
-                    android:layout_marginLeft="@dimen/dp_10"
-                    android:text="整车" />
-
-                <CheckedTextView
-                    style="@style/ctv_multi_type_style"
-                    android:layout_marginLeft="@dimen/dp_10"
-                    android:text="整车" />
-
-                <CheckedTextView
-                    style="@style/ctv_multi_type_style"
-                    android:layout_marginLeft="@dimen/dp_10"
-                    android:text="整车" />
-
-                <CheckedTextView
-                    style="@style/ctv_multi_type_style"
-                    android:layout_marginLeft="@dimen/dp_10"
-                    android:text="整车" />
-
-            </com.google.android.flexbox.FlexboxLayout>
-
+                app:flexWrap="wrap"/>
 
             <View
                 android:layout_width="match_parent"

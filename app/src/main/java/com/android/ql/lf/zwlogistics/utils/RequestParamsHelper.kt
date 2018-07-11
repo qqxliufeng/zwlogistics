@@ -1,6 +1,5 @@
 package com.android.ql.lf.zwlogistics.utils
 
-import android.text.TextUtils
 import com.android.ql.lf.zwlogistics.component.ApiParams
 import com.android.ql.lf.zwlogistics.data.UserInfo
 
@@ -82,7 +81,7 @@ class RequestParamsHelper {
                 .addParam("phone",phone)
 
 
-        fun getUserProtocolParam() = getBaseParams(LOGIN_MODEL,"deal")
+        fun getUserProtocolParam(type: String = "1") = getBaseParams(LOGIN_MODEL,"deal").addParam("type",type)
 
 
         fun getForgetPWParams(phone: String = "", pass: String = "",repass:String = ""): ApiParams {
@@ -141,6 +140,25 @@ class RequestParamsHelper {
 
         fun getAuthInfoParams() = getWithIdParams().addParam(ApiParams.MOD_NAME, USER_MODEL).addParam(ApiParams.ACT_NAME, ACT_RANK_INFO)
 
+
+        val ACT_CAR_LIST = "vehicleList"
+        fun getCarListParam() = getWithIdParams().addParam(ApiParams.MOD_NAME, USER_MODEL).addParam(ApiParams.ACT_NAME,ACT_CAR_LIST)
+
+        val ACT_CAR_UPDATE = "vehicleUp"
+
+
+        fun getCarParamsParams(id:String = "") = getWithIdParams().addParam(ApiParams.MOD_NAME, USER_MODEL).addParam(ApiParams.ACT_NAME, ACT_CAR_UPDATE).addParam("id",id)
+
+        val ACT_CAR_VEHICLEDO = "vehicleDo"
+
+        val ACT_CAR_VEHICLEDEL = "vehicledel"
+
+        fun getCarDeleteParam(id: String= "") = getWithIdParams().addParam(ApiParams.MOD_NAME, USER_MODEL).addParam(ApiParams.ACT_NAME, ACT_CAR_VEHICLEDEL).addParam("id",id)
+
+
+        val ACT_CAR_VEHICLEINFO = "vehicleinfo"
+
+        fun getCarInfoParam(id: String) = getWithIdParams().addParam(ApiParams.MOD_NAME, USER_MODEL).addParam(ApiParams.ACT_NAME,ACT_CAR_VEHICLEINFO).addParam("id",id)
 
         /**              member model  end           **/
 

@@ -1,12 +1,11 @@
 package com.android.ql.lf.zwlogistics.data;
 
-public class CarLengthBean {
+public class CarDateBean {
 
     private int type = 0;
     private boolean isSelect = false;
-    private String length_id;
-    private String length_name;
-
+    private String year_id;
+    private String year_name;
 
     public int getType() {
         return type;
@@ -24,20 +23,19 @@ public class CarLengthBean {
         isSelect = select;
     }
 
-    public String getLength_id() {
-        return length_id;
+    public String getYear_id() {
+        return year_id;
     }
 
-    public void setLength_id(String length_id) {
-        this.length_id = length_id;
+    public void setYear_id(String year_id) {
+        this.year_id = year_id;
     }
 
-    public String getLength_name() {
-
-        return length_name;
+    public String getYear_name() {
+        return year_name;
     }
 
-    public void setLength_name(String length_name) {
-        this.length_name = length_name;
+    public void setYear_name(String year_name) {
+        this.year_name = year_name;
     }
 }

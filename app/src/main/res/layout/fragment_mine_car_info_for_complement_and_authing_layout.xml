@@ -2,6 +2,7 @@
 <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <LinearLayout
@@ -10,6 +11,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/mTvMineCarComplementInfoTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/qian_red"
@@ -34,9 +36,9 @@
                 android:textSize="@dimen/sp_14" />
 
             <ImageView
+                android:id="@+id/mIvMineCarComplementInfoDriverCard"
                 style="@style/iv_show_photo_style"
                 android:layout_marginTop="@dimen/dp_10"
-                android:src="@drawable/icon_car_xsz_img"
                 android:scaleType="centerCrop"/>
 
         </LinearLayout>
@@ -61,8 +63,8 @@
                 android:textSize="@dimen/sp_14" />
 
             <ImageView
+                android:id="@+id/mIvMineCarComplementInfoYYZ"
                 android:layout_marginTop="@dimen/dp_10"
-                android:src="@drawable/icon_car_ysz_img"
                 style="@style/iv_show_photo_style" />
 
         </LinearLayout>
@@ -87,9 +89,9 @@
                 android:textSize="@dimen/sp_14" />
 
             <ImageView
+                android:id="@+id/mIvMineCarComplementInfoCarNum"
                 style="@style/iv_show_photo_style"
-                android:layout_marginTop="@dimen/dp_10"
-                android:src="@drawable/icon_car_cph_img"/>
+                android:layout_marginTop="@dimen/dp_10"/>
         </LinearLayout>
 
         <LinearLayout
@@ -114,9 +116,10 @@
                     android:textColor="@color/normalTextColor" />
 
                 <TextView
+                    android:id="@+id/mTvMineCarComplementInfoCarType"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="平板"
+                    tools:text="平板"
                     android:textColor="@color/deepTextColor"
                     android:layout_marginLeft="40dp"
                     android:textSize="@dimen/sp_14"/>
@@ -141,9 +144,10 @@
                     android:textColor="@color/normalTextColor" />
 
                 <TextView
+                    android:id="@+id/mTvMineCarComplementInfoCarLength"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1.8米"
+                    tools:text="1.8米"
                     android:textColor="@color/deepTextColor"
                     android:layout_marginLeft="40dp"
                     android:textSize="@dimen/sp_14"/>
@@ -168,9 +172,10 @@
                     android:textColor="@color/normalTextColor" />
 
                 <TextView
+                    android:id="@+id/mTvMineCarComplementInfoCarWeight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="123吨"
+                    tools:text="123吨"
                     android:textColor="@color/deepTextColor"
                     android:layout_marginLeft="40dp"
                     android:textSize="@dimen/sp_14"/>
@@ -195,9 +200,10 @@
                     android:textColor="@color/normalTextColor" />
 
                 <TextView
+                    android:id="@+id/mTvMineCarComplementInfoCarName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="货车"
+                    tools:text="货车"
                     android:textColor="@color/deepTextColor"
                     android:layout_marginLeft="40dp"
                     android:textSize="@dimen/sp_14"/>
@@ -222,9 +228,10 @@
                     android:textColor="@color/normalTextColor" />
 
                 <TextView
+                    android:id="@+id/mTvMineCarComplementInfoCarDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2018年"
+                    tools:text="2018年"
                     android:textColor="@color/deepTextColor"
                     android:layout_marginLeft="40dp"
                     android:textSize="@dimen/sp_14"/>

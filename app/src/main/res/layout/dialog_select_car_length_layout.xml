@@ -49,6 +49,7 @@
 
     </LinearLayout>
     <TextView
+        android:id="@+id/mTvSelectCarLengthSubmit"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:background="@color/colorPrimary"

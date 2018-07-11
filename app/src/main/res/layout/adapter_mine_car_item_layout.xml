@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
     android:background="#fff">
 
@@ -21,8 +22,10 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_width="100dp"
+            android:id="@+id/mIvMineCarListItemPic"
+            android:layout_width="130dp"
             android:layout_height="100dp"
+            android:scaleType="centerCrop"
             android:src="@drawable/img_glide_load_default" />
 
         <LinearLayout
@@ -32,36 +35,40 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/mTvMineCarListItemStatus"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:textSize="@dimen/sp_14"
                 android:textColor="@color/colorPrimary"
-                android:text="审核中"/>
+                tools:text="审核中"/>
 
             <TextView
+                android:id="@+id/mTvMineCarListItemName"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:gravity="center_vertical"
                 android:layout_weight="1"
                 android:maxLines="1"
                 android:ellipsize="end"
-                android:text="品牌：东风柳汽"/>
+                tools:text="品牌：东风柳汽"/>
 
             <TextView
+                android:id="@+id/mTvMineCarListItemLength"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="车长：1.8米"/>
+                tools:text="车长：1.8米"/>
 
             <TextView
+                android:id="@+id/mTvMineCarListItemType"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="车型：平板"/>
+                tools:text="车型：平板"/>
 
         </LinearLayout>
 

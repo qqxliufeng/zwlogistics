@@ -11,7 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.android.ql.lf.zwlogistics.R
-import com.android.ql.lf.zwlogistics.utils.RxBus
+import com.android.ql.lf.zwlogistics.data.CarParamBean
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.chad.library.adapter.base.listener.OnItemClickListener
@@ -20,12 +20,12 @@ import kotlinx.android.synthetic.main.dialog_select_date_layout.*
 class SelectDateFragment : BottomSheetDialogFragment() {
 
 
-    private val dataList by lazy {
-        arrayListOf<String>()
-    }
+    private var dataList: ArrayList<CarParamBean>? = null
 
 
-    private var listener:((date: String?)->Unit)? = null
+    private var listener: ((date: CarParamBean?) -> Unit)? = null
+
+    private var currentSelectBean: CarParamBean? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.dialog_select_date_layout, container, false)
@@ -37,36 +37,33 @@ class SelectDateFragment : BottomSheetDialogFragment() {
     }
 
     private fun initView() {
-        dataList.clear()
-        (0..14).forEach {
-            var tempDate = "${it + 4}"
-            if (tempDate.length == 1) {
-                tempDate = "0$tempDate"
-            }
-            dataList.add("20${tempDate}年")
-        }
         mTvSelectDateCancel.setOnClickListener {
             dismiss()
         }
         mRvSelectDate.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        mRvSelectDate.adapter = object : BaseQuickAdapter<String, BaseViewHolder>(android.R.layout.simple_list_item_1, dataList) {
-            override fun convert(helper: BaseViewHolder?, item: String?) {
+        mRvSelectDate.adapter = object : BaseQuickAdapter<CarParamBean, BaseViewHolder>(android.R.layout.simple_list_item_1, dataList) {
+            override fun convert(helper: BaseViewHolder?, item: CarParamBean?) {
                 val tv_name = helper!!.getView<TextView>(android.R.id.text1)
                 tv_name.gravity = Gravity.CENTER
                 tv_name.setTextColor(ContextCompat.getColor(mContext, R.color.normalTextColor))
-                helper.setText(android.R.id.text1, item!!)
+                helper.setText(android.R.id.text1, item?.name)
             }
         }
         mRvSelectDate.addOnItemTouchListener(object : OnItemClickListener() {
             override fun onSimpleItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
-                listener?.invoke(dataList[position])
+                currentSelectBean = dataList?.get(position)
+                listener?.invoke(dataList?.get(position))
                 dismiss()
             }
         })
     }
 
 
-    fun myShow(manager: FragmentManager?, tag: String?,listener:(date: String?)->Unit) {
+    fun setDataSource(list: ArrayList<CarParamBean>) {
+        dataList = list
+    }
+
+    fun myShow(manager: FragmentManager?, tag: String?, listener: (date: CarParamBean?) -> Unit) {
         this.listener = listener
         super.show(manager, tag)
     }
