@@ -14,6 +14,7 @@ import android.view.View
 import android.widget.TextView
 import com.android.ql.lf.carapp.utils.getTextString
 import com.android.ql.lf.carapp.utils.isEmpty
+import com.android.ql.lf.carapp.utils.setFirstPoint
 import com.android.ql.lf.zwlogistics.R
 import com.android.ql.lf.zwlogistics.data.CarParamBean
 import com.android.ql.lf.zwlogistics.ui.widgets.DJEditText
@@ -56,7 +57,7 @@ class SelectCarLengthFragment :BottomSheetDialogFragment(){
         mRvSelectLength.layoutManager = gridLayoutManager
         val adapter= object : BaseQuickAdapter<CarParamBean,BaseViewHolder>(R.layout.adapter_car_type_item_layout,arrayList) {
             override fun convert(helper: BaseViewHolder?, item: CarParamBean?) {
-                helper!!.setText(R.id.mCtvCarTypeItemName,item!!.name)
+                helper!!.setText(R.id.mCtvCarTypeItemName,"${item!!.name}米")
                 helper.setChecked(R.id.mCtvCarTypeItemName,item.isSelect)
             }
         }
@@ -70,9 +71,7 @@ class SelectCarLengthFragment :BottomSheetDialogFragment(){
                     adapter.notifyItemChanged(arrayList!!.indexOf(currentSelectBean!!))
                     currentSelectBean = null
                 }
-                if ("." == s?.toString()){
-                    et_legnth.setText("0.")
-                }
+                et_legnth.setFirstPoint()
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {

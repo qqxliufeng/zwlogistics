@@ -50,12 +50,19 @@ fun EditText.isIdCard(): Boolean {
     return Pattern.compile(IDCARD_REG).matcher(this.text).matches()
 }
 
-fun String.isIdCard():Boolean{
+fun String.isIdCard(): Boolean {
     return Pattern.compile(IDCARD_REG).matcher(this).matches()
 }
 
 fun EditText.getTextString(): String {
     return this.text.toString().trim()
+}
+
+fun EditText.setFirstPoint() {
+    if (this.text.startsWith(".")) {
+        setText("0.")
+        this.setSelection(this.text.toString().length)
+    }
 }
 
 

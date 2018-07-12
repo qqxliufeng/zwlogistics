@@ -3,10 +3,13 @@ package com.android.ql.lf.zwlogistics.ui.fragment.mine.car
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.text.Editable
 import android.text.Html
+import android.text.TextWatcher
 import android.view.View
 import android.widget.ImageView
 import com.android.ql.lf.carapp.data.ImageBean
+import com.android.ql.lf.carapp.utils.setFirstPoint
 import com.android.ql.lf.zwlogistics.R
 import com.android.ql.lf.zwlogistics.data.CarParamBean
 import com.android.ql.lf.zwlogistics.data.PostCarAuthBean
@@ -117,29 +120,47 @@ class NewCarAuthFragment : BaseNetWorkingFragment() {
         }
 
         mLlAddNewCarCXContainer.setOnClickListener {
-            selectCXFragment.myShow(childFragmentManager, "cx_select_dialog") {
-                carTypeBean = it
-                mTvAddNewCarCX.text = it.name
+            if (!carTypeDataList.isEmpty()){
+                selectCXFragment.myShow(childFragmentManager, "cx_select_dialog") {
+                    carTypeBean = it
+                    mTvAddNewCarCX.text = it.name
+                }
             }
         }
 
         mLlAddNewCarCCContainer.setOnClickListener {
-            selectLengthFragment.myShow(childFragmentManager, "length_select_dialog") {
-                carLengthBean = it
-                mTvAddNewCarCC.text = it.name
+            if (!carLengthDataList.isEmpty()) {
+                selectLengthFragment.myShow(childFragmentManager, "length_select_dialog") {
+                    carLengthBean = it
+                    mTvAddNewCarCC.text = it.name
+                }
             }
         }
 
         mLlAddNewCarCCNFContainer.setOnClickListener {
-            selectDateFragment.myShow(childFragmentManager, "date_select_dialog") {
-                carDateBean = it
-                mTvAddNewCarCCNF.text = it?.name
+            if (!carDateDataList.isEmpty()) {
+                selectDateFragment.myShow(childFragmentManager, "date_select_dialog") {
+                    carDateBean = it
+                    mTvAddNewCarCCNF.text = it?.name
+                }
             }
         }
+        mEtAddNewCarWeight.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                mEtAddNewCarWeight.setFirstPoint()
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+        })
+
 
         mTvAddNewCarSubmit.setOnClickListener {
             if (!mCbAddNewCarProtocol.isChecked){
-                toast("请先同意众维物流协议")
+                toast("请先同意${mTvAddNewCarProtocol.text}")
                 return@setOnClickListener
             }
             postCarAuthBean.driver_car_type = if (carTypeBean!=null){carTypeBean!!.name}else{""}

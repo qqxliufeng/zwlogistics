@@ -123,7 +123,7 @@ class MineCarListFragment : BaseRecyclerViewFragment<CarBean>() {
     override fun onRequestFail(requestID: Int, e: Throwable) {
         if (requestID == 0x1) {
             toast("删除车辆失败……")
-        }else if(requestID == 0x0){
+        } else if (requestID == 0x0) {
             super.onRequestFail(requestID, e)
             menuItem?.title = ACTION_ADD
             mTvCarListAction.setOnClickListener {
@@ -142,6 +142,7 @@ class MineCarListFragment : BaseRecyclerViewFragment<CarBean>() {
                 } else {
                     menuItem?.title = ACTION_MANAGER
                 }
+                mTvCarListAction.text = "添加新车辆"
                 mTvCarListAction.setOnClickListener {
                     NewCarAuthFragment.startCarAuthFragment(mContext, MinePersonAuthFragment.NO_SHOW_JUMP)
                 }
@@ -221,12 +222,12 @@ class MineCarListFragment : BaseRecyclerViewFragment<CarBean>() {
             mBaseAdapter.notifyItemChanged(position)
         } else {
             when (currentItem.vehicle_is_state) {
-                1,2 -> {
+                1, 2 -> {
                     FragmentContainerActivity
                             .from(mContext)
                             .setNeedNetWorking(true)
                             .setTitle("车辆信息")
-                            .setExtraBundle(bundleOf(Pair("cid",currentItem.vehicle_id)))
+                            .setExtraBundle(bundleOf(Pair("cid", currentItem.vehicle_id)))
                             .setClazz(MineCarInfoForComplementAndAuthingFragment::class.java)
                             .start()
                 }
@@ -235,7 +236,7 @@ class MineCarListFragment : BaseRecyclerViewFragment<CarBean>() {
                             .from(mContext)
                             .setNeedNetWorking(true)
                             .setTitle("车辆信息")
-                            .setExtraBundle(bundleOf(Pair("cid",currentItem.vehicle_id),Pair("content",currentItem.vehicle_content)))
+                            .setExtraBundle(bundleOf(Pair("cid", currentItem.vehicle_id), Pair("content", currentItem.vehicle_content)))
                             .setClazz(MineCarInfoForFailedFragment::class.java)
                             .start()
                 }

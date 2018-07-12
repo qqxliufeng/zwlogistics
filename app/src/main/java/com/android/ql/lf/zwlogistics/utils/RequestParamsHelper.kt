@@ -1,6 +1,7 @@
 package com.android.ql.lf.zwlogistics.utils
 
 import com.android.ql.lf.zwlogistics.component.ApiParams
+import com.android.ql.lf.zwlogistics.data.PostSelectOrderBean
 import com.android.ql.lf.zwlogistics.data.UserInfo
 
 /**
@@ -161,6 +162,43 @@ class RequestParamsHelper {
         fun getCarInfoParam(id: String) = getWithIdParams().addParam(ApiParams.MOD_NAME, USER_MODEL).addParam(ApiParams.ACT_NAME,ACT_CAR_VEHICLEINFO).addParam("id",id)
 
         /**              member model  end           **/
+
+
+        /**              index model  start           **/
+
+        val INDEX_MODEL = "index"
+
+        val ACT_INDEX_LIST = "list"
+
+        fun getIndexListParam(postSelectOrderBean: PostSelectOrderBean,page: Int) =
+                getWithPageParams(page)
+                        .addParam(ApiParams.MOD_NAME, INDEX_MODEL)
+                        .addParam(ApiParams.ACT_NAME, ACT_INDEX_LIST)
+                        .addParam("need_f_site",postSelectOrderBean.srcAddress)
+                        .addParam("need_m_site",postSelectOrderBean.desAddress)
+                        .addParam("need_length_top",postSelectOrderBean.lengthParams)
+                        .addParam("need_model",postSelectOrderBean.carTypeParams)
+
+        val ACT_INDEX_INFO = "info"
+
+        fun getOrderInfoParam(id:String) = getWithIdParams().addParam(ApiParams.MOD_NAME, INDEX_MODEL).addParam(ApiParams.ACT_NAME,ACT_INDEX_INFO).addParam("id",id)
+
+        val ACT_ORDER = "order"
+
+        fun getTenderInfoParams(pid:String,phone:String,sum:String,model:String,content:String = "") = getWithIdParams()
+                .addParam(ApiParams.MOD_NAME, INDEX_MODEL)
+                .addParam(ApiParams.ACT_NAME,ACT_ORDER)
+                .addParam("pid",pid)
+                .addParam("phone",phone)
+                .addParam("sum",sum)
+                .addParam("model",model)
+                .addParam("content",content)
+
+        val ACT_USER_TENDER_LIST = "userlists"
+        fun getMyTenderListParams(status: String) = getWithIdParams().addParam(ApiParams.MOD_NAME, INDEX_MODEL).addParam(ApiParams.ACT_NAME,ACT_USER_TENDER_LIST).addParam("need_state",status)
+
+
+        /**              index model  end           **/
 
         /**              product model start         **/
 

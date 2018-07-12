@@ -78,7 +78,7 @@ public abstract class BaseNetWorkingFragment extends BaseFragment implements INe
                 GetDataFromNetPresent present = ((FragmentContainerActivity) context).getPresent();
                 if (present != null) {
                     this.mPresent = present;
-                }else {
+                } else {
                     DaggerApiServerComponent.builder().appComponent(MyApplication.getInstance().getAppComponent()).build().inject(this);
                 }
             } else {
@@ -130,20 +130,22 @@ public abstract class BaseNetWorkingFragment extends BaseFragment implements INe
         }
     }
 
-    public <T> void handleSuccess(int requestID,T result){
+    public <T> void handleSuccess(int requestID, T result) {
         try {
             BaseNetResult check = checkResultCode(result);
             if (check != null) {
-                if (check.code.equals(SUCCESS_CODE)){
-                    if (check.obj instanceof JSONObject) {
-                        onHandleSuccess(requestID, ((JSONObject) check.obj).optJSONObject(RESULT_OBJECT));
-                    }else {
-                        onHandleSuccess(requestID,check.obj);
+                if (check.code.equals(SUCCESS_CODE)) {
+                    Object o = ((JSONObject) check.obj).opt(RESULT_OBJECT);
+                    if (o instanceof JSONObject) {
+                        onHandleSuccess(requestID, (JSONObject) o);
+                    } else {
+                        onHandleSuccess(requestID, o);
                     }
-                }else {
-                    onRequestFail(requestID, new NullPointerException());
+                } else {
+                    onRequestFail(requestID, new NullPointerException(((JSONObject) check.obj).optString(MSG_FLAG)));
                 }
-            }else {
+
+            } else {
                 onRequestFail(requestID, new NullPointerException());
             }
         } catch (Exception e) {
@@ -151,10 +153,10 @@ public abstract class BaseNetWorkingFragment extends BaseFragment implements INe
         }
     }
 
-    public void onHandleSuccess(int requestID,JSONObject jsonObject){
+    public void onHandleSuccess(int requestID, JSONObject jsonObject) {
     }
 
-    public void onHandleSuccess(int requestID,Object obj){
+    public void onHandleSuccess(int requestID, Object obj) {
     }
 
 

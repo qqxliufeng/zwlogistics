@@ -22,7 +22,7 @@
         path="Android/data/" />
     <external-path
         name="files_root"
-        path="Android/data/com.android.ql.lf.carapp/" />
+        path="Android/data/com.android.ql.lf.zwlogistics/" />
     <external-path
         name="external_storage_root"
         path="." />

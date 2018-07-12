@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.android.ql.lf.zwlogistics.R;
 import com.android.ql.lf.zwlogistics.data.BaseNetResult;
 import com.android.ql.lf.zwlogistics.data.lists.ListParseHelper;
+import com.android.ql.lf.zwlogistics.ui.fragment.mine.LoginFragment;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
@@ -76,19 +77,20 @@ public abstract class BaseRecyclerViewFragment<T> extends BaseNetWorkingFragment
         mBaseAdapter.notifyDataSetChanged();
     }
 
-    protected void setEmptyViewStatus() {
+    protected void setEmptyViewNoLoginStatus() {
         onRequestEnd(-1);
         setRefreshEnable(false);
         setEmptyView();
         TextView emptyTextView = getEmptyTextView();
-//        emptyTextView.setBackgroundResource(R.drawable.shape_bt_bg4);
+        emptyTextView.setCompoundDrawablesRelativeWithIntrinsicBounds(null,null,null,null);
+        emptyTextView.setBackgroundResource(R.drawable.shape_bt_bg4);
         emptyTextView.setTextColor(ContextCompat.getColor(mContext, R.color.colorPrimary));
         int paddingLeft = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10.0f, getResources().getDisplayMetrics());
         emptyTextView.setPadding(paddingLeft, paddingLeft / 2, paddingLeft, paddingLeft / 2);
         emptyTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                LoginFragment.Companion.startLogin(mContext);
+                LoginFragment.Companion.startLogin(mContext);
             }
         });
     }

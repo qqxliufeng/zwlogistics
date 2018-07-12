@@ -90,21 +90,27 @@ class MineCarInfoForFailedFragment : BaseNetWorkingFragment() {
 
 
         mLlMineCarFailCarTypeContainer.setOnClickListener {
-            selectCXFragment.myShow(childFragmentManager, "cx_select_dialog") {
-                carTypeBean = it
-                mTvMineCarFailCarType.text = it.name
+            if (!carTypeDataList.isEmpty()) {
+                selectCXFragment.myShow(childFragmentManager, "cx_select_dialog") {
+                    carTypeBean = it
+                    mTvMineCarFailCarType.text = it.name
+                }
             }
         }
         mLlMineCarFailCarLengthContainer.setOnClickListener {
-            selectLengthFragment.myShow(childFragmentManager, "length_select_dialog") {
-                carLengthBean = it
-                mTvMineCarFailCarLength.text = it.name
+            if (!carLengthDataList.isEmpty()) {
+                selectLengthFragment.myShow(childFragmentManager, "length_select_dialog") {
+                    carLengthBean = it
+                    mTvMineCarFailCarLength.text = it.name
+                }
             }
         }
         mLlMineCarFailCarDateContainer.setOnClickListener {
-            selectDateFragment.myShow(childFragmentManager, "date_select_dialog") {
-                carDateBean = it
-                mTvMineCarFailCarDate.text = it?.name
+            if (!carDateDataList.isEmpty()) {
+                selectDateFragment.myShow(childFragmentManager, "date_select_dialog") {
+                    carDateBean = it
+                    mTvMineCarFailCarDate.text = it?.name
+                }
             }
         }
 

@@ -21,6 +21,7 @@
             android:textSize="@dimen/sp_14" />
 
         <com.android.ql.lf.zwlogistics.ui.widgets.DJEditText
+            android:id="@+id/mEtTenderInfoPhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp_10"
@@ -54,14 +55,17 @@
             android:textSize="@dimen/sp_14" />
 
         <com.android.ql.lf.zwlogistics.ui.widgets.DJEditText
+            android:drawableLeft="@drawable/icon_money"
+            android:drawablePadding="5dp"
+            android:id="@+id/mEtTenderInfoPrice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp_10"
             android:background="@null"
-            android:hint="请输入报价"
+            android:hint="请输入报价（单位：元）"
+            android:inputType="numberDecimal"
             android:textColor="@color/deepTextColor"
             android:textColorHint="@color/normalTextColor"
-            android:digits="0123456789."
             android:textSize="@dimen/sp_14" />
 
     </LinearLayout>
@@ -72,6 +76,7 @@
         android:background="@color/lineColor" />
 
     <LinearLayout
+        android:id="@+id/mLlTenderInfoCarType"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_40"
         android:layout_marginTop="10dp"
@@ -86,6 +91,7 @@
             android:textSize="@dimen/sp_14" />
 
         <TextView
+            android:id="@+id/mTvTenderInfoCarType"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/dp_10"
@@ -113,6 +119,7 @@
         android:textSize="@dimen/sp_14" />
 
     <com.android.ql.lf.zwlogistics.ui.widgets.DJEditText
+        android:id="@+id/mEtTenderInfoRemark"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/shape_tv_bg3"

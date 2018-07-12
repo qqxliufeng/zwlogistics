@@ -46,6 +46,7 @@ class MainActivity : BaseActivity() {
                 }
             }
         }
+        mMainContainer.offscreenPageLimit = 3
         mMainContainer.adapter =  MainAdapter(supportFragmentManager)
     }
 

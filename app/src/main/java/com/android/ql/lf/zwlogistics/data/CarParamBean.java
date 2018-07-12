@@ -2,7 +2,7 @@ package com.android.ql.lf.zwlogistics.data;
 
 public class CarParamBean {
 
-    private int type = 0;
+    private int type = 1;
     private boolean isSelect = false;
 
 

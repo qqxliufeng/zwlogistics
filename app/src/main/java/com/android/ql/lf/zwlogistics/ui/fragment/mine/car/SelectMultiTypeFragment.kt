@@ -11,13 +11,10 @@ import android.widget.CheckedTextView
 import android.widget.TextView
 import com.android.ql.lf.zwlogistics.R
 import com.android.ql.lf.zwlogistics.data.CarParamBean
-import com.android.ql.lf.zwlogistics.utils.getScreenSize
 import com.google.android.flexbox.FlexboxLayout
 import org.jetbrains.anko.collections.forEachWithIndex
 
 class SelectMultiTypeFragment : BottomSheetDialogFragment() {
-
-    private var screenHeight = 0
 
 
     private var bottomSheetBehavior: BottomSheetBehavior<View>? = null
@@ -27,22 +24,18 @@ class SelectMultiTypeFragment : BottomSheetDialogFragment() {
     private var carTypeList:ArrayList<CarParamBean>? = null
 
     private val selectLengthList by lazy {
-        arrayListOf<String>()
+        arrayListOf<CarParamBean>()
     }
 
     private val selectCarTypeList by lazy {
-        arrayListOf<String>()
+        arrayListOf<CarParamBean>()
     }
 
 
-    private var listener: ((ArrayList<String>?) -> Unit)? = null
+    private var listener: ((ArrayList<CarParamBean>?,ArrayList<CarParamBean>?) -> Unit)? = null
+
     private var dismissListener: (() -> Unit)? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        screenHeight = context!!.getScreenSize().height
-
-    }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val dialog = super.onCreateDialog(savedInstanceState)
@@ -60,7 +53,6 @@ class SelectMultiTypeFragment : BottomSheetDialogFragment() {
             if (lengthList!![0].isSelect && carTypeList!![0].isSelect){
                 return@setOnClickListener
             }
-
             lengthList?.forEachWithIndex { index, item ->
                 item.isSelect = index == 0
                 (lengthContainer.getChildAt(index) as CheckedTextView).isChecked = item.isSelect
@@ -71,19 +63,29 @@ class SelectMultiTypeFragment : BottomSheetDialogFragment() {
             }
         }
         contentView.findViewById<TextView>(R.id.mTvSelectMultiTypeSubmit).setOnClickListener {
+            selectLengthList.clear()
+            selectCarTypeList.clear()
             val tempLengthList = lengthList!!.filter { it.isSelect }
             if (tempLengthList.size == 1 && tempLengthList[0].type == 0){
-                selectLengthList.add("")
+                selectLengthList.addAll(tempLengthList)
             }else{
                 tempLengthList.forEach {
-                    selectLengthList.add(it.name)
+                    selectLengthList.add(it)
                 }
             }
-            listener?.invoke(selectLengthList)
+            val tempTypeList = carTypeList!!.filter { it.isSelect }
+            if (tempTypeList.size == 1 && tempTypeList[0].type == 0){
+                selectCarTypeList.addAll(tempTypeList)
+            }else{
+                tempTypeList.forEach {
+                    selectCarTypeList.add(it)
+                }
+            }
+            listener?.invoke(selectLengthList,selectCarTypeList)
             dismiss()
         }
 
-        addItem(lengthList!!,lengthContainer,clearView)
+        addItem(lengthList!!,lengthContainer,clearView,"米")
         addItem(carTypeList!!,carTypeContainer,clearView)
 
         View.inflate(context, R.layout.layout_select_car_length_custom_length_layout, lengthContainer)
@@ -93,15 +95,18 @@ class SelectMultiTypeFragment : BottomSheetDialogFragment() {
     }
 
 
-    private fun addItem(items:ArrayList<CarParamBean>,container:FlexboxLayout,clearView:View){
+    private fun addItem(items:ArrayList<CarParamBean>,container:FlexboxLayout,clearView:View,endWith:String = ""){
         items.forEachWithIndex { index, carParamBean ->
             val itemView = View.inflate(context, R.layout.adapter_car_type_item_layout, container) as FlexboxLayout
             val checkedTextView = itemView.getChildAt(index) as CheckedTextView
-            checkedTextView.text = carParamBean.name
+            checkedTextView.text = if(carParamBean.name == "不限车长"){carParamBean.name}else{"${carParamBean.name}$endWith"}
             checkedTextView.isChecked = carParamBean.isSelect
             checkedTextView.setOnClickListener {
                 if (index == 0){ // 不限车长item
-                    clearView.performClick()
+                    items.forEachWithIndex { index, item ->
+                        item.isSelect = index == 0
+                        (container.getChildAt(index) as CheckedTextView).isChecked = item.isSelect
+                    }
                     return@setOnClickListener
                 }
                 items[0].isSelect = false
@@ -116,13 +121,6 @@ class SelectMultiTypeFragment : BottomSheetDialogFragment() {
         }
     }
 
-
-//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        super.onViewCreated(view, savedInstanceState)
-//        mClCarLengthContainer.layoutParams = CoordinatorLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, screenHeight)
-//        bottomSheetBehavior?.peekHeight = screenHeight
-//    }
-
     override fun onStart() {
         super.onStart()
         bottomSheetBehavior?.state = BottomSheetBehavior.STATE_EXPANDED
@@ -131,14 +129,26 @@ class SelectMultiTypeFragment : BottomSheetDialogFragment() {
 
     fun setLengthDataSource(dataSource: ArrayList<CarParamBean>){
         this.lengthList = dataSource
+        val carParamBean = CarParamBean()
+        carParamBean.name = "不限车长"
+        carParamBean.id = "-1"
+        carParamBean.isSelect = true
+        carParamBean.type = 0
+        this.lengthList?.add(0,carParamBean)
     }
 
     fun setCarTypeDataSource(dataSource: ArrayList<CarParamBean>){
         this.carTypeList = dataSource
+        val carParamBean = CarParamBean()
+        carParamBean.name = "不限车型"
+        carParamBean.id = "-1"
+        carParamBean.isSelect = true
+        carParamBean.type = 0
+        this.carTypeList?.add(0,carParamBean)
     }
 
 
-    fun myShow(manager: FragmentManager?, tag: String?, listener: (list: ArrayList<String>?) -> Unit, dismissListener: () -> Unit) {
+    fun myShow(manager: FragmentManager?, tag: String?, listener: (ArrayList<CarParamBean>?,ArrayList<CarParamBean>?) -> Unit, dismissListener: () -> Unit) {
         this.listener = listener
         this.dismissListener = dismissListener
         super.show(manager, tag)
