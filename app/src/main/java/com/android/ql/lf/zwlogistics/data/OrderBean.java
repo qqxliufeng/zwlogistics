@@ -2,6 +2,26 @@ package com.android.ql.lf.zwlogistics.data;
 
 public class OrderBean {
 
+    public enum OrderStatus{
+//        订单状态 1 = 竞标中 2 = 未中标 3 = 中标 4 = 开始 5 = 未开始 6 = 已完成"
+
+        TENDERING(1,"竞标中"),
+        WEI_TENDER(2,"未中标"),
+        TENDERED(3,"中标成功"),
+        TENDER_START(4,"已开始"),
+        TENDER_WEI_START(5,"未开始"),
+        TENDER_COMPLEMENT(6,"已完成");
+
+        public int statusCode = -1;
+        public String statusDes = "";
+
+        OrderStatus(int statusCode,String statusDes){
+            this.statusCode = statusCode;
+            this.statusDes = statusDes;
+        }
+    }
+
+
     private String need_id;
     private String need_zhong;
     private String need_ti;

@@ -12,6 +12,7 @@
         android:background="@drawable/shape_tv_bg4"
         android:hint="请输入其它车长"
         android:inputType="numberDecimal"
+        android:maxLength="4"
         android:padding="@dimen/dp_10"
         android:textSize="@dimen/sp_14"/>
 

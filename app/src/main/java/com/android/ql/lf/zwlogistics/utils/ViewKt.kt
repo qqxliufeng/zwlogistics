@@ -2,8 +2,10 @@ package com.android.ql.lf.carapp.utils
 
 import android.support.design.widget.Snackbar
 import android.support.v4.content.ContextCompat
+import android.text.Editable
 import android.text.Html
 import android.text.TextUtils
+import android.text.TextWatcher
 import android.view.View
 import android.widget.EditText
 import android.widget.TextView
@@ -11,6 +13,7 @@ import com.android.ql.lf.zwlogistics.R
 import com.android.ql.lf.zwlogistics.data.UserInfo
 import com.android.ql.lf.zwlogistics.ui.activity.FragmentContainerActivity
 import com.android.ql.lf.zwlogistics.ui.fragment.mine.LoginFragment
+import java.text.DecimalFormat
 import java.util.regex.Pattern
 
 /**
@@ -65,6 +68,32 @@ fun EditText.setFirstPoint() {
     }
 }
 
+
+fun EditText.setTextChangedListener(afterTextWatcher:(Editable?)->Unit){
+    this.addTextChangedListener(object : TextWatcher {
+        override fun afterTextChanged(s: Editable?) {
+            afterTextWatcher(s)
+        }
+
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+        }
+
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+        }
+    })
+}
+
+
+fun EditText.getFormateFloat():String?{
+    try {
+        if (this.isEmpty()){
+            return null
+        }
+        return java.lang.Float.parseFloat(getTextString()).toString()
+    } catch (e: Exception) {
+        return null
+    }
+}
 
 fun TextView.setDiffColorText(source1: String, source2: String, color1: String = "#c8c9ca", color2: String = "#545557") {
     text = Html.fromHtml(source1.fromHtml(color1) + source2.fromHtml(color2))

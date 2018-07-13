@@ -41,13 +41,13 @@ class IndexFragment : BaseRecyclerViewFragment<OrderBean>() {
 
     private var desAddress: SelectAddressActivity.SelectAddressItemBean? = null
 
-    private var carTypeList:ArrayList<CarParamBean>? = null
+    private var carTypeList: ArrayList<CarParamBean>? = null
 
-    private var lengthList:ArrayList<CarParamBean>? = null
+    private var lengthList: ArrayList<CarParamBean>? = null
 
     private var isLoad = false
 
-    private var currentItem:OrderBean? = null
+    private var currentItem: OrderBean? = null
 
     private val postSelectOrderBean by lazy {
         PostSelectOrderBean()
@@ -79,14 +79,17 @@ class IndexFragment : BaseRecyclerViewFragment<OrderBean>() {
         }
 
         mLlIndexOrderCarTypeContainer.setOnClickListener {
-            if (carTypeList!=null && lengthList!=null) {
+            if (carTypeList != null && lengthList != null) {
                 mCtvIndexOrderCarType.isChecked = true
                 selectMultiTypeFragment.myShow(childFragmentManager, "select_multi_type_dialog", { lengthList, typeList ->
                     mCtvIndexOrderCarType.isChecked = false
-                    if (lengthList!![0].type == 0){
+                    if(lengthList!!.isEmpty()){
+                       return@myShow
+                    }
+                    if (lengthList!![0].type == 0) {
                         postSelectOrderBean.lengthParams = "0"
                         mCtvIndexOrderCarType.text = "不限车长"
-                    }else{
+                    } else {
                         val lengthParams = StringBuilder()
                         lengthList.forEach {
                             lengthParams.append(it.name).append(",")
@@ -95,10 +98,10 @@ class IndexFragment : BaseRecyclerViewFragment<OrderBean>() {
                         mCtvIndexOrderCarType.text = postSelectOrderBean.lengthParams
                     }
 
-                    if (typeList!![0].type == 0){
+                    if (typeList!![0].type == 0) {
                         postSelectOrderBean.carTypeParams = "0"
                         mCtvIndexOrderCarType.text = "${mCtvIndexOrderCarType.text} 不限车型"
-                    }else{
+                    } else {
                         val carTypeParams = StringBuilder()
                         typeList.forEach {
                             carTypeParams.append(it.name).append(",")
@@ -107,7 +110,7 @@ class IndexFragment : BaseRecyclerViewFragment<OrderBean>() {
                         mCtvIndexOrderCarType.text = "${mCtvIndexOrderCarType.text} ${postSelectOrderBean.carTypeParams}"
                     }
 
-                    Log.e("TAG",mCtvIndexOrderCarType.text.toString())
+                    Log.e("TAG", mCtvIndexOrderCarType.text.toString())
 
                     //重新加载数据
                     onPostRefresh()
@@ -120,12 +123,12 @@ class IndexFragment : BaseRecyclerViewFragment<OrderBean>() {
 
     override fun onRefresh() {
         super.onRefresh()
-        mPresent.getDataByPost(0x0, RequestParamsHelper.getIndexListParam(postSelectOrderBean,page = currentPage))
+        mPresent.getDataByPost(0x0, RequestParamsHelper.getIndexListParam(postSelectOrderBean, page = currentPage))
     }
 
     override fun onLoadMore() {
         super.onLoadMore()
-        mPresent.getDataByPost(0x0, RequestParamsHelper.getIndexListParam(postSelectOrderBean,page = currentPage))
+        mPresent.getDataByPost(0x0, RequestParamsHelper.getIndexListParam(postSelectOrderBean, page = currentPage))
     }
 
     override fun <T : Any?> onRequestSuccess(requestID: Int, result: T) {
@@ -145,18 +148,18 @@ class IndexFragment : BaseRecyclerViewFragment<OrderBean>() {
     override fun onHandleSuccess(requestID: Int, jsonObject: JSONObject?) {
         if (jsonObject != null) {
             val modelJSONArray = jsonObject.optJSONArray("model")
-            if (modelJSONArray != null && modelJSONArray.length() > 0){
+            if (modelJSONArray != null && modelJSONArray.length() > 0) {
                 carTypeList = arrayListOf()
                 carTypeList?.addAll(parseJsonArray(modelJSONArray))
-                if (!carTypeList!!.isEmpty()){
+                if (!carTypeList!!.isEmpty()) {
                     selectMultiTypeFragment.setCarTypeDataSource(carTypeList!!)
                 }
             }
             val lengthJSONArray = jsonObject.optJSONArray("length")
-            if (lengthJSONArray != null && lengthJSONArray.length() > 0){
+            if (lengthJSONArray != null && lengthJSONArray.length() > 0) {
                 lengthList = arrayListOf()
                 lengthList?.addAll(parseJsonArray(lengthJSONArray))
-                if (!lengthList!!.isEmpty()){
+                if (!lengthList!!.isEmpty()) {
                     selectMultiTypeFragment.setLengthDataSource(lengthList!!)
                 }
             }
@@ -164,10 +167,10 @@ class IndexFragment : BaseRecyclerViewFragment<OrderBean>() {
         }
     }
 
-    private fun parseJsonArray(jsonArray: JSONArray):ArrayList<CarParamBean>{
+    private fun parseJsonArray(jsonArray: JSONArray): ArrayList<CarParamBean> {
         val tempList = arrayListOf<CarParamBean>()
         (0 until jsonArray.length()).forEach {
-            tempList.add(Gson().fromJson(jsonArray.optJSONObject(it).toString(),CarParamBean::class.java))
+            tempList.add(Gson().fromJson(jsonArray.optJSONObject(it).toString(), CarParamBean::class.java))
         }
         return tempList
     }
@@ -183,9 +186,9 @@ class IndexFragment : BaseRecyclerViewFragment<OrderBean>() {
     override fun onMyItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
         super.onMyItemClick(adapter, view, position)
         currentItem = mArrayList[position]
-        if (UserInfo.getInstance().isLogin){
+        if (UserInfo.getInstance().isLogin) {
             enterInfo(currentItem!!)
-        }else{
+        } else {
             UserInfo.loginToken = INDEX_ITEM_INFO_FLAG
             LoginFragment.startLogin(mContext)
         }
@@ -194,34 +197,36 @@ class IndexFragment : BaseRecyclerViewFragment<OrderBean>() {
 
     override fun onLoginSuccess(userInfo: UserInfo?) {
         super.onLoginSuccess(userInfo)
-        if (UserInfo.loginToken == INDEX_ITEM_INFO_FLAG){
+        if (UserInfo.loginToken == INDEX_ITEM_INFO_FLAG) {
             enterInfo(currentItem!!)
         }
     }
 
 
-    private fun enterInfo(orderBean: OrderBean){
-        FragmentContainerActivity.from(mContext).setTitle("我要竞标").setExtraBundle(bundleOf(Pair("oid",orderBean.need_id))).setClazz(OrderInfoFragment::class.java).setNeedNetWorking(true).start()
+    private fun enterInfo(orderBean: OrderBean) {
+        FragmentContainerActivity.from(mContext).setTitle("我要竞标").setExtraBundle(bundleOf(Pair("oid", orderBean.need_id))).setClazz(OrderInfoFragment::class.java).setNeedNetWorking(true).start()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 1) {
-            mCtvIndexOrderSourceAddress.isChecked = false
-            mCtvIndexOrderDesAddress.isChecked = false
             if (data != null) {
                 val addressBean = data.getParcelableExtra<SelectAddressActivity.SelectAddressItemBean>(SelectAddressActivity.REQUEST_DATA_FALG)
                 if (mCtvIndexOrderSourceAddress.isChecked) {
                     sourceAddress = addressBean
                     mCtvIndexOrderSourceAddress.text = sourceAddress?.name
                     postSelectOrderBean.srcAddress = "${sourceAddress?.id},"
+                    onPostRefresh()
                 }
                 if (mCtvIndexOrderDesAddress.isChecked) {
                     desAddress = addressBean
                     mCtvIndexOrderDesAddress.text = desAddress?.name
                     postSelectOrderBean.desAddress = "${desAddress?.id},"
+                    onPostRefresh()
                 }
             }
+            mCtvIndexOrderSourceAddress.isChecked = false
+            mCtvIndexOrderDesAddress.isChecked = false
         }
     }
 

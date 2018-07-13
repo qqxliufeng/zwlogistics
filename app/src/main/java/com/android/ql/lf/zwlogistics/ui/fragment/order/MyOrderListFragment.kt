@@ -31,26 +31,48 @@ class MyOrderListFragment : AbstractLazyLoadFragment<OrderBean>() {
     }
 
     private val currentStatus by lazy {
-        when(arguments!!.getInt("index")){
-            0->{
+        when (arguments!!.getInt("index")) {
+            0 -> {
                 HAVED_TENDER
             }
-            1->{
+            1 -> {
                 TENDERING
             }
-            2->{
+            2 -> {
                 COMPLEMENT_TENDER
             }
-            else->{
+            else -> {
                 HAVED_TENDER
             }
         }
     }
 
-    override fun createAdapter() = object: OrderItemAdapter(R.layout.adapter_index_order_item_layout, mArrayList){
+    override fun createAdapter() = object : OrderItemAdapter(R.layout.adapter_index_order_item_layout, mArrayList) {
         override fun convert(helper: BaseViewHolder?, item: OrderBean?) {
             super.convert(helper, item)
-            helper!!.setText(R.id.mTvOrderItemStatus,"已开始")
+            helper!!.setText(R.id.mTvOrderItemStatus, when (item!!.need_state) {
+                OrderBean.OrderStatus.TENDERING.statusCode.toString() -> {
+                    "竞标中"
+                }
+                OrderBean.OrderStatus.WEI_TENDER.statusCode.toString() -> {
+                    "未标中"
+                }
+                OrderBean.OrderStatus.TENDERED.statusCode.toString() -> {
+                    "竞标成功"
+                }
+                OrderBean.OrderStatus.TENDER_START.statusCode.toString() -> {
+                    "已开始"
+                }
+                OrderBean.OrderStatus.TENDER_WEI_START.statusCode.toString() -> {
+                    "未开始"
+                }
+                OrderBean.OrderStatus.TENDER_COMPLEMENT.statusCode.toString() -> {
+                    "已完成"
+                }
+                else -> {
+                    ""
+                }
+            })
         }
     }
 
@@ -60,13 +82,12 @@ class MyOrderListFragment : AbstractLazyLoadFragment<OrderBean>() {
         registerLogoutSuccessBus()
     }
 
-
     override fun loadData() {
         if (UserInfo.getInstance().isLogin) {
             isLoad = true
             setRefreshEnable(true)
             mPresent.getDataByPost(0x0, RequestParamsHelper.getMyTenderListParams(currentStatus.toString()))
-        }else{
+        } else {
             setEmptyViewNoLoginStatus()
         }
     }
@@ -79,7 +100,7 @@ class MyOrderListFragment : AbstractLazyLoadFragment<OrderBean>() {
 
     override fun <T : Any?> onRequestSuccess(requestID: Int, result: T) {
         super.onRequestSuccess(requestID, result)
-        processList(result as String,OrderBean::class.java)
+        processList(result as String, OrderBean::class.java)
     }
 
     override fun getItemDecoration(): RecyclerView.ItemDecoration {
@@ -90,7 +111,7 @@ class MyOrderListFragment : AbstractLazyLoadFragment<OrderBean>() {
 
     override fun onMyItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
         super.onMyItemClick(adapter, view, position)
-        MyOrderInfoFragment.startMyOrderInfo(mContext,mArrayList[position].need_id)
+        MyOrderInfoFragment.startMyOrderInfo(mContext, mArrayList[position].need_id)
     }
 
     override fun onLoginSuccess(userInfo: UserInfo?) {
