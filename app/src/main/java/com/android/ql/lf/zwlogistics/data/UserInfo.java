@@ -4,6 +4,7 @@ package com.android.ql.lf.zwlogistics.data;
 import android.content.Context;
 import android.text.TextUtils;
 
+import com.android.ql.lf.zwlogistics.utils.Constants;
 import com.android.ql.lf.zwlogistics.utils.PreferenceUtils;
 
 /**
@@ -17,10 +18,10 @@ public class UserInfo {
 
     public enum UserInfoAuthStatus {
 
-        WEI_SHENG_HE(1,"未审核"),
-        SHENG_HE_ZHONG(2,"审核中"),
-        SHENG_HE_TONG_GUO(3,"审核通过"),
-        SHENG_HE_SHI_BAI(4,"审核失败");
+        WEI_SHENG_HE(1, "未审核"),
+        SHENG_HE_ZHONG(2, "审核中"),
+        SHENG_HE_TONG_GUO(3, "审核通过"),
+        SHENG_HE_SHI_BAI(4, "审核失败");
 
         public int statusCode;
         public String statusDes;
@@ -30,7 +31,6 @@ public class UserInfo {
             this.statusDes = statusDes;
         }
     }
-
 
 
     public static final String USER_ID_FLAG = "user_id";
@@ -43,7 +43,8 @@ public class UserInfo {
         loginToken = "NONE";
     }
 
-    private UserInfo() {}
+    private UserInfo() {
+    }
 
     private static UserInfo instance;
 
@@ -70,6 +71,55 @@ public class UserInfo {
     private String user_is_rank;
     private String user_is_vehicle;
     private String kephone;
+
+    private String sharePic;
+    private String shareTitle;
+    private String shareIntro;
+    private String shareUrl;
+
+    public String getSharePic() {
+        if (TextUtils.isEmpty(sharePic)) {
+            return Constants.BASE_IP;
+        }
+        if (sharePic.startsWith("http://") || sharePic.startsWith("https://")) {
+            return sharePic;
+        }
+        return Constants.BASE_IP + sharePic;
+    }
+
+    public void setSharePic(String sharePic) {
+        this.sharePic = sharePic;
+    }
+
+    public String getShareTitle() {
+        return shareTitle;
+    }
+
+    public void setShareTitle(String shareTitle) {
+        this.shareTitle = shareTitle;
+    }
+
+    public String getShareIntro() {
+        return shareIntro;
+    }
+
+    public void setShareIntro(String shareIntro) {
+        this.shareIntro = shareIntro;
+    }
+
+    public String getShareUrl() {
+        if (TextUtils.isEmpty(shareUrl)) {
+            return Constants.BASE_IP;
+        }
+        if (shareUrl.startsWith("http://") || shareUrl.startsWith("https://")) {
+            return shareUrl;
+        }
+        return Constants.BASE_IP + shareUrl;
+    }
+
+    public void setShareUrl(String shareUrl) {
+        this.shareUrl = shareUrl;
+    }
 
     public String getUser_id() {
         return user_id;

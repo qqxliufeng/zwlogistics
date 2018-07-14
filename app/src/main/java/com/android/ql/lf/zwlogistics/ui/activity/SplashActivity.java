@@ -37,7 +37,7 @@ import pub.devrel.easypermissions.EasyPermissions;
  * @author lf on 18.2.8
  */
 
-public class SplashActivity extends BaseActivity implements EasyPermissions.PermissionCallbacks {
+public class SplashActivity extends BaseActivity implements EasyPermissions.PermissionCallbacks,EasyPermissions.RationaleCallbacks {
 
     /**
      * 权限标识
@@ -135,6 +135,17 @@ public class SplashActivity extends BaseActivity implements EasyPermissions.Perm
             requestPermission();
         }
     }
+
+    @Override
+    public void onRationaleAccepted(int requestCode) {
+
+    }
+
+    @Override
+    public void onRationaleDenied(int requestCode) {
+        finish();
+    }
+
 
     /**
      * 设置好权限回调的方法

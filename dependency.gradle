@@ -26,7 +26,7 @@ def ankoVersion = '0.10.5'
 
 def multidex = "1.0.0"
 
-def permission = "1.0.1"
+def permission = "1.2.0"
 
 def matisse = "0.5.1"
 

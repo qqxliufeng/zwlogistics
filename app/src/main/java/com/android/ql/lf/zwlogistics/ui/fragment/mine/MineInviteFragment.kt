@@ -13,6 +13,7 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import com.android.ql.lf.zwlogistics.data.UserInfo
 import com.android.ql.lf.zwlogistics.utils.Constants
@@ -29,6 +30,7 @@ import com.tencent.tauth.IUiListener
 import com.tencent.tauth.Tencent
 import com.tencent.tauth.UiError
 import org.jetbrains.anko.support.v4.toast
+import java.lang.Exception
 
 
 class MineInviteFragment : BaseNetWorkingFragment(), IUiListener {
@@ -50,12 +52,17 @@ class MineInviteFragment : BaseNetWorkingFragment(), IUiListener {
         content.findViewById<TextView>(R.id.mTvShareWX).setOnClickListener {
             bottomSheetDialog.dismiss()
             Glide.with(this)
-                    .load("https://mmbiz.qlogo.cn/mmbiz_png/5Xoh2ibCr2c1Z4ibGeDh5fJTyhVnW3uVlUriazwsYicyqibdHIeFI1lbelH6jGmPicm0JlVjM2HvcWEQlhFicoA43ibwbw/0?wx_fmt=png")
+                    .load(UserInfo.getInstance().sharePic)
                     .asBitmap()
                     .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .into(object : SimpleTarget<Bitmap>(150,150) {
                         override fun onResourceReady(resource: Bitmap?, glideAnimation: GlideAnimation<in Bitmap>?) {
                             ThirdShareManager.wxShare(iwxapi,resource,SendMessageToWX.Req.WXSceneSession)
+                        }
+
+                        override fun onLoadFailed(e: Exception?, errorDrawable: Drawable?) {
+                            super.onLoadFailed(e, errorDrawable)
+                            toast("分享失败")
                         }
                     })
         }
@@ -63,12 +70,17 @@ class MineInviteFragment : BaseNetWorkingFragment(), IUiListener {
         content.findViewById<TextView>(R.id.mTvShareWXCircle).setOnClickListener {
             bottomSheetDialog.dismiss()
             Glide.with(this)
-                    .load("https://mmbiz.qlogo.cn/mmbiz_png/5Xoh2ibCr2c1Z4ibGeDh5fJTyhVnW3uVlUriazwsYicyqibdHIeFI1lbelH6jGmPicm0JlVjM2HvcWEQlhFicoA43ibwbw/0?wx_fmt=png")
+                    .load(UserInfo.getInstance().sharePic)
                     .asBitmap()
                     .diskCacheStrategy(DiskCacheStrategy.NONE)
                     .into(object : SimpleTarget<Bitmap>(150,150) {
                         override fun onResourceReady(resource: Bitmap?, glideAnimation: GlideAnimation<in Bitmap>?) {
                             ThirdShareManager.wxShare(iwxapi,resource,SendMessageToWX.Req.WXSceneTimeline)
+                        }
+
+                        override fun onLoadFailed(e: Exception?, errorDrawable: Drawable?) {
+                            super.onLoadFailed(e, errorDrawable)
+                            toast("分享失败")
                         }
                     })
         }

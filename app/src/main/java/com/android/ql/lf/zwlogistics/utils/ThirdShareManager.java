@@ -1,13 +1,17 @@
 package com.android.ql.lf.zwlogistics.utils;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.text.TextUtils;
 
+import com.android.ql.lf.zwlogistics.R;
+import com.android.ql.lf.zwlogistics.application.MyApplication;
+import com.android.ql.lf.zwlogistics.data.UserInfo;
 import com.tencent.connect.share.QQShare;
 import com.tencent.connect.share.QzoneShare;
 import com.tencent.mm.opensdk.modelmsg.SendMessageToWX;
-import com.tencent.mm.opensdk.modelmsg.WXImageObject;
 import com.tencent.mm.opensdk.modelmsg.WXMediaMessage;
 import com.tencent.mm.opensdk.modelmsg.WXWebpageObject;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
@@ -17,29 +21,29 @@ import com.tencent.tauth.Tencent;
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
-import okhttp3.internal.Util;
 
 public class ThirdShareManager {
 
     public static void qqShare(Activity context, Tencent mTencent, IUiListener uiListener) {
         final Bundle params = new Bundle();
         params.putInt(QQShare.SHARE_TO_QQ_KEY_TYPE, QQShare.SHARE_TO_QQ_TYPE_DEFAULT);
-        params.putString(QQShare.SHARE_TO_QQ_TITLE, "要分享的标题");
-        params.putString(QQShare.SHARE_TO_QQ_SUMMARY, "要分享的摘要");
-        params.putString(QQShare.SHARE_TO_QQ_TARGET_URL, "http://www.qq.com/news/1.html");
-        params.putString(QQShare.SHARE_TO_QQ_IMAGE_URL, "http://imgcache.qq.com/qzone/space_item/pre/0/66768.gif");
-        params.putString(QQShare.SHARE_TO_QQ_APP_NAME, "测试应用222222");
+        params.putString(QQShare.SHARE_TO_QQ_TITLE, getShareTitle(context));
+
+        params.putString(QQShare.SHARE_TO_QQ_SUMMARY, getShareContent(context));
+        params.putString(QQShare.SHARE_TO_QQ_TARGET_URL, UserInfo.getInstance().getShareUrl());
+        params.putString(QQShare.SHARE_TO_QQ_IMAGE_URL, UserInfo.getInstance().getSharePic());
+        params.putString(QQShare.SHARE_TO_QQ_APP_NAME, context.getPackageName());
         mTencent.shareToQQ(context, params, uiListener);
     }
 
     public static void zoneShare(Activity context, Tencent mTencent, IUiListener uiListener) {
         final Bundle params = new Bundle();
         params.putInt(QzoneShare.SHARE_TO_QZONE_KEY_TYPE, QzoneShare.SHARE_TO_QZONE_TYPE_IMAGE_TEXT);
-        params.putString(QzoneShare.SHARE_TO_QQ_TITLE, "标题");//必填
-        params.putString(QzoneShare.SHARE_TO_QQ_SUMMARY, "摘要");//选填
-        params.putString(QzoneShare.SHARE_TO_QQ_TARGET_URL, "http://www.qq.com/news/1.html");//必填
+        params.putString(QzoneShare.SHARE_TO_QQ_TITLE, getShareTitle(context));//必填
+        params.putString(QzoneShare.SHARE_TO_QQ_SUMMARY, getShareContent(context));//选填
+        params.putString(QzoneShare.SHARE_TO_QQ_TARGET_URL, UserInfo.getInstance().getShareUrl());//必填
         ArrayList<String> images = new ArrayList<String>();
-        images.add("http://imgcache.qq.com/qzone/space_item/pre/0/66768.gif");
+        images.add(UserInfo.getInstance().getSharePic());
         params.putStringArrayList(QzoneShare.SHARE_TO_QQ_IMAGE_URL, images);
         mTencent.shareToQzone(context, params, uiListener);
     }
@@ -47,10 +51,10 @@ public class ThirdShareManager {
 
     public static void wxShare(IWXAPI api, Bitmap bitmap, int type) {
         WXWebpageObject wxWebpageObject = new WXWebpageObject();
-        wxWebpageObject.webpageUrl = "http://www.baidu.com";
+        wxWebpageObject.webpageUrl = UserInfo.getInstance().getShareUrl();
         WXMediaMessage wxMediaMessage = new WXMediaMessage(wxWebpageObject);
-        wxMediaMessage.description = "this is description";
-        wxMediaMessage.title = "this is title";
+        wxMediaMessage.description = getShareContent(MyApplication.getInstance());
+        wxMediaMessage.title = getShareContent(MyApplication.getInstance());
         wxMediaMessage.thumbData = bmpToByteArray(Bitmap.createScaledBitmap(bitmap, 150, 150, true), true);
         SendMessageToWX.Req req = new SendMessageToWX.Req();
         req.message = wxMediaMessage;
@@ -74,4 +78,22 @@ public class ThirdShareManager {
 
         return result;
     }
+
+
+    public static String getShareTitle(Context context){
+        String shareTitle = context.getResources().getString(R.string.app_name);
+        if (!TextUtils.isEmpty(UserInfo.getInstance().getShareTitle())){
+            shareTitle = UserInfo.getInstance().getShareTitle();
+        }
+        return shareTitle;
+    }
+
+    public static String getShareContent(Context context){
+        String shareContent = context.getResources().getString(R.string.app_name);
+        if (!TextUtils.isEmpty(UserInfo.getInstance().getShareIntro())){
+            shareContent = UserInfo.getInstance().getShareIntro();
+        }
+        return shareContent;
+    }
+
 }
