@@ -130,7 +130,7 @@ class MineInviteFragment : BaseNetWorkingFragment(), IUiListener {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        mIvInviteCode.postDelayed({ mIvInviteCode.setImageBitmap(QRCodeUtil.createQRCodeBitmap(UserInfo.getInstance().user_code, 500, 500)) },100)
+        mIvInviteCode.postDelayed({ mIvInviteCode.setImageBitmap(QRCodeUtil.createQRCodeBitmap(UserInfo.getInstance().shareUrl, 500, 500)) },100)
     }
 
 

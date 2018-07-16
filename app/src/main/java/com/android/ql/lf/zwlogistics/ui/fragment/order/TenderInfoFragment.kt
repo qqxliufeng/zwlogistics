@@ -118,7 +118,7 @@ class TenderInfoFragment : BaseNetWorkingFragment() {
             toast("恭喜，竞标成功~")
             FragmentContainerActivity
                     .from(mContext)
-                    .setExtraBundle(bundleOf(Pair("oid",obj as String)))
+                    .setExtraBundle(bundleOf(Pair("oid",arguments!!.getString("pid"))))
                     .setClazz(TenderSuccessFragment::class.java)
                     .setTitle("竞标成功")
                     .start()

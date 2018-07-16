@@ -29,12 +29,12 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-        if (!this.checkGpsIsOpen()) {
-            //开启定位服务
-            alert(null, "开启定位功能，否则部分功能将不能使用", "开启", "取消", { _, _ ->
-                this.openGpsPage()
-            }, null)
-        }
+//        if (!this.checkGpsIsOpen()) {
+//            //开启定位服务
+//            alert(null, "请开启定位功能，否则部分功能将不能使用", "开启", "取消", { _, _ ->
+//                this.openGpsPage()
+//            }, null)
+//        }
     }
 
     private var exitTime: Long = 0L

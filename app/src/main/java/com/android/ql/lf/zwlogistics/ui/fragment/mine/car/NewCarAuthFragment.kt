@@ -6,6 +6,9 @@ import android.content.Intent
 import android.text.Editable
 import android.text.Html
 import android.text.TextWatcher
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import com.android.ql.lf.carapp.data.ImageBean
@@ -16,11 +19,13 @@ import com.android.ql.lf.zwlogistics.data.PostCarAuthBean
 import com.android.ql.lf.zwlogistics.data.UserInfo
 import com.android.ql.lf.zwlogistics.present.AuthManager
 import com.android.ql.lf.zwlogistics.ui.activity.FragmentContainerActivity
+import com.android.ql.lf.zwlogistics.ui.activity.MainActivity
 import com.android.ql.lf.zwlogistics.ui.fragment.base.BaseNetWorkingFragment
 import com.android.ql.lf.zwlogistics.ui.fragment.mine.driver.MinePersonAuthFragment
 import com.android.ql.lf.zwlogistics.ui.fragment.other.DetailContentFragment
 import com.android.ql.lf.zwlogistics.utils.RequestParamsHelper
 import com.android.ql.lf.zwlogistics.utils.RxBus
+import com.android.ql.lf.zwlogistics.utils.showInfoDialog
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.zhihu.matisse.MimeType
@@ -30,7 +35,7 @@ import org.jetbrains.anko.bundleOf
 import org.jetbrains.anko.support.v4.toast
 import org.json.JSONObject
 
-class NewCarAuthFragment : BaseNetWorkingFragment() {
+class NewCarAuthFragment : BaseNetWorkingFragment(),FragmentContainerActivity.OnBackPressListener {
 
     companion object {
 
@@ -92,6 +97,10 @@ class NewCarAuthFragment : BaseNetWorkingFragment() {
         SelectDateFragment()
     }
 
+    override fun onAttach(context: Context?) {
+        super.onAttach(context)
+        setHasOptionsMenu(true)
+    }
 
     override fun getLayoutId() = R.layout.fragment_new_car_auth_layout
 
@@ -194,7 +203,7 @@ class NewCarAuthFragment : BaseNetWorkingFragment() {
         mTvAddNewCarProtocol.setOnClickListener {
             FragmentContainerActivity
                     .from(mContext)
-                    .setTitle("用户服务协议")
+                    .setTitle(mTvAddNewCarProtocol.text.toString())
                     .setClazz(DetailContentFragment::class.java)
                     .setExtraBundle(bundleOf(Pair(DetailContentFragment.PARAM_FLAG, RequestParamsHelper.getUserProtocolParam("1"))))
                     .start()
@@ -203,6 +212,7 @@ class NewCarAuthFragment : BaseNetWorkingFragment() {
         mTvAddNewCarXSZTitle.text = Html.fromHtml("上传车辆行驶证<font color='#c8c9ca'>（请勿遮挡证件）</font>")
         mTvAddNewCarYXZTitle.text = Html.fromHtml("上传车辆营运证照片<font color='#c8c9ca'>（请勿遮挡证件）</font>")
         mTvAddNewCarCPHTitle.text = Html.fromHtml("上传车牌号照片<font color='#c8c9ca'>（请勿遮挡车牌号）</font>")
+        (mContext as FragmentContainerActivity).setOnBackPressListener(this)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -281,5 +291,33 @@ class NewCarAuthFragment : BaseNetWorkingFragment() {
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
+        if (isShowJump) {
+            inflater!!.inflate(R.menu.auth_person, menu)
+        } else {
+            super.onCreateOptionsMenu(menu, inflater)
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        if (item!!.itemId == R.id.mMenuJump) {
+            showInfoDialog("车辆认证通过才能参与竞标，建议继续完善资料~", "放弃", "继续完善", {
+                startActivity(Intent(mContext, MainActivity::class.java))
+                finish()
+            }, null)
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    override fun onBackPress(): Boolean {
+        return if (isShowJump) {
+            showInfoDialog("车辆认证通过才能参与竞标，建议继续完善资料~", "放弃", "继续完善", {
+                finish()
+            }, null)
+            true
+        }else{
+            false
+        }
+    }
 
 }

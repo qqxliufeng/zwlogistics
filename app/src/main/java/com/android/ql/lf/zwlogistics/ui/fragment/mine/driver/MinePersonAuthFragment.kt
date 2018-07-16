@@ -13,16 +13,12 @@ import com.android.ql.lf.zwlogistics.ui.activity.FragmentContainerActivity
 import com.android.ql.lf.zwlogistics.ui.activity.MainActivity
 import com.android.ql.lf.zwlogistics.ui.fragment.base.BaseNetWorkingFragment
 import com.android.ql.lf.zwlogistics.ui.fragment.mine.car.NewCarAuthFragment
-import com.android.ql.lf.zwlogistics.utils.ImageUploadHelper
-import com.android.ql.lf.zwlogistics.utils.RequestParamsHelper
 import com.android.ql.lf.zwlogistics.utils.showInfoDialog
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.CenterCrop
-import com.zhihu.matisse.Matisse
 import com.zhihu.matisse.MimeType
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation
 import kotlinx.android.synthetic.main.fragment_mine_person_auth_layout.*
-import okhttp3.MultipartBody
 import org.jetbrains.anko.bundleOf
 import org.jetbrains.anko.support.v4.toast
 
