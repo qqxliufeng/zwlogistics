@@ -18,7 +18,7 @@ class RequestParamsHelper {
             return params
         }
 
-        private fun getBaseParams(mod:String,act:String): ApiParams {
+        private fun getBaseParams(mod: String, act: String): ApiParams {
             val params = ApiParams()
             params.addParam(ApiParams.MOD_NAME, mod).addParam(ApiParams.ACT_NAME, act)
             params.addParam("pt", "android")
@@ -48,14 +48,10 @@ class RequestParamsHelper {
         val ACT_PHONE = "phone"
 
         fun getPhoneParam(phone: String) = getBaseParams(SYSTEM_MODEL, ACT_PHONE)
-                .addParam("phone",phone)
-
+                .addParam("phone", phone)
 
 
         /**              system model  end           **/
-
-
-
 
 
         /**              login model  start           **/
@@ -65,9 +61,9 @@ class RequestParamsHelper {
         val ACT_FORGETPW = "loginUp"
         val ACT_BIND_PHONE = "loginUpDo"
 
-        fun getRegisterParams(phone: String = "", pass: String = "",code: String = ""): ApiParams {
+        fun getRegisterParams(phone: String = "", pass: String = "", code: String = ""): ApiParams {
             val params = getBaseParams().addParam(ApiParams.MOD_NAME, LOGIN_MODEL).addParam(ApiParams.ACT_NAME, ACT_REGISTER)
-            params.addParam("phone", phone).addParam("pass", pass).addParam("code",code)
+            params.addParam("phone", phone).addParam("pass", pass).addParam("code", code)
             return params
         }
 
@@ -77,17 +73,17 @@ class RequestParamsHelper {
             return params
         }
 
-        fun getBindPhoneParams(uid: String,phone:String) = getBaseParams().addParam("uid",uid)
+        fun getBindPhoneParams(uid: String, phone: String) = getBaseParams().addParam("uid", uid)
                 .addParam(ApiParams.MOD_NAME, LOGIN_MODEL).addParam(ApiParams.ACT_NAME, ACT_BIND_PHONE)
-                .addParam("phone",phone)
+                .addParam("phone", phone)
 
 
-        fun getUserProtocolParam(type: String = "1") = getWithIdParams().addParam(ApiParams.MOD_NAME,LOGIN_MODEL).addParam(ApiParams.ACT_NAME,"deal").addParam("type",type)
+        fun getUserProtocolParam(type: String = "1") = getWithIdParams().addParam(ApiParams.MOD_NAME, LOGIN_MODEL).addParam(ApiParams.ACT_NAME, "deal").addParam("type", type)
 
 
-        fun getForgetPWParams(phone: String = "", pass: String = "",repass:String = ""): ApiParams {
-            val params = getBaseParams().addParam(ApiParams.MOD_NAME, LOGIN_MODEL).addParam(ApiParams.ACT_NAME,ACT_FORGETPW)
-            params.addParam("phone", phone).addParam("pass", pass).addParam("repass",repass)
+        fun getForgetPWParams(phone: String = "", pass: String = "", repass: String = ""): ApiParams {
+            val params = getBaseParams().addParam(ApiParams.MOD_NAME, LOGIN_MODEL).addParam(ApiParams.ACT_NAME, ACT_FORGETPW)
+            params.addParam("phone", phone).addParam("pass", pass).addParam("repass", repass)
             return params
         }
 
@@ -95,6 +91,10 @@ class RequestParamsHelper {
         val ACT_QQLOGIN = "loginQq"
         fun getQQloginParam(phone: String, openid: String, accessToken: String) =
                 getBaseParams().addParam("phone", phone).addParam("openid", openid).addParam("access_token", accessToken)
+
+        val ACT_WX_LOGIN = "loginVx"
+
+        fun getWxLoginParam(code: String) = getBaseParams().addParam(ApiParams.MOD_NAME, LOGIN_MODEL).addParam(ApiParams.ACT_NAME, ACT_WX_LOGIN).addParam("code", code)
 
         val ACT_WX_PERFECT = "wx_perfect"
         fun getWXCompleteDataParam(phone: String, headimgurl: String, openid: String, nickname: String): ApiParams {
@@ -121,20 +121,20 @@ class RequestParamsHelper {
         val ACT_RANKDO = "rankDo"
 
 
-        fun getUpdateNickNameParams(nickname:String) = getWithIdParams().addParam(ApiParams.MOD_NAME, USER_MODEL)
-                .addParam(ApiParams.ACT_NAME, ACT_UPDATE_NICK_NAME).addParam("nickname",nickname)
+        fun getUpdateNickNameParams(nickname: String) = getWithIdParams().addParam(ApiParams.MOD_NAME, USER_MODEL)
+                .addParam(ApiParams.ACT_NAME, ACT_UPDATE_NICK_NAME).addParam("nickname", nickname)
 
-        fun getResetPasswordParam(ypass:String,xpass:String,rpass:String) = getWithIdParams().addParam(ApiParams.MOD_NAME, USER_MODEL)
-        .addParam(ApiParams.ACT_NAME, ACT_UPDATE_PASSWORD).addParam("ypass",ypass).addParam("xpass",xpass).addParam("rpass",rpass)
+        fun getResetPasswordParam(ypass: String, xpass: String, rpass: String) = getWithIdParams().addParam(ApiParams.MOD_NAME, USER_MODEL)
+                .addParam(ApiParams.ACT_NAME, ACT_UPDATE_PASSWORD).addParam("ypass", ypass).addParam("xpass", xpass).addParam("rpass", rpass)
 
 
         fun getDriverAuthParams() = getWithIdParams()
-                        .addParam(ApiParams.MOD_NAME, USER_MODEL)
-                        .addParam(ApiParams.ACT_NAME, ACT_RANKDO)
+                .addParam(ApiParams.MOD_NAME, USER_MODEL)
+                .addParam(ApiParams.ACT_NAME, ACT_RANKDO)
 
 
         val ACT_PERSONAL = "info"
-        fun getPersonalParam(uid: String) = getBaseParams().addParam(ApiParams.MOD_NAME, USER_MODEL).addParam(ApiParams.ACT_NAME,ACT_PERSONAL).addParam("uid", uid)
+        fun getPersonalParam(uid: String) = getBaseParams().addParam(ApiParams.MOD_NAME, USER_MODEL).addParam(ApiParams.ACT_NAME, ACT_PERSONAL).addParam("uid", uid)
 
 
         val ACT_RANK_INFO = "rankinfo"
@@ -143,23 +143,23 @@ class RequestParamsHelper {
 
 
         val ACT_CAR_LIST = "vehicleList"
-        fun getCarListParam() = getWithIdParams().addParam(ApiParams.MOD_NAME, USER_MODEL).addParam(ApiParams.ACT_NAME,ACT_CAR_LIST)
+        fun getCarListParam() = getWithIdParams().addParam(ApiParams.MOD_NAME, USER_MODEL).addParam(ApiParams.ACT_NAME, ACT_CAR_LIST)
 
         val ACT_CAR_UPDATE = "vehicleUp"
 
 
-        fun getCarParamsParams(id:String = "") = getWithIdParams().addParam(ApiParams.MOD_NAME, USER_MODEL).addParam(ApiParams.ACT_NAME, ACT_CAR_UPDATE).addParam("id",id)
+        fun getCarParamsParams(id: String = "") = getWithIdParams().addParam(ApiParams.MOD_NAME, USER_MODEL).addParam(ApiParams.ACT_NAME, ACT_CAR_UPDATE).addParam("id", id)
 
         val ACT_CAR_VEHICLEDO = "vehicleDo"
 
         val ACT_CAR_VEHICLEDEL = "vehicledel"
 
-        fun getCarDeleteParam(id: String= "") = getWithIdParams().addParam(ApiParams.MOD_NAME, USER_MODEL).addParam(ApiParams.ACT_NAME, ACT_CAR_VEHICLEDEL).addParam("id",id)
+        fun getCarDeleteParam(id: String = "") = getWithIdParams().addParam(ApiParams.MOD_NAME, USER_MODEL).addParam(ApiParams.ACT_NAME, ACT_CAR_VEHICLEDEL).addParam("id", id)
 
 
         val ACT_CAR_VEHICLEINFO = "vehicleinfo"
 
-        fun getCarInfoParam(id: String) = getWithIdParams().addParam(ApiParams.MOD_NAME, USER_MODEL).addParam(ApiParams.ACT_NAME,ACT_CAR_VEHICLEINFO).addParam("id",id)
+        fun getCarInfoParam(id: String) = getWithIdParams().addParam(ApiParams.MOD_NAME, USER_MODEL).addParam(ApiParams.ACT_NAME, ACT_CAR_VEHICLEINFO).addParam("id", id)
 
         /**              member model  end           **/
 
@@ -170,32 +170,32 @@ class RequestParamsHelper {
 
         val ACT_INDEX_LIST = "list"
 
-        fun getIndexListParam(postSelectOrderBean: PostSelectOrderBean,page: Int) =
+        fun getIndexListParam(postSelectOrderBean: PostSelectOrderBean, page: Int) =
                 getWithPageParams(page)
                         .addParam(ApiParams.MOD_NAME, INDEX_MODEL)
                         .addParam(ApiParams.ACT_NAME, ACT_INDEX_LIST)
-                        .addParam("need_f_site",postSelectOrderBean.srcAddress)
-                        .addParam("need_m_site",postSelectOrderBean.desAddress)
-                        .addParam("need_length_top",postSelectOrderBean.lengthParams)
-                        .addParam("need_model",postSelectOrderBean.carTypeParams)
+                        .addParam("need_f_site", postSelectOrderBean.srcAddress)
+                        .addParam("need_m_site", postSelectOrderBean.desAddress)
+                        .addParam("need_length_top", postSelectOrderBean.lengthParams)
+                        .addParam("need_model", postSelectOrderBean.carTypeParams)
 
         val ACT_INDEX_INFO = "info"
 
-        fun getOrderInfoParam(id:String) = getWithIdParams().addParam(ApiParams.MOD_NAME, INDEX_MODEL).addParam(ApiParams.ACT_NAME,ACT_INDEX_INFO).addParam("id",id)
+        fun getOrderInfoParam(id: String) = getWithIdParams().addParam(ApiParams.MOD_NAME, INDEX_MODEL).addParam(ApiParams.ACT_NAME, ACT_INDEX_INFO).addParam("id", id)
 
         val ACT_ORDER = "order"
 
-        fun getTenderInfoParams(pid:String,phone:String,sum:String,model:String,content:String = "") = getWithIdParams()
+        fun getTenderInfoParams(pid: String, phone: String, sum: String, model: String, content: String = "") = getWithIdParams()
                 .addParam(ApiParams.MOD_NAME, INDEX_MODEL)
-                .addParam(ApiParams.ACT_NAME,ACT_ORDER)
-                .addParam("pid",pid)
-                .addParam("phone",phone)
-                .addParam("sum",sum)
-                .addParam("model",model)
-                .addParam("content",content)
+                .addParam(ApiParams.ACT_NAME, ACT_ORDER)
+                .addParam("pid", pid)
+                .addParam("phone", phone)
+                .addParam("sum", sum)
+                .addParam("model", model)
+                .addParam("content", content)
 
         val ACT_USER_TENDER_LIST = "userlists"
-        fun getMyTenderListParams(status: String) = getWithIdParams().addParam(ApiParams.MOD_NAME, INDEX_MODEL).addParam(ApiParams.ACT_NAME,ACT_USER_TENDER_LIST).addParam("need_state",status)
+        fun getMyTenderListParams(status: String) = getWithIdParams().addParam(ApiParams.MOD_NAME, INDEX_MODEL).addParam(ApiParams.ACT_NAME, ACT_USER_TENDER_LIST).addParam("need_state", status)
 
 
         /**              index model  end           **/

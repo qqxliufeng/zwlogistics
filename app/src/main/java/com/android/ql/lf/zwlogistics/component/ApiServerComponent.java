@@ -1,7 +1,7 @@
 package com.android.ql.lf.zwlogistics.component;
 
 
-import com.android.ql.lf.zwlogistics.LocationService;
+import com.android.ql.lf.zwlogistics.service.LocationService;
 import com.android.ql.lf.zwlogistics.ui.activity.FragmentContainerActivity;
 import com.android.ql.lf.zwlogistics.ui.activity.SelectAddressActivity;
 import com.android.ql.lf.zwlogistics.ui.activity.SplashActivity;

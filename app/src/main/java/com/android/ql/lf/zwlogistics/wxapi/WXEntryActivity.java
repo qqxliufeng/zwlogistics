@@ -3,6 +3,7 @@ package com.android.ql.lf.zwlogistics.wxapi;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.android.ql.lf.zwlogistics.utils.Constants;

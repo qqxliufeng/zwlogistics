@@ -9,6 +9,7 @@ import com.android.ql.lf.carapp.utils.getTextString
 import com.android.ql.lf.carapp.utils.isEmpty
 import com.android.ql.lf.carapp.utils.isPhone
 import com.android.ql.lf.zwlogistics.R
+import com.android.ql.lf.zwlogistics.component.ApiParams
 import com.android.ql.lf.zwlogistics.data.BaseNetResult
 import com.android.ql.lf.zwlogistics.data.UserInfo
 import com.android.ql.lf.zwlogistics.present.UserPresent
@@ -18,7 +19,13 @@ import com.android.ql.lf.zwlogistics.ui.fragment.mine.car.MineAuthSuccessFragmen
 import com.android.ql.lf.zwlogistics.ui.fragment.mine.driver.MinePersonAuthFragment
 import com.android.ql.lf.zwlogistics.utils.Constants
 import com.android.ql.lf.zwlogistics.utils.RequestParamsHelper
+import com.android.ql.lf.zwlogistics.utils.RxBus
 import com.android.ql.lf.zwlogistics.utils.ThirdLoginManager
+import com.google.gson.Gson
+import com.tencent.mm.opensdk.modelbase.BaseResp
+import com.tencent.mm.opensdk.modelmsg.SendAuth
+import com.tencent.mm.opensdk.openapi.IWXAPI
+import com.tencent.mm.opensdk.openapi.WXAPIFactory
 import com.tencent.tauth.IUiListener
 import com.tencent.tauth.Tencent
 import com.tencent.tauth.UiError
@@ -37,16 +44,26 @@ class LoginFragment : BaseNetWorkingFragment(), IUiListener {
     }
 
     private lateinit var qqLoginInfo: ThirdLoginManager.QQLoginInfoBean
+    private lateinit var wxLoginInfo: ThirdLoginManager.WXUserInfo
+
 
     private val userPresent: UserPresent by lazy {
         UserPresent()
     }
 
+    private val wxLoginSubscription by lazy {
+        RxBus.getDefault().toObservable(BaseResp::class.java).subscribe {
+            if (it is SendAuth.Resp) {
+                mPresent.getDataByPost(0x2, RequestParamsHelper.getWxLoginParam(it.code))
+            }
+        }
+    }
 
     override fun getLayoutId() = R.layout.fragment_login_layout
 
     override fun initView(view: View?) {
         registerLoginSuccessBus()
+        wxLoginSubscription
         (mContext as FragmentContainerActivity).setToolBarBackgroundColor(Color.WHITE)
         (mContext as FragmentContainerActivity).setStatusBarLightColor(false)
         val toolbar = (mContext as FragmentContainerActivity).toolbar
@@ -60,6 +77,9 @@ class LoginFragment : BaseNetWorkingFragment(), IUiListener {
         }
         mFlLoginQQContainer.setOnClickListener {
             ThirdLoginManager.qqLogin(Tencent.createInstance(Constants.TENCENT_ID, mContext.applicationContext), this@LoginFragment, this@LoginFragment)
+        }
+        mFlLoginWxContainer.setOnClickListener {
+            ThirdLoginManager.wxLogin(WXAPIFactory.createWXAPI(mContext,Constants.WX_APP_ID,true))
         }
         mEtLoginUserName.setText("15910101117")
         mEtLoginUserPassword.setText("123456")
@@ -77,9 +97,6 @@ class LoginFragment : BaseNetWorkingFragment(), IUiListener {
                 return@setOnClickListener
             }
             mPresent.getDataByPost(0x0, RequestParamsHelper.getLoginParams(mEtLoginUserName.getTextString(), mEtLoginUserPassword.getTextString()))
-        }
-        mFlLoginWxContainer.setOnClickListener {
-            FragmentContainerActivity.from(mContext).setNeedNetWorking(true).setTitle("手机号绑定").setClazz(BindPhoneFragment::class.java).start()
         }
     }
 
@@ -119,6 +136,25 @@ class LoginFragment : BaseNetWorkingFragment(), IUiListener {
                                     .setNeedNetWorking(true)
                                     .setTitle("绑定手机号")
                                     .setExtraBundle(bundleOf(Pair("info", (check.obj as JSONObject).optJSONObject("data").optString("user_id"))))
+                                    .setClazz(BindPhoneFragment::class.java)
+                                    .start()
+                        }
+                    }
+                }
+            }
+            0x2->{
+                val check = checkResultCode(result)
+                if (check!=null){
+                    when(check.code){
+                        SUCCESS_CODE->{
+                            onLogin(check)
+                        }
+                        "202"->{
+                            wxLoginInfo = Gson().fromJson((check.obj as JSONObject).optJSONObject("result").toString(), ThirdLoginManager.WXUserInfo::class.java)
+                            FragmentContainerActivity.from(mContext)
+                                    .setNeedNetWorking(true)
+                                    .setTitle("完善资料")
+                                    .setExtraBundle(bundleOf(Pair("info", wxLoginInfo)))
                                     .setClazz(BindPhoneFragment::class.java)
                                     .start()
                         }
@@ -181,6 +217,12 @@ class LoginFragment : BaseNetWorkingFragment(), IUiListener {
     override fun onLoginSuccess(userInfo: UserInfo?) {
         super.onLoginSuccess(userInfo)
         finish()
+    }
+
+
+    override fun onDestroyView() {
+        unsubscribe(wxLoginSubscription)
+        super.onDestroyView()
     }
 
 }

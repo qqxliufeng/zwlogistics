@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentStatePagerAdapter
 import android.view.WindowManager
 import com.android.ql.lf.zwlogistics.R
 import com.android.ql.lf.zwlogistics.data.UserInfo
+import com.android.ql.lf.zwlogistics.service.LocationService
 import com.android.ql.lf.zwlogistics.ui.fragment.bottom.IndexFragment
 import com.android.ql.lf.zwlogistics.ui.fragment.bottom.MineFragment
 import com.android.ql.lf.zwlogistics.ui.fragment.bottom.OrderFragment
@@ -29,12 +30,7 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-//        if (!this.checkGpsIsOpen()) {
-//            //开启定位服务
-//            alert(null, "请开启定位功能，否则部分功能将不能使用", "开启", "取消", { _, _ ->
-//                this.openGpsPage()
-//            }, null)
-//        }
+        startService(Intent(this.applicationContext, LocationService::class.java))
     }
 
     private var exitTime: Long = 0L

@@ -10,6 +10,20 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.CAMERA"/>
 
+    <!--用于获取运营商信息，用于支持提供运营商信息相关的接口-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <!--用于访问wifi网络信息，wifi信息会用于进行网络定位-->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <!--用于获取wifi的获取权限，wifi信息会用来进行网络定位-->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <!--用于读取手机当前的状态-->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <!--用于申请调用A-GPS模块-->
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"/>
+    <!--用于申请获取蓝牙信息进行室内定位-->
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+
 
     <application
         android:allowBackup="true"
@@ -20,6 +34,10 @@
         android:theme="@style/AppTheme"
         android:name=".application.MyApplication"
         tools:ignore="GoogleAppIndexingWarning">
+
+        <meta-data
+            android:name="com.amap.api.v2.apikey"
+            android:value="726819637632799737f7c5f79c577c5b"/>
 
         <activity android:name=".ui.activity.SplashActivity"
             android:theme="@style/splashTheme">
@@ -57,7 +75,7 @@
                 android:resource="@xml/file_paths_public" />
         </provider>
 
-        <service android:name=".LocationService"/>
+        <service android:name=".service.LocationService"/>
 
 
 
@@ -88,6 +106,9 @@
             android:exported="true"
             android:launchMode="singleTop"
             android:theme="@android:style/Theme.NoDisplay" />
+
+        <!--                                   高德定位                                 -->
+        <service android:name="com.amap.api.location.APSService"/>
 
 
     </application>
