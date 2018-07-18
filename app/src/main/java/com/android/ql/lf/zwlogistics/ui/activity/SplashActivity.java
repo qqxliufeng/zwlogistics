@@ -193,11 +193,6 @@ public class SplashActivity extends BaseActivity implements EasyPermissions.Perm
      * 所有有权限都已经请求到了，直接进入到主页面
      */
     private void isLogin() {
-//        if(ContextKtKt.checkGpsIsOpen(this)){
-//            startMain();
-//        }else {
-//            startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
-//        }
         if (UserInfo.isCacheUserId(this)) {
             mPresent.getDataByPost(0x0,RequestParamsHelper.Companion.getPersonalParam(UserInfo.getUserIdFromCache(this)));
         } else {

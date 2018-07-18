@@ -3,43 +3,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.android.ql.lf.zwlogistics">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <!--用于获取运营商信息，用于支持提供运营商信息相关的接口-->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <!--用于访问wifi网络信息，wifi信息会用于进行网络定位-->
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <!--用于获取wifi的获取权限，wifi信息会用来进行网络定位-->
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <!--用于读取手机当前的状态-->
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <!--用于申请调用A-GPS模块-->
-    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"/>
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
     <!--用于申请获取蓝牙信息进行室内定位-->
-    <uses-permission android:name="android.permission.BLUETOOTH"/>
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
 
     <application
+        android:name=".application.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:name=".application.MyApplication"
         tools:ignore="GoogleAppIndexingWarning">
 
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="726819637632799737f7c5f79c577c5b"/>
+            android:value="726819637632799737f7c5f79c577c5b" />
 
-        <activity android:name=".ui.activity.SplashActivity"
+        <activity
+            android:name=".ui.activity.SplashActivity"
             android:theme="@style/splashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -48,18 +49,21 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.activity.MainActivity"
+        <activity
+            android:name=".ui.activity.MainActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait">
 
         </activity>
 
-        <activity android:name=".ui.activity.FragmentContainerActivity"
+        <activity
+            android:name=".ui.activity.FragmentContainerActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustPan"/>
+            android:windowSoftInputMode="adjustPan" />
 
-        <activity android:name=".ui.activity.SelectAddressActivity"
-            android:theme="@style/select_address"/>
+        <activity
+            android:name=".ui.activity.SelectAddressActivity"
+            android:theme="@style/select_address" />
 
         <activity
             android:name="com.soundcloud.android.crop.CropImageActivity"
@@ -75,9 +79,7 @@
                 android:resource="@xml/file_paths_public" />
         </provider>
 
-        <service android:name=".service.LocationService"/>
-
-
+        <service android:name=".service.LocationService" />
 
 
         <!--                                   腾讯登录                                     -->
@@ -108,7 +110,19 @@
             android:theme="@android:style/Theme.NoDisplay" />
 
         <!--                                   高德定位                                 -->
-        <service android:name="com.amap.api.location.APSService"/>
+        <service android:name="com.amap.api.location.APSService" />
+
+        <!--                                   JPush                                  -->
+        <receiver android:name=".receiver.MyJPushMessageReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <!--Required 用户接收SDK消息的intent-->
+                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" />
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" />
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" />
+                <category android:name="com.android.ql.lf.zwlogistics" />
+            </intent-filter>
+        </receiver>
 
 
     </application>

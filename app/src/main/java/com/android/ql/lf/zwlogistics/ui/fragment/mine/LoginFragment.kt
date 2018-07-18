@@ -9,22 +9,18 @@ import com.android.ql.lf.carapp.utils.getTextString
 import com.android.ql.lf.carapp.utils.isEmpty
 import com.android.ql.lf.carapp.utils.isPhone
 import com.android.ql.lf.zwlogistics.R
-import com.android.ql.lf.zwlogistics.component.ApiParams
 import com.android.ql.lf.zwlogistics.data.BaseNetResult
 import com.android.ql.lf.zwlogistics.data.UserInfo
 import com.android.ql.lf.zwlogistics.present.UserPresent
 import com.android.ql.lf.zwlogistics.ui.activity.FragmentContainerActivity
 import com.android.ql.lf.zwlogistics.ui.fragment.base.BaseNetWorkingFragment
-import com.android.ql.lf.zwlogistics.ui.fragment.mine.car.MineAuthSuccessFragment
 import com.android.ql.lf.zwlogistics.ui.fragment.mine.driver.MinePersonAuthFragment
 import com.android.ql.lf.zwlogistics.utils.Constants
 import com.android.ql.lf.zwlogistics.utils.RequestParamsHelper
 import com.android.ql.lf.zwlogistics.utils.RxBus
 import com.android.ql.lf.zwlogistics.utils.ThirdLoginManager
-import com.google.gson.Gson
 import com.tencent.mm.opensdk.modelbase.BaseResp
 import com.tencent.mm.opensdk.modelmsg.SendAuth
-import com.tencent.mm.opensdk.openapi.IWXAPI
 import com.tencent.mm.opensdk.openapi.WXAPIFactory
 import com.tencent.tauth.IUiListener
 import com.tencent.tauth.Tencent
@@ -44,7 +40,6 @@ class LoginFragment : BaseNetWorkingFragment(), IUiListener {
     }
 
     private lateinit var qqLoginInfo: ThirdLoginManager.QQLoginInfoBean
-    private lateinit var wxLoginInfo: ThirdLoginManager.WXUserInfo
 
 
     private val userPresent: UserPresent by lazy {
@@ -124,7 +119,7 @@ class LoginFragment : BaseNetWorkingFragment(), IUiListener {
                     }
                 }
             }
-            0x1 -> {
+            0x1,0x2 -> {
                 val check = checkResultCode(result)
                 if (check != null) {
                     when (check.code) {
@@ -136,25 +131,6 @@ class LoginFragment : BaseNetWorkingFragment(), IUiListener {
                                     .setNeedNetWorking(true)
                                     .setTitle("绑定手机号")
                                     .setExtraBundle(bundleOf(Pair("info", (check.obj as JSONObject).optJSONObject("data").optString("user_id"))))
-                                    .setClazz(BindPhoneFragment::class.java)
-                                    .start()
-                        }
-                    }
-                }
-            }
-            0x2->{
-                val check = checkResultCode(result)
-                if (check!=null){
-                    when(check.code){
-                        SUCCESS_CODE->{
-                            onLogin(check)
-                        }
-                        "202"->{
-                            wxLoginInfo = Gson().fromJson((check.obj as JSONObject).optJSONObject("result").toString(), ThirdLoginManager.WXUserInfo::class.java)
-                            FragmentContainerActivity.from(mContext)
-                                    .setNeedNetWorking(true)
-                                    .setTitle("完善资料")
-                                    .setExtraBundle(bundleOf(Pair("info", wxLoginInfo)))
                                     .setClazz(BindPhoneFragment::class.java)
                                     .start()
                         }

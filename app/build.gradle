@@ -13,6 +13,18 @@ android {
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
+
+        ndk {
+            //设置支持的SO库架构
+            abiFilters 'armeabi', 'x86', 'armeabi-v7a', 'x86_64'//, 'arm64-v8a'
+        }
+
+        manifestPlaceholders = [
+                JPUSH_PKGNAME: "com.android.ql.lf.zwlogistics",
+                JPUSH_APPKEY : "7379333cf33a129b08d11498", //JPush上注册的包名对应的appkey.
+                JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
+        ]
+
     }
 
     signingConfigs{
@@ -78,4 +90,6 @@ dependencies {
     implementation 'com.github.chrisbanes:PhotoView:2.1.3'
     implementation "android.arch.work:work-runtime:1.0.0-alpha01"
     implementation 'com.amap.api:location:latest.integration'
+    implementation 'cn.jiguang.sdk:jpush:3.1.1'
+    implementation 'cn.jiguang.sdk:jcore:1.1.9'
 }

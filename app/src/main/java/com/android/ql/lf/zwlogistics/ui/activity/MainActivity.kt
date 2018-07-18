@@ -6,17 +6,18 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
+import android.text.TextUtils
 import android.view.WindowManager
 import com.android.ql.lf.zwlogistics.R
 import com.android.ql.lf.zwlogistics.data.UserInfo
-import com.android.ql.lf.zwlogistics.service.LocationService
 import com.android.ql.lf.zwlogistics.ui.fragment.bottom.IndexFragment
 import com.android.ql.lf.zwlogistics.ui.fragment.bottom.MineFragment
 import com.android.ql.lf.zwlogistics.ui.fragment.bottom.OrderFragment
-import com.android.ql.lf.zwlogistics.utils.alert
-import com.android.ql.lf.zwlogistics.utils.checkGpsIsOpen
-import com.android.ql.lf.zwlogistics.utils.openGpsPage
+import com.android.ql.lf.zwlogistics.ui.fragment.order.MyOrderInfoFragment
+import com.android.ql.lf.zwlogistics.utils.Constants
+import com.android.ql.lf.zwlogistics.utils.PreferenceUtils
 import kotlinx.android.synthetic.main.activity_main_layout.*
+import org.jetbrains.anko.bundleOf
 import org.jetbrains.anko.toast
 
 class MainActivity : BaseActivity() {
@@ -30,7 +31,7 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-        startService(Intent(this.applicationContext, LocationService::class.java))
+//        startService(Intent(this.applicationContext, LocationService::class.java))
     }
 
     private var exitTime: Long = 0L
@@ -59,6 +60,10 @@ class MainActivity : BaseActivity() {
         }
         mMainContainer.offscreenPageLimit = 3
         mMainContainer.adapter = MainAdapter(supportFragmentManager)
+        if (!TextUtils.isEmpty(PreferenceUtils.getPrefString(this,Constants.IS_ORDER_INFO_ID,"")) && UserInfo.getInstance().isLogin){
+            MyOrderInfoFragment.startMyOrderInfo(this, PreferenceUtils.getPrefString(this,Constants.IS_ORDER_INFO_ID,""))
+            PreferenceUtils.setPrefString(this,Constants.IS_ORDER_INFO_ID,"")
+        }
     }
 
 
