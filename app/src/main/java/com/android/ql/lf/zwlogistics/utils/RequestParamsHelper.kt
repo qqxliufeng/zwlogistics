@@ -46,9 +46,12 @@ class RequestParamsHelper {
         /**              system model  start           **/
         val SYSTEM_MODEL = "system"
         val ACT_PHONE = "phone"
+        val ACT_VERSION_UPDATE = "verupdate"
 
         fun getPhoneParam(phone: String) = getBaseParams(SYSTEM_MODEL, ACT_PHONE)
                 .addParam("phone", phone)
+
+        fun getVersionUpdate() = getBaseParams().addParam(ApiParams.MOD_NAME, SYSTEM_MODEL).addParam(ApiParams.ACT_NAME, ACT_VERSION_UPDATE)
 
 
         /**              system model  end           **/
@@ -196,6 +199,16 @@ class RequestParamsHelper {
 
         val ACT_USER_TENDER_LIST = "userlists"
         fun getMyTenderListParams(status: String) = getWithIdParams().addParam(ApiParams.MOD_NAME, INDEX_MODEL).addParam(ApiParams.ACT_NAME, ACT_USER_TENDER_LIST).addParam("need_state", status)
+
+
+        val ACT_POSITION_UP = "orderup"
+        fun getPositionParams(id: String, x: Double, y: Double) =
+                getWithIdParams()
+                        .addParam(ApiParams.MOD_NAME, INDEX_MODEL)
+                        .addParam(ApiParams.ACT_NAME, ACT_POSITION_UP)
+                        .addParam("id", id)
+                        .addParam("x", x)
+                        .addParam("y", y)
 
 
         /**              index model  end           **/

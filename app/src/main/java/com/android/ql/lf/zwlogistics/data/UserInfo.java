@@ -77,6 +77,16 @@ public class UserInfo {
     private String shareIntro;
     private String shareUrl;
 
+    private String pushAlias;
+
+    public String getPushAlias() {
+        return pushAlias;
+    }
+
+    public void setPushAlias(String pushAlias) {
+        this.pushAlias = pushAlias;
+    }
+
     public String getSharePic() {
         if (TextUtils.isEmpty(sharePic)) {
             return Constants.BASE_IP;

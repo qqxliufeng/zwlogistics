@@ -1,4 +1,4 @@
-package com.android.ql.lf.electronicbusiness.interfaces
+package com.android.ql.lf.zwlogistics.interfaces
 
 /**
  * Created by Administrator on 2017/10/17 0017.

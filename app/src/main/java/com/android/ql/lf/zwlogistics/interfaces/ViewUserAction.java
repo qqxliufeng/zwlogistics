@@ -9,6 +9,8 @@ import com.android.ql.lf.zwlogistics.utils.PreferenceUtils;
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONObject;
 
+import cn.jpush.android.api.JPushInterface;
+
 /**
  * Created by lf on 18.2.8.
  *
@@ -33,7 +35,9 @@ public class ViewUserAction implements IViewUserAction {
             UserInfo.getInstance().setSharePic(result.optString("sharePic"));
             UserInfo.getInstance().setShareTitle(result.optString("shareTitle"));
             UserInfo.getInstance().setShareIntro(result.optString("shareIntro"));
-            UserInfo.getInstance().setShareUrl(result.optString("shareUrl"));
+            UserInfo.getInstance().setPushAlias(result.optString("user_as"));
+
+            JPushInterface.setAlias(MyApplication.getInstance(),0,UserInfo.getInstance().getPushAlias());
 
             PreferenceUtils.setPrefString(MyApplication.application, UserInfo.USER_ID_FLAG, UserInfo.getInstance().getUser_id());
             return true;

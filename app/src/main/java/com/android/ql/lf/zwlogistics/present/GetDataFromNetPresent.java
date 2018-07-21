@@ -2,7 +2,7 @@ package com.android.ql.lf.zwlogistics.present;
 
 
 
-import com.android.ql.lf.electronicbusiness.interfaces.INetDataPresenter;
+import com.android.ql.lf.zwlogistics.interfaces.INetDataPresenter;
 import com.android.ql.lf.zwlogistics.component.ApiParams;
 import com.android.ql.lf.zwlogistics.component.ApiServer;
 import com.android.ql.lf.zwlogistics.utils.Constants;

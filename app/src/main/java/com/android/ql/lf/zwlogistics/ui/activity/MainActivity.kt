@@ -10,6 +10,7 @@ import android.text.TextUtils
 import android.view.WindowManager
 import com.android.ql.lf.zwlogistics.R
 import com.android.ql.lf.zwlogistics.data.UserInfo
+import com.android.ql.lf.zwlogistics.service.LocationService
 import com.android.ql.lf.zwlogistics.ui.fragment.bottom.IndexFragment
 import com.android.ql.lf.zwlogistics.ui.fragment.bottom.MineFragment
 import com.android.ql.lf.zwlogistics.ui.fragment.bottom.OrderFragment
@@ -26,12 +27,6 @@ class MainActivity : BaseActivity() {
         fun startMainActivity(context: Context) {
             context.startActivity(Intent(context, MainActivity::class.java))
         }
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-//        startService(Intent(this.applicationContext, LocationService::class.java))
     }
 
     private var exitTime: Long = 0L
@@ -61,8 +56,7 @@ class MainActivity : BaseActivity() {
         mMainContainer.offscreenPageLimit = 3
         mMainContainer.adapter = MainAdapter(supportFragmentManager)
         if (!TextUtils.isEmpty(PreferenceUtils.getPrefString(this,Constants.IS_ORDER_INFO_ID,"")) && UserInfo.getInstance().isLogin){
-            MyOrderInfoFragment.startMyOrderInfo(this, PreferenceUtils.getPrefString(this,Constants.IS_ORDER_INFO_ID,""))
-            PreferenceUtils.setPrefString(this,Constants.IS_ORDER_INFO_ID,"")
+            startService(Intent(this.applicationContext, LocationService::class.java))
         }
     }
 
@@ -72,16 +66,12 @@ class MainActivity : BaseActivity() {
             toast("再按一次退出")
             exitTime = System.currentTimeMillis()
         } else {
-            UserInfo.getInstance().loginOut()
-            finish()
+//            UserInfo.getInstance().loginOut()
+//            finish()
+            moveTaskToBack(false)
         }
     }
 
-
-    override fun onDestroy() {
-        window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-        super.onDestroy()
-    }
 
     class MainAdapter(fragmentManager: FragmentManager) : FragmentStatePagerAdapter(fragmentManager) {
 

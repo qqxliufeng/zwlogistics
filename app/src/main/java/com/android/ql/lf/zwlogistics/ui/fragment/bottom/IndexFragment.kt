@@ -3,6 +3,7 @@ package com.android.ql.lf.zwlogistics.ui.fragment.bottom
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.RecyclerView
 import android.util.Log
@@ -10,10 +11,7 @@ import android.view.View
 
 import android.view.ViewGroup
 import com.android.ql.lf.zwlogistics.R
-import com.android.ql.lf.zwlogistics.data.CarParamBean
-import com.android.ql.lf.zwlogistics.data.OrderBean
-import com.android.ql.lf.zwlogistics.data.PostSelectOrderBean
-import com.android.ql.lf.zwlogistics.data.UserInfo
+import com.android.ql.lf.zwlogistics.data.*
 import com.android.ql.lf.zwlogistics.ui.activity.FragmentContainerActivity
 import com.android.ql.lf.zwlogistics.ui.activity.MainActivity
 import com.android.ql.lf.zwlogistics.ui.activity.SelectAddressActivity
@@ -23,10 +21,13 @@ import com.android.ql.lf.zwlogistics.ui.fragment.mine.LoginFragment
 import com.android.ql.lf.zwlogistics.ui.fragment.mine.car.SelectMultiTypeFragment
 import com.android.ql.lf.zwlogistics.ui.fragment.order.OrderInfoFragment
 import com.android.ql.lf.zwlogistics.utils.RequestParamsHelper
+import com.android.ql.lf.zwlogistics.utils.VersionHelp
+import com.android.ql.lf.zwlogistics.utils.alert
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_index_layout.*
 import org.jetbrains.anko.bundleOf
+import org.jetbrains.anko.support.v4.toast
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -83,8 +84,8 @@ class IndexFragment : BaseRecyclerViewFragment<OrderBean>() {
                 mCtvIndexOrderCarType.isChecked = true
                 selectMultiTypeFragment.myShow(childFragmentManager, "select_multi_type_dialog", { lengthList, typeList ->
                     mCtvIndexOrderCarType.isChecked = false
-                    if(lengthList!!.isEmpty()){
-                       return@myShow
+                    if (lengthList!!.isEmpty()) {
+                        return@myShow
                     }
                     if (lengthList!![0].type == 0) {
                         postSelectOrderBean.lengthParams = "0"
@@ -119,6 +120,8 @@ class IndexFragment : BaseRecyclerViewFragment<OrderBean>() {
                 }
             }
         }
+
+        mPresent.getDataByPost(0x1, RequestParamsHelper.getVersionUpdate())
     }
 
     override fun onRefresh() {
@@ -140,6 +143,24 @@ class IndexFragment : BaseRecyclerViewFragment<OrderBean>() {
                 if (check != null && check.code == SUCCESS_CODE) {
                     onHandleSuccess(requestID, (check.obj as JSONObject))
                 }
+            }
+        } else if (requestID == 0x1) {
+            try {
+                val check = checkResultCode(result)
+                if (check != null && check.code == SUCCESS_CODE) {
+                    val dataJson = (check.obj as JSONObject).optJSONObject(RESULT_OBJECT)
+                    val versionCode = dataJson.optString("appApkVer")
+                    if (versionCode.toInt() > VersionHelp.currentVersionCode(mContext)) {
+                        VersionInfo.getInstance().versionCode = versionCode.toInt()
+                        VersionInfo.getInstance().content = dataJson.optString("appApkIntro")
+                        VersionInfo.getInstance().downUrl = dataJson.optString("appApk")
+                        alert("发现新版本", VersionInfo.getInstance().content, "立即下载", "暂不下载", { _, _ ->
+                            toast("正在下载……")
+                            VersionHelp.downNewVersion(mContext, Uri.parse(VersionInfo.getInstance().downUrl), "${System.currentTimeMillis()}")
+                        }, null)
+                    }
+                }
+            } catch (e: Exception) {
             }
         }
     }

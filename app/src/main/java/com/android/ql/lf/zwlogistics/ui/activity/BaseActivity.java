@@ -8,7 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.android.ql.lf.electronicbusiness.interfaces.INetDataPresenter;
+import com.android.ql.lf.zwlogistics.interfaces.INetDataPresenter;
 import com.android.ql.lf.zwlogistics.R;
 
 import org.jetbrains.annotations.NotNull;

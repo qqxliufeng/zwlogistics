@@ -3,7 +3,7 @@ package com.android.ql.lf.zwlogistics.ui.fragment.base;
 import android.app.ProgressDialog;
 import android.content.Context;
 
-import com.android.ql.lf.electronicbusiness.interfaces.INetDataPresenter;
+import com.android.ql.lf.zwlogistics.interfaces.INetDataPresenter;
 import com.android.ql.lf.zwlogistics.application.MyApplication;
 import com.android.ql.lf.zwlogistics.component.DaggerApiServerComponent;
 import com.android.ql.lf.zwlogistics.data.BaseNetResult;
