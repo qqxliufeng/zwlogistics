@@ -24,7 +24,7 @@ public class Constants {
 
 
     private static final String APP_TOKEN = "d5a131f90e76db03df4eff4154e56dbe";
-    public static final long MAX_COUNT_DOWN = 1000 * 10;
+    public static final long MAX_COUNT_DOWN = 1000 * 60;
 
 
     public static final String IS_ORDER_INFO_ID = "is_order_info_id";

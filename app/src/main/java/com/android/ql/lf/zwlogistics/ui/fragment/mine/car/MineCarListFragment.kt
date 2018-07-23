@@ -58,6 +58,7 @@ class MineCarListFragment : BaseRecyclerViewFragment<CarBean>() {
     override fun initView(view: View?) {
         super.initView(view)
         subscriptionCarAuthApply
+        setLoadEnable(false)
     }
 
     override fun createAdapter(): BaseQuickAdapter<CarBean, BaseViewHolder> =
@@ -108,7 +109,6 @@ class MineCarListFragment : BaseRecyclerViewFragment<CarBean>() {
 
     override fun onRefresh() {
         super.onRefresh()
-        setLoadEnable(false)
         mPresent.getDataByPost(0x0, RequestParamsHelper.getCarListParam())
     }
 
@@ -153,9 +153,8 @@ class MineCarListFragment : BaseRecyclerViewFragment<CarBean>() {
         }
     }
 
-
-    override fun onHandleSuccess(requestID: Int, jsonObject: JSONObject?) {
-        super.onHandleSuccess(requestID, jsonObject)
+    override fun onHandleSuccess(requestID: Int, obj: Any?) {
+        super.onHandleSuccess(requestID, obj)
         if (requestID == 0x1) {
             toast("删除成功")
             onPostRefresh()

@@ -62,14 +62,7 @@ class MainActivity : BaseActivity() {
 
 
     override fun onBackPressed() {
-        if (System.currentTimeMillis() - exitTime > 2000) {
-            toast("再按一次退出")
-            exitTime = System.currentTimeMillis()
-        } else {
-//            UserInfo.getInstance().loginOut()
-//            finish()
-            moveTaskToBack(false)
-        }
+        moveTaskToBack(false)
     }
 
 

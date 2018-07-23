@@ -77,8 +77,6 @@ class LoginFragment : BaseNetWorkingFragment(), IUiListener {
         mFlLoginWxContainer.setOnClickListener {
             ThirdLoginManager.wxLogin(WXAPIFactory.createWXAPI(mContext,Constants.WX_APP_ID,true))
         }
-        mEtLoginUserName.setText("15910101117")
-        mEtLoginUserPassword.setText("123456")
         mBtLogin.setOnClickListener {
             if (mEtLoginUserName.isEmpty()) {
                 toast("请输入手机号")

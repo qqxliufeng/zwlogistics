@@ -12,6 +12,7 @@ import com.android.ql.lf.zwlogistics.present.AuthManager
 import com.android.ql.lf.zwlogistics.ui.activity.FragmentContainerActivity
 import com.android.ql.lf.zwlogistics.ui.activity.MainActivity
 import com.android.ql.lf.zwlogistics.ui.fragment.base.BaseNetWorkingFragment
+import com.android.ql.lf.zwlogistics.ui.fragment.mine.car.MineAuthSuccessFragment
 import com.android.ql.lf.zwlogistics.ui.fragment.mine.car.NewCarAuthFragment
 import com.android.ql.lf.zwlogistics.utils.showInfoDialog
 import com.bumptech.glide.Glide
@@ -136,7 +137,7 @@ class MinePersonAuthFragment : BaseNetWorkingFragment(), FragmentContainerActivi
             val check = checkResultCode(result)
             if (check != null) {
                 if (check.code == SUCCESS_CODE) {
-                    toast("提交申请成功！敬请等待后台审核")
+                    FragmentContainerActivity.from(mContext).setTitle("提交成功").setNeedNetWorking(false).setClazz(MineAuthSuccessFragment::class.java).start()
                     UserInfo.getInstance().user_is_rank = "${UserInfo.UserInfoAuthStatus.SHENG_HE_ZHONG.statusCode}"
                     if (isShowJump) {
                         NewCarAuthFragment.startCarAuthFragment(mContext, SHOW_JUMP)

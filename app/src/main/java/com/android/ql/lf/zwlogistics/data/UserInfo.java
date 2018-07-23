@@ -79,6 +79,16 @@ public class UserInfo {
 
     private String pushAlias;
 
+    private String needGpsOrder = null;
+
+    public String getNeedGpsOrder() {
+        return needGpsOrder;
+    }
+
+    public void setNeedGpsOrder(String needGpsOrder) {
+        this.needGpsOrder = needGpsOrder;
+    }
+
     public String getPushAlias() {
         return pushAlias;
     }
@@ -212,6 +222,9 @@ public class UserInfo {
     }
 
     public String getKephone() {
+        if (TextUtils.isEmpty(kephone)){
+            return "4001265566";
+        }
         return kephone;
     }
 

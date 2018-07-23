@@ -16,9 +16,5 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="splashTheme" parent="AppTheme">
-        <item name="android:windowFullscreen">true</item>
-    </style>
-
 
 </resources>

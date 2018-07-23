@@ -4,6 +4,7 @@ package com.android.ql.lf.zwlogistics.interfaces;
 import com.android.ql.lf.carapp.action.IViewUserAction;
 import com.android.ql.lf.zwlogistics.application.MyApplication;
 import com.android.ql.lf.zwlogistics.data.UserInfo;
+import com.android.ql.lf.zwlogistics.utils.Constants;
 import com.android.ql.lf.zwlogistics.utils.PreferenceUtils;
 
 import org.jetbrains.annotations.NotNull;
@@ -51,7 +52,7 @@ public class ViewUserAction implements IViewUserAction {
     @Override
     public boolean onLogout() {
         UserInfo.getInstance().loginOut();
-        UserInfo.clearUserCache(MyApplication.application);
+        PreferenceUtils.setPrefString(MyApplication.getInstance(),Constants.IS_ORDER_INFO_ID,"");
         return true;
     }
 

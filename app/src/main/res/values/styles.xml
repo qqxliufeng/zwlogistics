@@ -36,6 +36,7 @@
 
     <style name="splashTheme" parent="AppTheme">
         <item name="android:windowFullscreen">true</item>
+        <item name="android:windowIsTranslucent">true</item>
     </style>
 
     <style name="edit_style1">

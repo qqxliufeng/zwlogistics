@@ -324,6 +324,7 @@
                 android:layout_marginLeft="20dp"
                 android:background="@null"
                 android:hint="姓名必须和身份证上姓名相同"
+                android:maxLength="10"
                 android:textColor="@color/deepTextColor"
                 android:textColorHint="@color/normalTextColor"
                 android:textSize="@dimen/sp_14" />

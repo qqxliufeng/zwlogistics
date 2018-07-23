@@ -283,13 +283,19 @@ class NewCarAuthFragment : BaseNetWorkingFragment(),FragmentContainerActivity.On
                     }
                 }
             }
-            0x0->{
-                toast("提交申请成功！敬请等待后台审核")
-                AuthManager.rxBusPostCarApply(POST_AUTH_APPLY_FLAG)
-                finish()
-            }
         }
     }
+
+    override fun onHandleSuccess(requestID: Int, obj: Any?) {
+        super.onHandleSuccess(requestID, obj)
+        if (requestID == 0x0){
+            AuthManager.rxBusPostCarApply(POST_AUTH_APPLY_FLAG)
+            FragmentContainerActivity.from(mContext).setTitle("提交成功").setNeedNetWorking(false).setClazz(MineAuthSuccessFragment::class.java).start()
+            finish()
+        }
+    }
+
+
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
         if (isShowJump) {
