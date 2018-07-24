@@ -136,11 +136,7 @@ public abstract class BaseNetWorkingFragment extends BaseFragment implements INe
             if (check != null) {
                 if (check.code.equals(SUCCESS_CODE)) {
                     Object o = ((JSONObject) check.obj).opt(RESULT_OBJECT);
-                    if (o instanceof JSONObject) {
-                        onHandleSuccess(requestID, (JSONObject) o);
-                    } else {
-                        onHandleSuccess(requestID, o);
-                    }
+                    onHandleSuccess(requestID, o);
                 } else {
                     onRequestFail(requestID, new NullPointerException(((JSONObject) check.obj).optString(MSG_FLAG)));
                 }
@@ -151,9 +147,6 @@ public abstract class BaseNetWorkingFragment extends BaseFragment implements INe
         } catch (Exception e) {
             onRequestFail(requestID, e);
         }
-    }
-
-    public void onHandleSuccess(int requestID, JSONObject jsonObject) {
     }
 
     public void onHandleSuccess(int requestID, Object obj) {

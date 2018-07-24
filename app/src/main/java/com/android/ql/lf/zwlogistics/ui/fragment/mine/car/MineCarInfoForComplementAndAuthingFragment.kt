@@ -39,9 +39,9 @@ class MineCarInfoForComplementAndAuthingFragment :BaseNetWorkingFragment(){
         handleSuccess(requestID,result)
     }
 
-    override fun onHandleSuccess(requestID: Int, jsonObject: JSONObject?) {
+    override fun onHandleSuccess(requestID: Int, jsonObject: Any?) {
         super.onHandleSuccess(requestID, jsonObject)
-        if (jsonObject!=null){
+        if (jsonObject!=null && jsonObject is JSONObject){
             carInfoBean = Gson().fromJson(jsonObject.toString(),CarBean::class.java)
             if (carInfoBean!=null){
                 when(carInfoBean?.vehicle_is_state){

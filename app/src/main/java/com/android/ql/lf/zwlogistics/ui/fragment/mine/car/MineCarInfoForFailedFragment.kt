@@ -184,11 +184,11 @@ class MineCarInfoForFailedFragment : BaseNetWorkingFragment() {
         handleSuccess(requestID,result)
     }
 
-    override fun onHandleSuccess(requestID: Int, jsonObject: JSONObject?) {
+    override fun onHandleSuccess(requestID: Int, jsonObject: Any?) {
         super.onHandleSuccess(requestID, jsonObject)
         when(requestID){
             0x1->{
-                if (jsonObject!=null) {
+                if (jsonObject!=null  && jsonObject is JSONObject) {
                     val tempTypeList = AuthManager.parseCarParams("model", jsonObject)
                     if (tempTypeList!=null){
                         carTypeDataList.addAll(tempTypeList)
@@ -213,5 +213,4 @@ class MineCarInfoForFailedFragment : BaseNetWorkingFragment() {
             }
         }
     }
-
 }

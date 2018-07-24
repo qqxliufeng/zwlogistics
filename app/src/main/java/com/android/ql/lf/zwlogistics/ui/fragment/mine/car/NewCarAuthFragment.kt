@@ -261,11 +261,16 @@ class NewCarAuthFragment : BaseNetWorkingFragment(),FragmentContainerActivity.On
         handleSuccess(requestID,result)
     }
 
-    override fun onHandleSuccess(requestID: Int, jsonObject: JSONObject?) {
+    override fun onHandleSuccess(requestID: Int, jsonObject: Any?) {
         super.onHandleSuccess(requestID, jsonObject)
         when(requestID){
+            0x0->{
+                AuthManager.rxBusPostCarApply(POST_AUTH_APPLY_FLAG)
+                FragmentContainerActivity.from(mContext).setTitle("提交成功").setNeedNetWorking(false).setClazz(MineAuthSuccessFragment::class.java).start()
+                finish()
+            }
             0x1->{
-                if (jsonObject!=null) {
+                if (jsonObject!=null  && jsonObject is JSONObject) {
                     val tempTypeList = AuthManager.parseCarParams("model", jsonObject)
                     if (tempTypeList!=null){
                         carTypeDataList.addAll(tempTypeList)
@@ -283,15 +288,6 @@ class NewCarAuthFragment : BaseNetWorkingFragment(),FragmentContainerActivity.On
                     }
                 }
             }
-        }
-    }
-
-    override fun onHandleSuccess(requestID: Int, obj: Any?) {
-        super.onHandleSuccess(requestID, obj)
-        if (requestID == 0x0){
-            AuthManager.rxBusPostCarApply(POST_AUTH_APPLY_FLAG)
-            FragmentContainerActivity.from(mContext).setTitle("提交成功").setNeedNetWorking(false).setClazz(MineAuthSuccessFragment::class.java).start()
-            finish()
         }
     }
 

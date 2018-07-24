@@ -55,7 +55,7 @@ class MainActivity : BaseActivity() {
         }
         mMainContainer.offscreenPageLimit = 3
         mMainContainer.adapter = MainAdapter(supportFragmentManager)
-        if (!TextUtils.isEmpty(PreferenceUtils.getPrefString(this,Constants.IS_ORDER_INFO_ID,"")) && UserInfo.getInstance().isLogin){
+        if (UserInfo.getInstance().isLogin && UserInfo.getInstance().isNeedGps){
             startService(Intent(this.applicationContext, LocationService::class.java))
         }
     }

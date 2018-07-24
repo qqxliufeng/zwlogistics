@@ -79,7 +79,7 @@ public class UserInfo {
 
     private String pushAlias;
 
-    private String needGpsOrder = null;
+    private String needGpsOrder = "0";
 
     public String getNeedGpsOrder() {
         return needGpsOrder;
@@ -222,7 +222,7 @@ public class UserInfo {
     }
 
     public String getKephone() {
-        if (TextUtils.isEmpty(kephone)){
+        if (TextUtils.isEmpty(kephone)) {
             return "4001265566";
         }
         return kephone;
@@ -234,6 +234,10 @@ public class UserInfo {
 
     public boolean isLogin() {
         return !TextUtils.isEmpty(user_id);
+    }
+
+    public boolean isNeedGps() {
+        return !"0".equals(needGpsOrder) && !TextUtils.isEmpty(needGpsOrder);
     }
 
     public void loginOut() {

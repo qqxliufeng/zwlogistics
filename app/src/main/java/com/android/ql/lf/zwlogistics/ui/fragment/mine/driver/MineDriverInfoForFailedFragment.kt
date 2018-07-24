@@ -64,45 +64,47 @@ class MineDriverInfoForFailedFragment : BaseNetWorkingFragment(), FragmentContai
         handleSuccess(requestID, result)
     }
 
-    override fun onHandleSuccess(requestID: Int, jsonObject: JSONObject) {
-        if (requestID == 0x0) {
-            toast("提交申请成功！敬请等待后台审核")
-            UserInfo.getInstance().user_is_rank = "${UserInfo.UserInfoAuthStatus.SHENG_HE_ZHONG.statusCode}"
-            finish()
-        } else if (requestID == 0x1) {
-            if (jsonObject.optString("user_is_rank") == UserInfo.UserInfoAuthStatus.SHENG_HE_SHI_BAI.statusCode.toString()) {
-                mTvDriverInfoForFailTitle.text = "审核失败：${jsonObject.optString("user_rank_content")}"
-            }
-            mFlDriverInfoForFailFaceContainer.setOnClickListener {
-                tempSelectFlag = MinePersonAuthFragment.FACE_FLAG
-                openImageChoose(MimeType.ofImage(), 1)
-            }
-            mFlDriverInfoForFailIdCardFrontContainer.setOnClickListener {
-                tempSelectFlag = MinePersonAuthFragment.IDCARD_FRONT_FLAG
-                openImageChoose(MimeType.ofImage(), 1)
-            }
-            mFlDriverInfoForFailIdCardBackgroundContainer.setOnClickListener {
-                tempSelectFlag = MinePersonAuthFragment.IDCARD_BACK_GROUND_FLAG
-                openImageChoose(MimeType.ofImage(), 1)
-            }
-            mFlDriverInfoForFailDriverCardContainer.setOnClickListener {
-                tempSelectFlag = MinePersonAuthFragment.DRIVER_FLAG
-                openImageChoose(MimeType.ofImage(), 1)
-            }
-            mFlDriverInfoForFailCYZGContainer.setOnClickListener {
-                tempSelectFlag = MinePersonAuthFragment.CYZG_FLAG
-                openImageChoose(MimeType.ofImage(), 1)
-            }
-            mTvDriverInfoForFailSubmit.setOnClickListener {
-                postDriverAuthBean.driverName = mEtDriverInfoForFailName.text.toString()
-                postDriverAuthBean.driverIdCardNum = mEtDriverInfoForFailIdCardNum.text.toString()
-                postDriverAuthBean.driverPhone = mEtDriverInfoForFailPhone.text.toString()
-                val isEmpty = postDriverAuthBean.isFeildEmpty
-                if ("" != isEmpty) {
-                    toast(isEmpty)
-                    return@setOnClickListener
+    override fun onHandleSuccess(requestID: Int, jsonObject: Any?) {
+        if (jsonObject!= null  && jsonObject is JSONObject) {
+            if (requestID == 0x0) {
+                toast("提交申请成功！敬请等待后台审核")
+                UserInfo.getInstance().user_is_rank = "${UserInfo.UserInfoAuthStatus.SHENG_HE_ZHONG.statusCode}"
+                finish()
+            } else if (requestID == 0x1) {
+                if (jsonObject.optString("user_is_rank") == UserInfo.UserInfoAuthStatus.SHENG_HE_SHI_BAI.statusCode.toString()) {
+                    mTvDriverInfoForFailTitle.text = "审核失败：${jsonObject.optString("user_rank_content")}"
                 }
-                uploadInfo()
+                mFlDriverInfoForFailFaceContainer.setOnClickListener {
+                    tempSelectFlag = MinePersonAuthFragment.FACE_FLAG
+                    openImageChoose(MimeType.ofImage(), 1)
+                }
+                mFlDriverInfoForFailIdCardFrontContainer.setOnClickListener {
+                    tempSelectFlag = MinePersonAuthFragment.IDCARD_FRONT_FLAG
+                    openImageChoose(MimeType.ofImage(), 1)
+                }
+                mFlDriverInfoForFailIdCardBackgroundContainer.setOnClickListener {
+                    tempSelectFlag = MinePersonAuthFragment.IDCARD_BACK_GROUND_FLAG
+                    openImageChoose(MimeType.ofImage(), 1)
+                }
+                mFlDriverInfoForFailDriverCardContainer.setOnClickListener {
+                    tempSelectFlag = MinePersonAuthFragment.DRIVER_FLAG
+                    openImageChoose(MimeType.ofImage(), 1)
+                }
+                mFlDriverInfoForFailCYZGContainer.setOnClickListener {
+                    tempSelectFlag = MinePersonAuthFragment.CYZG_FLAG
+                    openImageChoose(MimeType.ofImage(), 1)
+                }
+                mTvDriverInfoForFailSubmit.setOnClickListener {
+                    postDriverAuthBean.driverName = mEtDriverInfoForFailName.text.toString()
+                    postDriverAuthBean.driverIdCardNum = mEtDriverInfoForFailIdCardNum.text.toString()
+                    postDriverAuthBean.driverPhone = mEtDriverInfoForFailPhone.text.toString()
+                    val isEmpty = postDriverAuthBean.isFeildEmpty
+                    if ("" != isEmpty) {
+                        toast(isEmpty)
+                        return@setOnClickListener
+                    }
+                    uploadInfo()
+                }
             }
         }
     }

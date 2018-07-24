@@ -6,15 +6,12 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
-import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 
 import com.android.ql.lf.zwlogistics.R;
 import com.android.ql.lf.zwlogistics.data.UserInfo;
 import com.android.ql.lf.zwlogistics.service.LocationService;
 import com.android.ql.lf.zwlogistics.ui.activity.SplashActivity;
-import com.android.ql.lf.zwlogistics.utils.Constants;
-import com.android.ql.lf.zwlogistics.utils.PreferenceUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -31,10 +28,11 @@ public class MyJPushMessageReceiver extends BroadcastReceiver {
             try {
                 JSONObject jsonObject = new JSONObject(extra);
                 if (!TextUtils.isEmpty(extra) && !TextUtils.isEmpty(jsonObject.optString("id"))) {
-                    PreferenceUtils.setPrefString(context, Constants.IS_ORDER_INFO_ID, jsonObject.optString("id"));
                     if (UserInfo.getInstance().isLogin()) {
                         UserInfo.getInstance().setNeedGpsOrder(jsonObject.optString("id"));
-                        context.startService(new Intent(context,LocationService.class));
+                        if (UserInfo.getInstance().isNeedGps()) {
+                            context.startService(new Intent(context, LocationService.class));
+                        }
                     } else {
                         NotificationCompat.Builder builder = new NotificationCompat.Builder(context);
                         Intent pendingIntent = new Intent(context, SplashActivity.class);//将要跳转的界面

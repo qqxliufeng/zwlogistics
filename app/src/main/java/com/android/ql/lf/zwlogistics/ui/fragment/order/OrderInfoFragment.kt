@@ -71,11 +71,12 @@ class OrderInfoFragment : BaseNetWorkingFragment() {
     }
 
 
-    override fun onHandleSuccess(requestID: Int, jsonObject: JSONObject?) {
+    override fun onHandleSuccess(requestID: Int, jsonObject: Any?) {
         super.onHandleSuccess(requestID, jsonObject)
         when (requestID) {
             0x0 -> {
-                orderBean = Gson().fromJson(jsonObject?.toString(), OrderBean::class.java)
+                if (jsonObject!= null && jsonObject is JSONObject)
+                orderBean = Gson().fromJson(jsonObject.toString(), OrderBean::class.java)
                 bindData()
             }
         }

@@ -1,9 +1,12 @@
 package com.android.ql.lf.zwlogistics.interfaces;
 
 
+import android.content.Intent;
+
 import com.android.ql.lf.carapp.action.IViewUserAction;
 import com.android.ql.lf.zwlogistics.application.MyApplication;
 import com.android.ql.lf.zwlogistics.data.UserInfo;
+import com.android.ql.lf.zwlogistics.service.LocationService;
 import com.android.ql.lf.zwlogistics.utils.Constants;
 import com.android.ql.lf.zwlogistics.utils.PreferenceUtils;
 
@@ -37,9 +40,9 @@ public class ViewUserAction implements IViewUserAction {
             UserInfo.getInstance().setShareTitle(result.optString("shareTitle"));
             UserInfo.getInstance().setShareIntro(result.optString("shareIntro"));
             UserInfo.getInstance().setPushAlias(result.optString("user_as"));
+            UserInfo.getInstance().setNeedGpsOrder(result.optString("is_need"));
 
             JPushInterface.setAlias(MyApplication.getInstance(),0,UserInfo.getInstance().getPushAlias());
-
             PreferenceUtils.setPrefString(MyApplication.application, UserInfo.USER_ID_FLAG, UserInfo.getInstance().getUser_id());
             return true;
         } catch (Exception e) {
@@ -52,6 +55,7 @@ public class ViewUserAction implements IViewUserAction {
     @Override
     public boolean onLogout() {
         UserInfo.getInstance().loginOut();
+        MyApplication.getInstance().stopService(new Intent(MyApplication.getInstance(),LocationService.class));
         PreferenceUtils.setPrefString(MyApplication.getInstance(),Constants.IS_ORDER_INFO_ID,"");
         return true;
     }

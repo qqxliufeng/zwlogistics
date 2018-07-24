@@ -166,8 +166,8 @@ class IndexFragment : BaseRecyclerViewFragment<OrderBean>() {
     }
 
 
-    override fun onHandleSuccess(requestID: Int, jsonObject: JSONObject?) {
-        if (jsonObject != null) {
+    override fun onHandleSuccess(requestID: Int, jsonObject: Any?) {
+        if (jsonObject != null && jsonObject is JSONObject) {
             val modelJSONArray = jsonObject.optJSONArray("model")
             if (modelJSONArray != null && modelJSONArray.length() > 0) {
                 carTypeList = arrayListOf()
