@@ -28,6 +28,8 @@ import org.json.JSONObject
 class MineCarListFragment : BaseRecyclerViewFragment<CarBean>() {
 
     companion object {
+        const val IS_SELECT_CAR_FLAG = "is_select_car"
+
         const val ACTION_ADD = "添加"
         const val ACTION_MANAGER = "管理"
         const val ACTION_CANCEL = "取消"
@@ -38,6 +40,10 @@ class MineCarListFragment : BaseRecyclerViewFragment<CarBean>() {
 
     private val tempList by lazy {
         arrayListOf<CarBean>()
+    }
+
+    private val isSelectCar by lazy {
+        arguments != null && arguments!!.getBoolean(IS_SELECT_CAR_FLAG)
     }
 
 
@@ -52,7 +58,11 @@ class MineCarListFragment : BaseRecyclerViewFragment<CarBean>() {
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
-        setHasOptionsMenu(true)
+        if (isSelectCar) {
+            setHasOptionsMenu(false)
+        } else {
+            setHasOptionsMenu(true)
+        }
     }
 
     override fun initView(view: View?) {
@@ -90,7 +100,7 @@ class MineCarListFragment : BaseRecyclerViewFragment<CarBean>() {
                         }
                     })
                     helper.setText(R.id.mTvMineCarListItemName, "品牌：${item.vehicle_name}")
-                    helper.setText(R.id.mTvMineCarListItemLength, "车长：${item.vehicle_length}")
+                    helper.setText(R.id.mTvMineCarListItemLength, "车长：${item.vehicle_length}米")
                     helper.setText(R.id.mTvMineCarListItemType, "车型：${item.vehicle_type}")
                     GlideManager.loadImage(mContext, item.vehicle_number, helper.getView(R.id.mIvMineCarListItemPic))
                 }
@@ -137,6 +147,7 @@ class MineCarListFragment : BaseRecyclerViewFragment<CarBean>() {
         when (requestID) {
             0x0 -> {
                 processList(result as String, CarBean::class.java)
+                setLoadEnable(false)
                 if (mArrayList.isEmpty()) {
                     menuItem?.title = ACTION_ADD
                 } else {
@@ -210,34 +221,52 @@ class MineCarListFragment : BaseRecyclerViewFragment<CarBean>() {
     override fun onMyItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
         super.onMyItemClick(adapter, view, position)
         val currentItem = mArrayList[position]
-        if (currentItem.isManagerMode) {
-            if (currentItem.isSelect) {
-                tempList.remove(currentItem)
-                currentItem.isSelect = false
-            } else {
-                tempList.add(currentItem)
-                currentItem.isSelect = true
-            }
-            mBaseAdapter.notifyItemChanged(position)
-        } else {
+        if (isSelectCar) {
             when (currentItem.vehicle_is_state) {
-                1, 2 -> {
-                    FragmentContainerActivity
-                            .from(mContext)
-                            .setNeedNetWorking(true)
-                            .setTitle("车辆信息")
-                            .setExtraBundle(bundleOf(Pair("cid", currentItem.vehicle_id)))
-                            .setClazz(MineCarInfoForComplementAndAuthingFragment::class.java)
-                            .start()
+                1 -> {
+                    toast("当前车辆正在审核中，请等待审核！")
+                }
+                2 -> {
+                    RxBus.getDefault().post(currentItem)
+                    finish()
                 }
                 3 -> {
-                    FragmentContainerActivity
-                            .from(mContext)
-                            .setNeedNetWorking(true)
-                            .setTitle("车辆信息")
-                            .setExtraBundle(bundleOf(Pair("cid", currentItem.vehicle_id), Pair("content", currentItem.vehicle_content)))
-                            .setClazz(MineCarInfoForFailedFragment::class.java)
-                            .start()
+                    toast("当前车辆审核失败，请重新提交！")
+                }
+                else -> {
+                }
+            }
+
+        } else {
+            if (currentItem.isManagerMode) {
+                if (currentItem.isSelect) {
+                    tempList.remove(currentItem)
+                    currentItem.isSelect = false
+                } else {
+                    tempList.add(currentItem)
+                    currentItem.isSelect = true
+                }
+                mBaseAdapter.notifyItemChanged(position)
+            } else {
+                when (currentItem.vehicle_is_state) {
+                    1, 2 -> {
+                        FragmentContainerActivity
+                                .from(mContext)
+                                .setNeedNetWorking(true)
+                                .setTitle("车辆信息")
+                                .setExtraBundle(bundleOf(Pair("cid", currentItem.vehicle_id)))
+                                .setClazz(MineCarInfoForComplementAndAuthingFragment::class.java)
+                                .start()
+                    }
+                    3 -> {
+                        FragmentContainerActivity
+                                .from(mContext)
+                                .setNeedNetWorking(true)
+                                .setTitle("车辆信息")
+                                .setExtraBundle(bundleOf(Pair("cid", currentItem.vehicle_id), Pair("content", currentItem.vehicle_content)))
+                                .setClazz(MineCarInfoForFailedFragment::class.java)
+                                .start()
+                    }
                 }
             }
         }

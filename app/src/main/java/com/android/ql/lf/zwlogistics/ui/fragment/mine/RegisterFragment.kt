@@ -60,7 +60,7 @@ class RegisterFragment : BaseNetWorkingFragment() {
         mTvRegisterProtocol.setOnClickListener {
             FragmentContainerActivity
                     .from(mContext)
-                    .setTitle("用户服务协议")
+                    .setTitle("《用户服务协议》")
                     .setClazz(DetailContentFragment::class.java)
                     .setExtraBundle(bundleOf(Pair(DetailContentFragment.PARAM_FLAG, RequestParamsHelper.getUserProtocolParam("0"))))
                     .start()

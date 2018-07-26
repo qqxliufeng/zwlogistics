@@ -11,7 +11,7 @@ open class OrderItemAdapter(res: Int, list: ArrayList<OrderBean>) : BaseQuickAda
     override fun convert(helper: BaseViewHolder?, item: OrderBean?) {
         GlideManager.loadRoundImage(mContext, item!!.need_pic, helper!!.getView(R.id.mIvOrderItemPic), 20)
         helper.setText(R.id.mTvOrderItemAddress, "${item.need_f_str} → ${item.need_m_str}")
-        helper.setText(R.id.mTvOrderItemParams, "重量：${item.need_zhong}   体积：${item.need_ti}")
+        helper.setText(R.id.mTvOrderItemParams, "重量：${item.need_zhong}吨  体积：${item.need_ti}立方米")
         helper.setText(R.id.mTvOrderItemZX, "半卸方式：${item.need_xie}")
         helper.setText(R.id.mTvOrderItemPayType, "支付方式：${item.need_type_pay}")
     }

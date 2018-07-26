@@ -89,7 +89,7 @@ public class LocationService extends Service {
         private String id;
 
         public void setPresent(GetDataFromNetPresent present) {
-            id = PreferenceUtils.getPrefString(MyApplication.getInstance(),Constants.IS_ORDER_INFO_ID,"");
+            id = UserInfo.getInstance().getNeedGpsOrder();
             this.present = present;
             this.present.setNetDataPresenter(this);
         }

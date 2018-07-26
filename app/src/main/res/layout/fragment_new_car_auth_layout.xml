@@ -291,6 +291,7 @@
                 android:background="@null"
                 android:hint="请输入车辆吨数"
                 android:inputType="numberDecimal"
+                android:maxLength="4"
                 android:textColor="@color/deepTextColor"
                 android:textColorHint="@color/normalTextColor"
                 android:textSize="@dimen/sp_14" />

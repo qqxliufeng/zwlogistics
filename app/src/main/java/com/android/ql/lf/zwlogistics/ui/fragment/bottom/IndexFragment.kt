@@ -7,9 +7,9 @@ import android.net.Uri
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.RecyclerView
 import android.util.Log
-import android.view.View
+import android.util.TypedValue
+import android.view.*
 
-import android.view.ViewGroup
 import com.android.ql.lf.zwlogistics.R
 import com.android.ql.lf.zwlogistics.data.*
 import com.android.ql.lf.zwlogistics.ui.activity.FragmentContainerActivity
@@ -56,7 +56,6 @@ class IndexFragment : BaseRecyclerViewFragment<OrderBean>() {
 
     override fun getLayoutId() = R.layout.fragment_index_layout
 
-
     override fun createAdapter() = OrderItemAdapter(R.layout.adapter_index_order_item_layout, mArrayList)
 
     private val selectMultiTypeFragment by lazy {
@@ -67,7 +66,12 @@ class IndexFragment : BaseRecyclerViewFragment<OrderBean>() {
         super.initView(view)
         registerLoginSuccessBus()
         val param = mTvMainIndexTitle.layoutParams as ViewGroup.MarginLayoutParams
-        param.topMargin = (mContext as MainActivity).statusHeight
+        val statusHeight = (mContext as MainActivity).statusHeight
+        param.topMargin = statusHeight
+        mTvMainIndexTitle.layoutParams = param
+        mTvMainIndexTitle.setPadding(0, statusHeight,0,0)
+        val left = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,10.0f,resources.displayMetrics).toInt()
+        mTvMainIndexClear.setPadding(left, statusHeight, left, 0)
 
         mLlIndexOrderSourceAddressContainer.setOnClickListener {
             mCtvIndexOrderSourceAddress.isChecked = true
@@ -121,6 +125,16 @@ class IndexFragment : BaseRecyclerViewFragment<OrderBean>() {
             }
         }
 
+        mTvMainIndexClear.setOnClickListener {
+            mCtvIndexOrderSourceAddress.text = "出发地"
+            mCtvIndexOrderDesAddress.text = "目的地"
+            mCtvIndexOrderCarType.text = "车长车型"
+            mCtvIndexOrderSourceAddress.isChecked = false
+            mCtvIndexOrderDesAddress.isChecked = false
+            mCtvIndexOrderCarType.isChecked = false
+            onPostRefresh()
+        }
+
         mPresent.getDataByPost(0x1, RequestParamsHelper.getVersionUpdate())
     }
 
@@ -165,7 +179,6 @@ class IndexFragment : BaseRecyclerViewFragment<OrderBean>() {
         }
     }
 
-
     override fun onHandleSuccess(requestID: Int, jsonObject: Any?) {
         if (jsonObject != null && jsonObject is JSONObject) {
             val modelJSONArray = jsonObject.optJSONArray("model")
@@ -196,13 +209,11 @@ class IndexFragment : BaseRecyclerViewFragment<OrderBean>() {
         return tempList
     }
 
-
     override fun getItemDecoration(): RecyclerView.ItemDecoration {
         val itemDecoration = super.getItemDecoration() as DividerItemDecoration
         itemDecoration.setDrawable(ColorDrawable(Color.TRANSPARENT))
         return itemDecoration
     }
-
 
     override fun onMyItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
         super.onMyItemClick(adapter, view, position)
@@ -215,14 +226,12 @@ class IndexFragment : BaseRecyclerViewFragment<OrderBean>() {
         }
     }
 
-
     override fun onLoginSuccess(userInfo: UserInfo?) {
         super.onLoginSuccess(userInfo)
         if (UserInfo.loginToken == INDEX_ITEM_INFO_FLAG) {
             enterInfo(currentItem!!)
         }
     }
-
 
     private fun enterInfo(orderBean: OrderBean) {
         FragmentContainerActivity.from(mContext).setTitle("我要竞标").setExtraBundle(bundleOf(Pair("oid", orderBean.need_id))).setClazz(OrderInfoFragment::class.java).setNeedNetWorking(true).start()

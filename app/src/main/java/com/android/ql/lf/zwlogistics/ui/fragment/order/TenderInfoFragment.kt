@@ -9,12 +9,16 @@ import com.android.ql.lf.carapp.utils.isEmpty
 import com.android.ql.lf.carapp.utils.isPhone
 import com.android.ql.lf.carapp.utils.setFirstPoint
 import com.android.ql.lf.zwlogistics.R
+import com.android.ql.lf.zwlogistics.data.CarBean
 import com.android.ql.lf.zwlogistics.data.CarParamBean
 import com.android.ql.lf.zwlogistics.present.AuthManager
 import com.android.ql.lf.zwlogistics.ui.activity.FragmentContainerActivity
 import com.android.ql.lf.zwlogistics.ui.fragment.base.BaseNetWorkingFragment
+import com.android.ql.lf.zwlogistics.ui.fragment.mine.car.MineCarListFragment
 import com.android.ql.lf.zwlogistics.ui.fragment.mine.car.SelectCXFragment
 import com.android.ql.lf.zwlogistics.utils.RequestParamsHelper
+import com.android.ql.lf.zwlogistics.utils.RxBus
+import com.tencent.mm.opensdk.utils.Log
 import kotlinx.android.synthetic.main.fragment_tender_info_layout.*
 import org.jetbrains.anko.bundleOf
 import org.jetbrains.anko.support.v4.toast
@@ -23,6 +27,7 @@ import org.json.JSONObject
 class TenderInfoFragment : BaseNetWorkingFragment() {
 
     private var carType: String? = null
+
     private val carTypeList by lazy {
         arrayListOf<CarParamBean>()
     }
@@ -31,9 +36,17 @@ class TenderInfoFragment : BaseNetWorkingFragment() {
         SelectCXFragment()
     }
 
+    private val carSubscribe by lazy {
+        RxBus.getDefault().toObservable(CarBean::class.java).subscribe {
+            carType = it.vehicle_id
+            mTvTenderInfoCarType.text = it.vehicle_name
+        }
+    }
+
     override fun getLayoutId() = R.layout.fragment_tender_info_layout
 
     override fun initView(view: View?) {
+        carSubscribe
         mEtTenderInfoPrice.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 mEtTenderInfoPrice.setFirstPoint()
@@ -46,14 +59,13 @@ class TenderInfoFragment : BaseNetWorkingFragment() {
             }
         })
         mLlTenderInfoCarType.setOnClickListener {
-            if (!carTypeList.isEmpty()) {
-                selectCXFragment.myShow(childFragmentManager, "select_cx_dialog") {
-                    mTvTenderInfoCarType.text = it.name
-                    carType = it.name
-                }
-            } else {
-                onRequestFail(0x0, NullPointerException())
-            }
+            FragmentContainerActivity
+                    .from(mContext)
+                    .setTitle("请选择车辆")
+                    .setClazz(MineCarListFragment::class.java)
+                    .setExtraBundle(bundleOf(Pair(MineCarListFragment.IS_SELECT_CAR_FLAG, true)))
+                    .setNeedNetWorking(true)
+                    .start()
         }
         mBtTenderInfoSubmit.setOnClickListener {
             if (mEtTenderInfoPhone.isEmpty()) {
@@ -103,7 +115,7 @@ class TenderInfoFragment : BaseNetWorkingFragment() {
         super.onHandleSuccess(requestID, jsonObject)
         when (requestID) {
             0x0 -> {
-                if (jsonObject!=null  && jsonObject is JSONObject) {
+                if (jsonObject != null && jsonObject is JSONObject) {
                     val tempTypeList = AuthManager.parseCarParams("model", jsonObject)
                     if (tempTypeList != null) {
                         carTypeList.addAll(tempTypeList)
@@ -111,11 +123,11 @@ class TenderInfoFragment : BaseNetWorkingFragment() {
                     }
                 }
             }
-            0x1->{
+            0x1 -> {
                 toast("恭喜，竞标成功~")
                 FragmentContainerActivity
                         .from(mContext)
-                        .setExtraBundle(bundleOf(Pair("oid",arguments!!.getString("pid"))))
+                        .setExtraBundle(bundleOf(Pair("oid", arguments!!.getString("pid"))))
                         .setClazz(TenderSuccessFragment::class.java)
                         .setTitle("竞标成功")
                         .start()
@@ -123,7 +135,6 @@ class TenderInfoFragment : BaseNetWorkingFragment() {
             }
         }
     }
-
 
     override fun onRequestFail(requestID: Int, e: Throwable) {
         super.onRequestFail(requestID, e)
@@ -137,6 +148,11 @@ class TenderInfoFragment : BaseNetWorkingFragment() {
                 }
             }
         }
+    }
+
+    override fun onDestroyView() {
+        unsubscribe(carSubscribe)
+        super.onDestroyView()
     }
 
 }

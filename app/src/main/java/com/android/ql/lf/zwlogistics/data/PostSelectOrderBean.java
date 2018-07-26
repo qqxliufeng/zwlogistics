@@ -39,4 +39,11 @@ public class PostSelectOrderBean {
     public void setCarTypeParams(String carTypeParams) {
         this.carTypeParams = carTypeParams;
     }
+
+    public void reset(){
+        srcAddress = "0";
+        desAddress = "0";
+        lengthParams = "0";
+        carTypeParams = "0";
+    }
 }

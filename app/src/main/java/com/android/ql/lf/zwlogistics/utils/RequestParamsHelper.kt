@@ -81,7 +81,7 @@ class RequestParamsHelper {
                 .addParam("phone", phone)
 
 
-        fun getUserProtocolParam(type: String = "1") = getWithIdParams().addParam(ApiParams.MOD_NAME, LOGIN_MODEL).addParam(ApiParams.ACT_NAME, "deal").addParam("type", type)
+        fun getUserProtocolParam(type: String = "1") = getBaseParams().addParam(ApiParams.MOD_NAME, LOGIN_MODEL).addParam(ApiParams.ACT_NAME, "deal").addParam("type", type)
 
 
         fun getForgetPWParams(phone: String = "", pass: String = "", repass: String = ""): ApiParams {

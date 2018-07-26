@@ -16,7 +16,9 @@ import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import com.android.ql.lf.zwlogistics.data.UserInfo
+import com.android.ql.lf.zwlogistics.present.UserPresent
 import com.android.ql.lf.zwlogistics.utils.Constants
+import com.android.ql.lf.zwlogistics.utils.RequestParamsHelper
 import com.android.ql.lf.zwlogistics.utils.ThirdShareManager
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -30,6 +32,7 @@ import com.tencent.tauth.IUiListener
 import com.tencent.tauth.Tencent
 import com.tencent.tauth.UiError
 import org.jetbrains.anko.support.v4.toast
+import org.json.JSONObject
 import java.lang.Exception
 
 
@@ -42,7 +45,11 @@ class MineInviteFragment : BaseNetWorkingFragment(), IUiListener {
     }
 
     private val iwxapi by lazy {
-        WXAPIFactory.createWXAPI(mContext,Constants.WX_APP_ID,true)
+        WXAPIFactory.createWXAPI(mContext, Constants.WX_APP_ID, true)
+    }
+
+    private val userPresent by lazy {
+        UserPresent()
     }
 
 
@@ -55,9 +62,9 @@ class MineInviteFragment : BaseNetWorkingFragment(), IUiListener {
                     .load(UserInfo.getInstance().sharePic)
                     .asBitmap()
                     .diskCacheStrategy(DiskCacheStrategy.NONE)
-                    .into(object : SimpleTarget<Bitmap>(150,150) {
+                    .into(object : SimpleTarget<Bitmap>(150, 150) {
                         override fun onResourceReady(resource: Bitmap?, glideAnimation: GlideAnimation<in Bitmap>?) {
-                            ThirdShareManager.wxShare(iwxapi,resource,SendMessageToWX.Req.WXSceneSession)
+                            ThirdShareManager.wxShare(iwxapi, resource, SendMessageToWX.Req.WXSceneSession)
                         }
 
                         override fun onLoadFailed(e: Exception?, errorDrawable: Drawable?) {
@@ -73,9 +80,9 @@ class MineInviteFragment : BaseNetWorkingFragment(), IUiListener {
                     .load(UserInfo.getInstance().sharePic)
                     .asBitmap()
                     .diskCacheStrategy(DiskCacheStrategy.NONE)
-                    .into(object : SimpleTarget<Bitmap>(150,150) {
+                    .into(object : SimpleTarget<Bitmap>(150, 150) {
                         override fun onResourceReady(resource: Bitmap?, glideAnimation: GlideAnimation<in Bitmap>?) {
-                            ThirdShareManager.wxShare(iwxapi,resource,SendMessageToWX.Req.WXSceneTimeline)
+                            ThirdShareManager.wxShare(iwxapi, resource, SendMessageToWX.Req.WXSceneTimeline)
                         }
 
                         override fun onLoadFailed(e: Exception?, errorDrawable: Drawable?) {
@@ -115,10 +122,7 @@ class MineInviteFragment : BaseNetWorkingFragment(), IUiListener {
     override fun initView(view: View?) {
         mTvInviteCodeText.text = UserInfo.getInstance().user_code
         mBtInviteCodeShare.setOnClickListener {
-            if (shareContentView.parent == null) {
-                bottomSheetDialog.setContentView(shareContentView)
-            }
-            bottomSheetDialog.show()
+            mPresent.getDataByPost(0x0, RequestParamsHelper.getPersonalParam(UserInfo.getInstance().user_id))
         }
         mBtInviteCodeCopy.setOnClickListener {
             val cm = mContext.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
@@ -128,9 +132,41 @@ class MineInviteFragment : BaseNetWorkingFragment(), IUiListener {
         }
     }
 
+    override fun onRequestStart(requestID: Int) {
+        super.onRequestStart(requestID)
+        if (requestID == 0x0) {
+            getFastProgressDialog("正在获取分享信息……")
+        }
+    }
+
+    override fun <T : Any?> onRequestSuccess(requestID: Int, result: T) {
+        super.onRequestSuccess(requestID, result)
+        handleSuccess(requestID,result)
+    }
+
+    override fun onHandleSuccess(requestID: Int, obj: Any?) {
+        super.onHandleSuccess(requestID, obj)
+        if (obj!=null && obj is JSONObject){
+            userPresent.onLoginNoBus(obj)
+            showShareDialog()
+        }
+    }
+
+    private fun showShareDialog() {
+        if (shareContentView.parent == null) {
+            bottomSheetDialog.setContentView(shareContentView)
+        }
+        bottomSheetDialog.show()
+    }
+
+    override fun onRequestFail(requestID: Int, e: Throwable) {
+        super.onRequestFail(requestID, e)
+        showShareDialog()
+    }
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        mIvInviteCode.postDelayed({ mIvInviteCode.setImageBitmap(QRCodeUtil.createQRCodeBitmap(UserInfo.getInstance().shareUrl, 500, 500)) },100)
+        mIvInviteCode.postDelayed({ mIvInviteCode.setImageBitmap(QRCodeUtil.createQRCodeBitmap(UserInfo.getInstance().shareUrl, 500, 500)) }, 100)
     }
 
 
