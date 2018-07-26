@@ -132,9 +132,9 @@ public class UserInfo {
             return Constants.BASE_IP;
         }
         if (shareUrl.startsWith("http://") || shareUrl.startsWith("https://")) {
-            return shareUrl;
+            return shareUrl + user_code;
         }
-        return Constants.BASE_IP + shareUrl;
+        return Constants.BASE_IP + shareUrl+user_code;
     }
 
     public void setShareUrl(String shareUrl) {

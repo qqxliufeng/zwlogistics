@@ -77,7 +77,7 @@ class MyOrderInfoFragment : BaseNetWorkingFragment() {
         mTvOrderInfoOrderPersonNum.setDiffColorText("竞标人数：", if (orderBean != null) "${orderBean!!.need_user_cou}人" else "暂无", color2 = "#ff2222")
         mTvOrderInfoGoodsZXType.setDiffColorText("装卸方式：", if (orderBean != null) orderBean!!.need_xie else "暂无")
 
-        mTvOrderInfoGoodsInfo.text = Html.fromHtml("重量：".fromHtml() + (if (orderBean != null) orderBean!!.need_zhong else "暂无").fromHtml("#545557") + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;体积：".fromHtml() + (if (orderBean != null) orderBean!!.need_ti else "暂无").fromHtml("#545557"))
+        mTvOrderInfoGoodsInfo.text = Html.fromHtml("重量：".fromHtml() + (if (orderBean != null) orderBean!!.need_zhong+"吨" else "暂无").fromHtml("#545557") + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;体积：".fromHtml() + (if (orderBean != null) orderBean!!.need_ti+"立方米" else "暂无").fromHtml("#545557"))
         mTvOrderInfoGoodsSendAddress.setDiffColorText("出发地：", (if (orderBean != null) orderBean!!.need_f_str else "暂无"))
         mTvOrderInfoGoodsTJAddress.setDiffColorText("途径地：", (if (orderBean != null) orderBean!!.need_t_site else "暂无"))
         mTvOrderInfoGoodsReceiverAddress.setDiffColorText("目的地：", (if (orderBean != null) orderBean!!.need_m_str else "暂无"))

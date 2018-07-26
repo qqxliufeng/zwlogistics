@@ -132,6 +132,7 @@ class IndexFragment : BaseRecyclerViewFragment<OrderBean>() {
             mCtvIndexOrderSourceAddress.isChecked = false
             mCtvIndexOrderDesAddress.isChecked = false
             mCtvIndexOrderCarType.isChecked = false
+            postSelectOrderBean.reset()
             onPostRefresh()
         }
 

@@ -39,6 +39,7 @@ public class ViewUserAction implements IViewUserAction {
             UserInfo.getInstance().setSharePic(result.optString("sharePic"));
             UserInfo.getInstance().setShareTitle(result.optString("shareTitle"));
             UserInfo.getInstance().setShareIntro(result.optString("shareIntro"));
+            UserInfo.getInstance().setShareUrl(result.optString("shareUrl"));
             UserInfo.getInstance().setPushAlias(result.optString("user_as"));
             UserInfo.getInstance().setNeedGpsOrder(result.optString("is_need"));
 

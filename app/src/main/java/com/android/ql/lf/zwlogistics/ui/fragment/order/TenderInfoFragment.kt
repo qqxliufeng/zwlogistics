@@ -38,7 +38,7 @@ class TenderInfoFragment : BaseNetWorkingFragment() {
 
     private val carSubscribe by lazy {
         RxBus.getDefault().toObservable(CarBean::class.java).subscribe {
-            carType = it.vehicle_id
+            carType = "${it.vehicle_id}"
             mTvTenderInfoCarType.text = it.vehicle_name
         }
     }
@@ -68,28 +68,34 @@ class TenderInfoFragment : BaseNetWorkingFragment() {
                     .start()
         }
         mBtTenderInfoSubmit.setOnClickListener {
-            if (mEtTenderInfoPhone.isEmpty()) {
-                toast("请输入手机号")
+            try {
+                if (mEtTenderInfoPhone.isEmpty()) {
+                    toast("请输入手机号")
+                    return@setOnClickListener
+                }
+                if (!mEtTenderInfoPhone.isPhone()) {
+                    toast("请输入正确的手机号")
+                    return@setOnClickListener
+                }
+                if (mEtTenderInfoPrice.isEmpty()) {
+                    toast("请输入价格")
+                    return@setOnClickListener
+                }
+                val price = java.lang.Float.parseFloat(mEtTenderInfoPrice.getTextString())
+                if (carType == null) {
+                    toast("请选择车型")
+                    return@setOnClickListener
+                }
+                mPresent.getDataByPost(0x1, RequestParamsHelper.getTenderInfoParams(
+                        arguments!!.getString("pid"),
+                        mEtTenderInfoPhone.getTextString(),
+                        "$price",
+                        carType!!,
+                        mEtTenderInfoRemark.getTextString()))
+            } catch (e: NumberFormatException) {
+                toast("请输入合法金额")
                 return@setOnClickListener
             }
-            if (!mEtTenderInfoPhone.isPhone()) {
-                toast("请输入正确的手机号")
-                return@setOnClickListener
-            }
-            if (mEtTenderInfoPrice.isEmpty()) {
-                toast("请输入价格")
-                return@setOnClickListener
-            }
-            if (carType == null) {
-                toast("请选择车型")
-                return@setOnClickListener
-            }
-            mPresent.getDataByPost(0x1, RequestParamsHelper.getTenderInfoParams(
-                    arguments!!.getString("pid"),
-                    mEtTenderInfoPhone.getTextString(),
-                    mEtTenderInfoPrice.getTextString(),
-                    carType!!,
-                    mEtTenderInfoRemark.getTextString()))
         }
         mPresent.getDataByPost(0x0, RequestParamsHelper.getCarParamsParams())
     }
