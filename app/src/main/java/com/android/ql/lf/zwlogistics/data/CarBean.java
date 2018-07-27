@@ -22,6 +22,7 @@ public class CarBean {
     private String vehicle_is_show;
     private String vehicle_times;
     private String vehicle_content;
+    private int vehicle_biao = 1;
 
 
     public ArrayList<String> getImageList(){
@@ -163,5 +164,13 @@ public class CarBean {
 
     public void setVehicle_content(String vehicle_content) {
         this.vehicle_content = vehicle_content;
+    }
+
+    public int getVehicle_biao() {
+        return vehicle_biao;
+    }
+
+    public void setVehicle_biao(int vehicle_biao) {
+        this.vehicle_biao = vehicle_biao;
     }
 }

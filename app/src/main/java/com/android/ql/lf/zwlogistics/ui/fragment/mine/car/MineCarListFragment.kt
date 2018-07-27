@@ -147,6 +147,11 @@ class MineCarListFragment : BaseRecyclerViewFragment<CarBean>() {
         when (requestID) {
             0x0 -> {
                 processList(result as String, CarBean::class.java)
+//                if (isSelectCar) {
+//                    val tempList = mArrayList.filter { it.vehicle_is_state == 2 && it.vehicle_biao == 1 }
+//                    mArrayList.clear()
+//                    mArrayList.addAll(tempList)
+//                }
                 setLoadEnable(false)
                 if (mArrayList.isEmpty()) {
                     menuItem?.title = ACTION_ADD
@@ -227,8 +232,12 @@ class MineCarListFragment : BaseRecyclerViewFragment<CarBean>() {
                     toast("当前车辆正在审核中，请等待审核！")
                 }
                 2 -> {
-                    RxBus.getDefault().post(currentItem)
-                    finish()
+                    if (currentItem.vehicle_biao == 1) {
+                        RxBus.getDefault().post(currentItem)
+                        finish()
+                    } else {
+                        toast("当前车辆已经竞标成功，请选择其它车辆")
+                    }
                 }
                 3 -> {
                     toast("当前车辆审核失败，请重新提交！")

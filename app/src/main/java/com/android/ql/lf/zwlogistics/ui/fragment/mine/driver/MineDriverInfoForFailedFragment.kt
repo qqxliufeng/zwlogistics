@@ -65,12 +65,12 @@ class MineDriverInfoForFailedFragment : BaseNetWorkingFragment(), FragmentContai
     }
 
     override fun onHandleSuccess(requestID: Int, jsonObject: Any?) {
-        if (jsonObject!= null  && jsonObject is JSONObject) {
-            if (requestID == 0x0) {
-                toast("提交申请成功！敬请等待后台审核")
-                UserInfo.getInstance().user_is_rank = "${UserInfo.UserInfoAuthStatus.SHENG_HE_ZHONG.statusCode}"
-                finish()
-            } else if (requestID == 0x1) {
+        if (requestID == 0x0) {
+            toast("提交申请成功！敬请等待后台审核")
+            UserInfo.getInstance().user_is_rank = "${UserInfo.UserInfoAuthStatus.SHENG_HE_ZHONG.statusCode}"
+            finish()
+        } else if (requestID == 0x1) {
+            if (jsonObject!=null && jsonObject is JSONObject) {
                 if (jsonObject.optString("user_is_rank") == UserInfo.UserInfoAuthStatus.SHENG_HE_SHI_BAI.statusCode.toString()) {
                     mTvDriverInfoForFailTitle.text = "审核失败：${jsonObject.optString("user_rank_content")}"
                 }
