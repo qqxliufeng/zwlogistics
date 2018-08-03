@@ -243,7 +243,7 @@ class IndexFragment : BaseRecyclerViewFragment<OrderBean>() {
         if (requestCode == 1) {
             if (data != null) {
                 val addressBean = data.getParcelableExtra<SelectAddressActivity.SelectAddressItemBean>(SelectAddressActivity.REQUEST_DATA_FALG)
-                if (mCtvIndexOrderSourceAddress.isChecked) {
+                    if (mCtvIndexOrderSourceAddress.isChecked) {
                     sourceAddress = addressBean
                     mCtvIndexOrderSourceAddress.text = sourceAddress?.name
                     postSelectOrderBean.srcAddress = "${sourceAddress?.id},"
